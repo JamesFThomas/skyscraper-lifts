@@ -1,7 +1,13 @@
+import Container from 'react-bootstrap/Container';
+
 const About = () => {
     return (
         <div className="page">
-            About
+            <Container>
+                <div>
+                    {"About"}
+                </div>
+            </Container>
         </div>
 
     );

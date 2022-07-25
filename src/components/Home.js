@@ -1,11 +1,15 @@
+import Container from 'react-bootstrap/Container';
 
 
 const Home = () => {
     return (
         <div className="page">
-            Home
-        </div >
-
+            <Container>
+                <div>
+                    {"Home"}
+                </div>
+            </Container>
+        </div>
     );
 }
 

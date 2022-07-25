@@ -1,7 +1,14 @@
+import Container from 'react-bootstrap/Container';
+
+
 const Single = () => {
     return (
         <div className="page">
-            Single
+            <Container>
+                <div>
+                    {"Single"}
+                </div>
+            </Container>
         </div>
 
     );

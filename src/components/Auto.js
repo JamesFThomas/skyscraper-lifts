@@ -1,7 +1,13 @@
+import Container from 'react-bootstrap/Container';
+
 const Auto = () => {
     return (
         <div className="page">
-            Auto
+            <Container>
+                <div>
+                    {"Auto"}
+                </div>
+            </Container>
         </div>
 
     );
