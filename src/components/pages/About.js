@@ -1,6 +1,8 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 
+import ModalComponent from '../layout/ModalComponent';
+
 const About = () => {
   return (
     <div className='page'>
@@ -18,9 +20,9 @@ const About = () => {
           </div>
           <div>
             <h3>{'Application Modes'}</h3>
-            <Button>{'Single'}</Button> <Button>{'Auto'}</Button>
+            <ModalComponent /> <ModalComponent />
             <h3>{'Application Constraints'}</h3>
-            <Button>{'Challenges'}</Button>
+            <ModalComponent />
           </div>
         </div>
       </Container>
