@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-import { aboutData } from '../../data/aboutData';
-
-const ModalComponent = () => {
+const ModalComponent = ({ data }) => {
+  //destructure props
+  const { id, Title, Desc } = data;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -13,14 +13,13 @@ const ModalComponent = () => {
   return (
     <>
       <Button variant='primary' onClick={handleShow}>
-        Launch demo modal
+        {Title}
       </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{Title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>{Desc}</Modal.Body>
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
             Close

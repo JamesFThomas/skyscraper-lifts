@@ -17,6 +17,8 @@ import Single from './pages/Single';
 import About from './pages/About';
 import Footer from './layout/Footer';
 
+import { aboutData } from '../data/aboutData';
+
 const App = () => {
   return (
     <Router>
@@ -30,7 +32,7 @@ const App = () => {
           <Routes>
             <Route path='/auto' element={<Auto />} />
             <Route path='/single' element={<Single />} />
-            <Route path='/about' element={<About />} />
+            <Route path='/about' element={<About aboutData={aboutData} />} />
             <Route path='/home' element={<Home />} />
           </Routes>
         </Row>

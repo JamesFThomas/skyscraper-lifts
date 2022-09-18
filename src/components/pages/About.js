@@ -3,7 +3,10 @@ import Container from 'react-bootstrap/Container';
 
 import ModalComponent from '../layout/ModalComponent';
 
-const About = () => {
+const About = ({ aboutData }) => {
+  //destructure data objects for modals
+  const { auto, single, cons } = aboutData;
+
   return (
     <div className='page'>
       <Container>
@@ -20,9 +23,9 @@ const About = () => {
           </div>
           <div>
             <h3>{'Application Modes'}</h3>
-            <ModalComponent /> <ModalComponent />
+            <ModalComponent data={auto} /> <ModalComponent data={single} />
             <h3>{'Application Constraints'}</h3>
-            <ModalComponent />
+            <ModalComponent data={cons} />
           </div>
         </div>
       </Container>
