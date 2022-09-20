@@ -1,5 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import ModalComponent from '../layout/ModalComponent';
 
@@ -10,51 +12,65 @@ const About = ({ aboutData }) => {
   return (
     <div className='page'>
       <Container>
-        <div>
-          <h1>{'About This Application'}</h1>
-          <div>
-            <h2>{'Application Objective'}</h2>
+        <Row style={{ marginBottom: '5px' }}>
+          <Col>
+            <h1>{'About This Application'}</h1>
+          </Col>
+        </Row>
+        <Row style={{ marginBottom: '10px' }}>
+          <Col>
+            <h4 style={{ display: 'flex', alignItems: 'center' }}>
+              {'Application Objective'}
+            </h4>
+          </Col>
+          <Col>
             <p>
               {`
-                To design an elevator system for a building containing 100 floors.
-                This system should minimize the amount of time spent between
-                calling an elevator and arriving at the destination floor`}
+                  To design an elevator system for a building containing 100 floors.
+                  This system should minimize the amount of time spent between
+                  calling an elevator and arriving at the destination floor`}
             </p>
-          </div>
-          <div>
-            <div>
-              <h3>{'Application Modes'}</h3>
-              <ModalComponent data={auto} /> <ModalComponent data={single} />
-            </div>
-            <div>
-              <h3>{'Application Constraints'}</h3>
-              <div>
-                <h6 style={{ display: 'inline-block' }}>
-                  {`
+          </Col>
+        </Row>
+        <Row style={{ marginBottom: '10px' }}>
+          <Col style={{ display: 'flex', alignItems: 'center' }}>
+            <h4>{'Application Modes'}</h4>
+          </Col>
+          <Col>
+            <ModalComponent data={auto} /> <ModalComponent data={single} />
+          </Col>
+        </Row>
+        <Row>
+          <Col style={{ display: 'flex', alignItems: 'center' }}>
+            <h4>{'Application Constraints'}</h4>
+          </Col>
+          <Col>
+            <Row>
+              <p>
+                {`
                     Implement one or more functions that take as input
                     a time series of elevator calls and destinations
                     and outputs a time series of elevator actions.`}
-                </h6>
-                <ModalComponent data={con1} />
-              </div>
-              <div>
-                <h6 style={{ display: 'inline-block' }}>
-                  {`
+              </p>
+              <ModalComponent data={con1} />
+            </Row>
+            <Row>
+              <p>
+                {`
                 Implement a simulator that generates the time
                 series of elevator calls to feed the function
                 in part A.`}
-                </h6>
-                <ModalComponent data={con2} />
-              </div>
-              <div>
-                <h6
-                  style={{ display: 'inline-block' }}
-                >{`After the simulator runs, it should produce summary statistics.`}</h6>
-                <ModalComponent data={con3} />
-              </div>
-            </div>
-          </div>
-        </div>
+              </p>
+              <ModalComponent data={con2} />
+            </Row>
+            <Row>
+              <p>
+                {`After the simulator runs, it should produce summary statistics.`}
+              </p>
+              <ModalComponent data={con3} />
+            </Row>
+          </Col>
+        </Row>
       </Container>
     </div>
   );

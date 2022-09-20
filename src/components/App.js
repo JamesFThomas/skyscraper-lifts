@@ -30,10 +30,10 @@ const App = () => {
         </Row>
         <Row>
           <Routes>
+            <Route path='/' element={<Home />} />
             <Route path='/auto' element={<Auto />} />
             <Route path='/single' element={<Single />} />
             <Route path='/about' element={<About aboutData={aboutData} />} />
-            <Route path='/home' element={<Home />} />
           </Routes>
         </Row>
         <Row>
