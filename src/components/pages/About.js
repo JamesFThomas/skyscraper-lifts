@@ -12,61 +12,84 @@ const About = ({ aboutData }) => {
   return (
     <div className='page'>
       <Container>
-        <Row style={{ marginBottom: '5px' }}>
+        <Row style={{ margin: '10px' }}>
           <Col>
             <h1>{'About This Application'}</h1>
           </Col>
         </Row>
-        <Row style={{ marginBottom: '10px' }}>
+        <Row style={{ marginBottom: '20px' }}>
           <Col>
-            <h4 style={{ display: 'flex', alignItems: 'center' }}>
-              {'Application Objective'}
-            </h4>
+            <h4>{'Application Objective'}</h4>
           </Col>
-          <Col>
+          <Col
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+            }}
+          >
             <p>
               {`
-                  To design an elevator system for a building containing 100 floors.
-                  This system should minimize the amount of time spent between
-                  calling an elevator and arriving at the destination floor`}
+                  Design an elevator system for a 100 story building
+                  minimizing a the time between calling an elevator and
+                  arrival at desired floor.`}
             </p>
           </Col>
         </Row>
-        <Row style={{ marginBottom: '10px' }}>
-          <Col style={{ display: 'flex', alignItems: 'center' }}>
+        <Row style={{ marginBottom: '20px' }}>
+          <Col>
             <h4>{'Application Modes'}</h4>
           </Col>
           <Col>
-            <ModalComponent data={auto} /> <ModalComponent data={single} />
+            <Row
+              style={{
+                marginBottom: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <ModalComponent data={auto} />
+            </Row>
+            <Row
+              style={{
+                marginBottom: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
+              <ModalComponent data={single} />
+            </Row>
           </Col>
         </Row>
         <Row>
-          <Col style={{ display: 'flex', alignItems: 'center' }}>
+          <Col>
             <h4>{'Application Constraints'}</h4>
           </Col>
           <Col>
-            <Row>
-              <p>
-                {`
-                    Implement one or more functions that take as input
-                    a time series of elevator calls and destinations
-                    and outputs a time series of elevator actions.`}
-              </p>
+            <Row
+              style={{
+                marginBottom: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
               <ModalComponent data={con1} />
             </Row>
-            <Row>
-              <p>
-                {`
-                Implement a simulator that generates the time
-                series of elevator calls to feed the function
-                in part A.`}
-              </p>
+            <Row
+              style={{
+                marginBottom: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
               <ModalComponent data={con2} />
             </Row>
-            <Row>
-              <p>
-                {`After the simulator runs, it should produce summary statistics.`}
-              </p>
+            <Row
+              style={{
+                marginBottom: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+              }}
+            >
               <ModalComponent data={con3} />
             </Row>
           </Col>
