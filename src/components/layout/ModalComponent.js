@@ -6,7 +6,7 @@ import '../../styles/modalComponent.css';
 
 const ModalComponent = ({ data }) => {
   //destructure props
-  const { id, Title, Desc } = data;
+  const { id, Title, Desc, List } = data;
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,6 +27,13 @@ const ModalComponent = ({ data }) => {
           <Modal.Title>{Title}</Modal.Title>
         </Modal.Header>
         <Modal.Body>{Desc}</Modal.Body>
+        {List && (
+          <ul>
+            {List.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        )}
         <Modal.Footer>
           <Button variant='secondary' onClick={handleClose}>
             Close
