@@ -2,12 +2,20 @@ export const aboutData = {
   auto: {
     id: 1,
     Title: 'Single Mode',
-    Desc: `information for single mode`,
+    Desc: `
+    In this mode the passenger can call a single lift,
+    take a simulated ride to their chosen floor
+    and end with a visual log of their ride.`,
   },
   single: {
     id: 2,
     Title: 'Auto Mode',
-    Desc: `information for auto mode`,
+    Desc: `
+    In this mode the application will simulate
+    calls, pickups, and drop offs of passengers.
+    Each lift will display a visual log of all trips
+    throughout the session, along with a summary at the end.
+    `,
   },
   con1: {
     id: 3,
