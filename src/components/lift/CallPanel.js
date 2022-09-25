@@ -16,17 +16,17 @@ const CallPanel = () => {
   };
 
   return (
-    <Container className='panel'>
+    <div className='panelContainer'>
       <span
-        class={`arrow bi bi-caret-up${upClick}`}
+        className={`arrow bi bi-caret-up${upClick}`}
         onClick={(e) => handelUp(e)}
       />
-      <div className='panelText'>CALL</div>
+      {/* <div className='panelText'>CALL</div> */}
       <span
-        class={`arrow bi bi-caret-down${downClick}`}
+        className={`arrow bi bi-caret-down${downClick}`}
         onClick={(e) => handelDown(e)}
       />
-    </Container>
+    </div>
   );
 };
 
