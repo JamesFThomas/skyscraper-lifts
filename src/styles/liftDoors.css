@@ -1,0 +1,18 @@
+.liftDoors {
+  margin: 1em;
+  display: flex;
+  height: 300px;
+  width: 300px;
+}
+.leftDoor {
+  width: 50%;
+  height: 100%;
+  display: inline;
+  border: solid 2px black;
+}
+.rightDoor {
+  min-height: 100%;
+  width: 50%;
+  display: inline;
+  border: solid 2px black;
+}

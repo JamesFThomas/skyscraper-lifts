@@ -6,6 +6,7 @@
   flex-direction: column;
   border: 2px solid black;
   padding: 0px 15px;
+  margin: 1em;
 }
 
 .panelText {

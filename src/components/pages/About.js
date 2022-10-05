@@ -30,7 +30,7 @@ const About = ({ aboutData }) => {
             <p>
               {`
                   Design an elevator system for a 100 story building
-                  minimizing a the time between calling an elevator and
+                  minimizing  the time between calling an elevator and
                   arrival at desired floor.`}
             </p>
           </Col>

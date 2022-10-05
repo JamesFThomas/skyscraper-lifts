@@ -13,7 +13,7 @@ const DisplayPanel = () => {
     goingUp ? setGoingUp('-fill') : setGoingUp('');
   };
   const showDown = () => {
-    goingDown === '' ? setGoingDown('-fill') : setGoingDown('');
+    goingDown ? setGoingDown('-fill') : setGoingDown('');
   };
 
   return (
