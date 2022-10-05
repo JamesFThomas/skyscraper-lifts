@@ -1,0 +1,16 @@
+.buttonPanel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 1em;
+}
+
+.startBtn:hover {
+  background-color: green !important;
+}
+.stopBtn:hover {
+  background-color: crimson !important;
+}
+.summaryBtn:hover {
+  background-color: blueviolet !important;
+}
