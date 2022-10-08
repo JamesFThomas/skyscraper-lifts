@@ -25,7 +25,7 @@ const DisplayPanel = () => {
         <div className='displayText'>{currentFloor}</div>
       </div>
       <div className='disArrow'>
-        <span className={`arrow bi bi-caret-down ${goingUp}`} />
+        <span className={`arrow bi bi-caret-down ${goingDown}`} />
       </div>
     </div>
   );

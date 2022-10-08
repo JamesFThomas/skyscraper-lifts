@@ -21,7 +21,6 @@ const CallPanel = () => {
         className={`arrow bi bi-caret-up${upClick}`}
         onClick={(e) => handelUp(e)}
       />
-      {/* <div className='panelText'>CALL</div> */}
       <span
         className={`arrow bi bi-caret-down${downClick}`}
         onClick={(e) => handelDown(e)}

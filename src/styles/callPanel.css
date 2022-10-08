@@ -4,24 +4,10 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  border: 2px solid black;
+  border: 2px solid grey;
   padding: 0px 15px;
-  margin: 1em;
-}
-
-.panelText {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  border: 2px solid black;
-  height: 60px;
-  width: 60px;
-  z-index: 1;
-}
-
-.arrow {
-  font-size: 50px;
+  /* margin: 1em; */
+  height: fit-content;
 }
 
 .arrow:hover {
