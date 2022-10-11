@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { useSelector, useDispatch } from 'react-redux';
+import { goingUp, goingDown } from '../redux/displaySlice';
 import '../../styles/displayPanel.css';
 
 const DisplayPanel = () => {
   const [goingUp, setGoingUp] = useState(false);
   const [goingDown, setGoingDown] = useState(false);
-  const [currentFloor, setCurrentFloor] = useState(33);
+  const currentFloor = useSelector((state) => state.display.currentFloor);
 
   const showUp = () => {
     goingUp ? setGoingUp('-fill') : setGoingUp('');
