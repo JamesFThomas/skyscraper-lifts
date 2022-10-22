@@ -27,7 +27,6 @@ const DisplayPanel = () => {
           }
         />
       </div>
-      {/* dispatch(moveLift(60)) */}
       <button onClick={() => dispatch(moveLift(currentFloor, endFloor))}>
         Run
       </button>
