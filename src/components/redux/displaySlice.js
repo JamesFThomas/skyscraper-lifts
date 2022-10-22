@@ -3,9 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 export const displaySlice = createSlice({
   name: 'displayPanel',
   initialState: {
-    currentFloor: 50,
-    startFloor: undefined,
-    endFloor: undefined,
+    currentFloor: 10,
+    startFloor: 'start variable',
+    endFloor: 20,
     dUp: false,
     dDown: false,
     trips: [],
@@ -34,52 +34,6 @@ export const displaySlice = createSlice({
     trackTrip: (state, action) => {
       state.trips.push(action.payload);
     },
-    //dispatch
-    moveLift: (state, action) => {
-      //set ending floor from action payload
-      let end = action.payload;
-      setEndFloor(end);
-      // track starting floor
-      setStartFloor(state.currentFloor);
-      //move lift down if action.payload < currentFloor
-      if (state.endFloor < state.currentFloor) {
-        showUp(true);
-        while (state.currentFloor <= state.endFloor) {
-          setTimeout(() => {
-            setCurFloor(1);
-          }, 1000);
-        }
-        if (state.currentFloor === state.endFloor) {
-          showUp(false);
-          let trip = {
-            start: state.startFloor,
-            end: state.endFloor,
-          };
-          trackTrip(trip);
-          setEndFloor(undefined);
-          setStartFloor(undefined);
-        }
-      }
-      //move lift up if action.payload > currentFloor
-      if (state.endFloor > state.currentFloor) {
-        showDown(true);
-        while (state.currentFloor >= state.endFloor) {
-          setTimeout(() => {
-            setCurFloor(-1);
-          }, 1000);
-        }
-        if (state.currentFloor === state.endFloor) {
-          showDown(false);
-          let trip = {
-            start: state.startFloor,
-            end: state.endFloor,
-          };
-          trackTrip(trip);
-          setEndFloor(undefined);
-          setStartFloor(undefined);
-        }
-      }
-    },
   },
 });
 
@@ -91,8 +45,24 @@ export const {
   setEndFloor,
   setStartFloor,
   trackTrip,
-  moveLift,
 } = displaySlice.actions;
+
+// make thunk function to move moveLift
+export const moveLift = (current, end) => (dispatch) => {
+  if (current === end) {
+    setTimeout(() => {
+      console.log('done');
+      return;
+    }, 1000);
+  }
+  if (current < end) {
+    setTimeout(() => {
+      console.log(current, end);
+      dispatch(setCurFloor(1));
+      dispatch(moveLift((current += 1), end));
+    }, 1000);
+  }
+};
 
 // export reducer for this slice to store
 export default displaySlice.reducer;
