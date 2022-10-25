@@ -1,14 +1,11 @@
-import React, { useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { moveLift, setEndFloor } from '../redux/displaySlice';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import '../../styles/displayPanel.css';
 
 const DisplayPanel = () => {
   const dUp = useSelector((state) => state.display.dUp);
   const dDown = useSelector((state) => state.display.dDown);
   const currentFloor = useSelector((state) => state.display.currentFloor);
-  const endFloor = useSelector((state) => state.display.endFloor);
-  const dispatch = useDispatch();
 
   return (
     <div className='disPanel'>
@@ -27,9 +24,6 @@ const DisplayPanel = () => {
           }
         />
       </div>
-      <button onClick={() => dispatch(moveLift(currentFloor, endFloor))}>
-        Run
-      </button>
     </div>
   );
 };
