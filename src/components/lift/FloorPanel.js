@@ -1,11 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  setStartFloor,
-  setEndFloor,
-  trackTrip,
-  moveLift,
-} from '../redux/displaySlice';
+import { trackTrip, moveLift } from '../redux/displaySlice';
 import Button from 'react-bootstrap/Button';
 
 import '../../styles/floorPanel.css';
