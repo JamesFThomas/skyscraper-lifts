@@ -1,5 +1,4 @@
 import Container from 'react-bootstrap/Container';
-import Counter from '../lift/Counter';
 import FloorPanel from '../lift/FloorPanel';
 
 const Home = () => {
