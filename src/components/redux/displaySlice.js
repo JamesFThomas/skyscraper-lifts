@@ -4,31 +4,30 @@ export const displaySlice = createSlice({
   name: 'displayPanel',
   initialState: {
     currentFloor: 10,
-    startFloor: 'start variable',
-    endFloor: 20,
     dUp: false,
     dDown: false,
+    IDLE: true,
+    SELECT: false,
+    MOVING: false,
     trips: [],
   },
   reducers: {
-    //function to set dUp bool
     showUp: (state, action) => {
       state.dUp = action.payload;
     },
-    //function to set dDown bool
     showDown: (state, action) => {
       state.dUp = action.payload;
     },
-    // function to update current floor
     setCurFloor: (state, action) => {
       state.currentFloor += action.payload;
     },
-    // function to update ending floor
-    setEndFloor: (state, action) => {
+    setIdle: (state, action) => {
       state.endFloor += action.payload;
     },
-    // function to update ending floor
-    setStartFloor: (state, action) => {
+    setSelect: (state, action) => {
+      state.startFloor += action.payload;
+    },
+    setMoving: (state, action) => {
       state.startFloor += action.payload;
     },
     trackTrip: (state, action) => {
@@ -42,8 +41,9 @@ export const {
   showUp,
   showDown,
   setCurFloor,
-  setEndFloor,
-  setStartFloor,
+  setIdle,
+  setSelect,
+  setMoving,
   trackTrip,
 } = displaySlice.actions;
 
@@ -51,15 +51,24 @@ export const {
 export const moveLift = (current, end) => (dispatch) => {
   if (current === end) {
     setTimeout(() => {
-      console.log('done');
+      console.log('done', current, end);
       return;
     }, 1000);
   }
   if (current < end) {
+    // current += 1;
     setTimeout(() => {
       console.log(current, end);
       dispatch(setCurFloor(1));
       dispatch(moveLift((current += 1), end));
+    }, 1000);
+  }
+  if (current > end) {
+    // current -= 1;
+    setTimeout(() => {
+      console.log(current, end);
+      dispatch(setCurFloor(-1));
+      dispatch(moveLift((current -= 1), end));
     }, 1000);
   }
 };
