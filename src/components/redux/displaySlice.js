@@ -55,6 +55,8 @@ export const moveLift = (current, end) => (dispatch) => {
       console.log("done", current, end);
       return;
     }, 1000);
+    dispatch(showDown(false));
+    dispatch(showUp(false));
   }
   if (current < end) {
     // current += 1;
