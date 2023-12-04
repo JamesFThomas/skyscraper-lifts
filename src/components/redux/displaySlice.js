@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const displaySlice = createSlice({
-  name: 'displayPanel',
+  name: "displayPanel",
   initialState: {
     currentFloor: 10,
     dUp: false,
@@ -51,7 +51,8 @@ export const {
 export const moveLift = (current, end) => (dispatch) => {
   if (current === end) {
     setTimeout(() => {
-      console.log('done', current, end);
+      // dispatch(setCurFloor(1));
+      console.log("done", current, end);
       return;
     }, 1000);
   }
