@@ -1,25 +1,53 @@
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
+import { useState } from "react";
+
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
 
 const NavBar = () => {
+  const [navButtons] = useState([
+    { title: "About", href: "/about" },
+    { title: "Single", href: "/single" },
+    { title: "Auto", href: "/auto" },
+  ]);
+
   return (
-    <Navbar bg='secondary' variant='dark'>
-      <Container fluid>
-        <Navbar.Brand href='/'>Skyscraper Lifts</Navbar.Brand>
-        <Nav className='ms-auto'>
-          <Nav.Item>
-            <Nav.Link href='/about'> About </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href='/single'> Single </Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link href='/auto'> Auto </Nav.Link>
-          </Nav.Item>
-        </Nav>
-      </Container>
-    </Navbar>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            href="/"
+          >
+            <Typography>Skyscraper Lifts</Typography>
+          </IconButton>
+          <Typography component="div" sx={{ flexGrow: 1 }}>
+            {/* Remove box or replace only taking up space*/}
+          </Typography>
+          <List sx={{ display: "flex", flexDirection: "row" }}>
+            {navButtons.map((item) => (
+              <ListItem key={item.title} disablePadding>
+                <ListItemButton sx={{ textAlign: "center" }} href={item.href}>
+                  <ListItemText primary={item.title} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
 };
 
