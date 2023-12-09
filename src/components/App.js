@@ -14,14 +14,16 @@ import { aboutData } from "../data/aboutData";
 
 const App = () => {
   return (
-    <Container
-      sx={{
-        maxWidth: "100%",
-        height: "100vh",
-        backgroundColor: "lightblue",
-      }}
-    >
-      <Router>
+    <Router>
+      <Container
+        maxWidth={false}
+        disableGutters
+        sx={{
+          height: "100vh",
+          backgroundColor: "lightblue",
+        }}
+        fluid
+      >
         <NavBar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -29,8 +31,8 @@ const App = () => {
           <Route path="/single" element={<Single />} />
           <Route path="/about" element={<About aboutData={aboutData} />} />
         </Routes>
-      </Router>
-    </Container>
+      </Container>
+    </Router>
   );
 };
 
