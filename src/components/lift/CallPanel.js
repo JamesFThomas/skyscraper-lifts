@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
-import { Container } from 'react-bootstrap';
-import '../../styles/callPanel.css';
+import React, { useState } from "react";
+import { Container } from "react-bootstrap";
+import "../../styles/callPanel.css";
 
 const CallPanel = () => {
-  const [upClick, setUpClick] = useState('');
-  const [downClick, setDownClick] = useState('');
+  const [upClick, setUpClick] = useState("");
+  const [downClick, setDownClick] = useState("");
 
   const handelUp = (e) => {
     e.preventDefault();
-    upClick === '' ? setUpClick('-fill') : setUpClick('');
+    upClick === "" ? setUpClick("-fill") : setUpClick("");
+    
   };
   const handelDown = (e) => {
     e.preventDefault();
-    downClick === '' ? setDownClick('-fill') : setDownClick('');
+    downClick === "" ? setDownClick("-fill") : setDownClick("");
   };
 
   return (
-    <div className='panelContainer'>
+    <div className="panelContainer">
       <span
         className={`arrow bi bi-caret-up${upClick}`}
         onClick={(e) => handelUp(e)}

@@ -1,6 +1,6 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import '../../styles/displayPanel.css';
+import React from "react";
+import { useSelector } from "react-redux";
+import "../../styles/displayPanel.css";
 
 const DisplayPanel = () => {
   const dUp = useSelector((state) => state.display.dUp);
@@ -8,19 +8,46 @@ const DisplayPanel = () => {
   const currentFloor = useSelector((state) => state.display.currentFloor);
 
   return (
-    <div className='disPanel'>
-      <div className='disArrow'>
+    <div
+      className="disPanel"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        height: "max-content",
+        width: "fit-content",
+      }}
+    >
+      <div
+        className="disArrow"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
         <span
-          className={dUp ? 'arrow bi bi-caret-up-fill' : 'arrow bi bi-caret-up'}
+          className={dUp ? "arrow bi bi-caret-up-fill" : "arrow bi bi-caret-up"}
         />
       </div>
-      <div className='floorDisplay '>
-        <div className='displayText'>{currentFloor}</div>
+      <div
+        className="floorDisplay "
+        style={{
+          margin: "10px",
+        }}
+      >
+        <div className="displayText">{currentFloor}</div>
       </div>
-      <div className='disArrow'>
+      <div
+        className="disArrow"
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+        }}
+      >
         <span
           className={
-            dDown ? 'arrow bi bi-caret-down-fill' : 'arrow bi bi-caret-down'
+            dDown ? "arrow bi bi-caret-down-fill" : "arrow bi bi-caret-down"
           }
         />
       </div>
