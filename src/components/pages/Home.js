@@ -1,18 +1,14 @@
-import Container from "react-bootstrap/Container";
+import { useSelector, useDispatch } from "react-redux";
 import FloorsPanel from "../lift/FloorPanel";
 import DisplayPanel from "../lift/DisplayPanel";
-import { useSelector, useDispatch } from "react-redux";
+
+import { Box, Stack, Typography } from "@mui/material";
 
 const Home = () => {
-  const dispatch = useDispatch();
   return (
-    <Container
-      style={{
-        marginTop: "20px",
-      }}
-    >
-      <div>{"Home"}</div>
-      <div
+    <Stack direction={"column"} padding={2} spacing={2}>
+      <Typography>{"Home"}</Typography>
+      <Box
         style={{
           display: "flex",
           flexDirection: "row",
@@ -23,8 +19,8 @@ const Home = () => {
       >
         <FloorsPanel />
         <DisplayPanel />
-      </div>
-    </Container>
+      </Box>
+    </Stack>
   );
 };
 

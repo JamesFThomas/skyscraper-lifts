@@ -12,7 +12,6 @@ const panelStyles = () => {
     flexWrap: "wrap",
     maxWidth: "50%",
     outline: "solid 1px grey",
-    // backgroundColor: "white",
   };
 };
 const buttonStyles = () => {
@@ -30,8 +29,8 @@ const FloorsPanel = () => {
     return floor !== currentFloor;
   });
 
-  const setMovingDirection = (end) => {
-    end < currentFloor ? dispatch(showDown(true)) : dispatch(showUp(true));
+  const setMovingDirection = (end, current) => {
+    return end < current ? dispatch(showDown(true)) : dispatch(showUp(true));
   };
 
   const handleClick = (e) => {
@@ -41,7 +40,7 @@ const FloorsPanel = () => {
     // track the trip
     console.log(newTrip);
     dispatch(trackTrip(newTrip));
-    setMovingDirection(endFloor);
+    setMovingDirection(endFloor, currentFloor);
 
     // move the lift
     dispatch(moveLift(currentFloor, endFloor));

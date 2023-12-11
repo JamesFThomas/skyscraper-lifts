@@ -16,7 +16,7 @@ export const displaySlice = createSlice({
       state.dUp = action.payload;
     },
     showDown: (state, action) => {
-      state.dUp = action.payload;
+      state.dDown = action.payload;
     },
     setCurFloor: (state, action) => {
       state.currentFloor += action.payload;
@@ -49,27 +49,24 @@ export const {
 
 // make thunk function to move moveLift
 export const moveLift = (current, end) => (dispatch) => {
-  if (current === end) {
-    setTimeout(() => {
-      // dispatch(setCurFloor(1));
-      console.log("done", current, end);
-      // dispatch(showDown(false));
-      // dispatch(showUp(false));
-      return;
-    }, 1000);
-  }
   if (current < end) {
     setTimeout(() => {
       console.log(current, end);
       dispatch(setCurFloor(1));
       dispatch(moveLift((current += 1), end));
     }, 1000);
-  }
-  if (current > end) {
+  } else if (current > end) {
     setTimeout(() => {
       console.log(current, end);
       dispatch(setCurFloor(-1));
       dispatch(moveLift((current -= 1), end));
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      console.log("done", current, end);
+      dispatch(showDown(false));
+      dispatch(showUp(false));
+      return;
     }, 1000);
   }
 };
