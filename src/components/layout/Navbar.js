@@ -12,6 +12,32 @@ import {
   ListItemText,
 } from "@mui/material";
 
+const iconButtonStyles = () => {
+  return {
+    mr: 2,
+  };
+};
+
+const listBoxStyles = () => {
+  return {
+    flexGrow: 1,
+    justifyContent: "flex-end",
+    display: "flex",
+    flexDirection: "row",
+  };
+};
+const listStyles = () => {
+  return {
+    display: "flex",
+    flexDirection: "row",
+  };
+};
+const listButtonStyles = () => {
+  return {
+    textAlign: "center",
+  };
+};
+
 const NavBar = () => {
   const [navButtons] = useState([
     { title: "About", href: "/about" },
@@ -28,24 +54,16 @@ const NavBar = () => {
             edge="start"
             color="inherit"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={iconButtonStyles}
             href="/"
           >
             <Typography>Skyscraper Lifts</Typography>
           </IconButton>
-          <Box
-            component="div"
-            sx={{
-              flexGrow: 1,
-              justifyContent: "flex-end",
-              display: "flex",
-              flexDirection: "row",
-            }}
-          >
-            <List sx={{ display: "flex", flexDirection: "row" }}>
+          <Box component="div" sx={listBoxStyles}>
+            <List sx={listStyles}>
               {navButtons.map((item) => (
                 <ListItem key={item.title} disablePadding>
-                  <ListItemButton sx={{ textAlign: "center" }} href={item.href}>
+                  <ListItemButton sx={listButtonStyles} href={item.href}>
                     <ListItemText primary={item.title} />
                   </ListItemButton>
                 </ListItem>
