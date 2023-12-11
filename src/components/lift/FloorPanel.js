@@ -12,7 +12,7 @@ const panelStyles = () => {
     flexWrap: "wrap",
     maxWidth: "50%",
     outline: "solid 1px grey",
-    backgroundColor: "white",
+    // backgroundColor: "white",
   };
 };
 const buttonStyles = () => {
