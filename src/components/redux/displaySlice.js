@@ -53,13 +53,12 @@ export const moveLift = (current, end) => (dispatch) => {
     setTimeout(() => {
       // dispatch(setCurFloor(1));
       console.log("done", current, end);
+      // dispatch(showDown(false));
+      // dispatch(showUp(false));
       return;
     }, 1000);
-    dispatch(showDown(false));
-    dispatch(showUp(false));
   }
   if (current < end) {
-    // current += 1;
     setTimeout(() => {
       console.log(current, end);
       dispatch(setCurFloor(1));
@@ -67,7 +66,6 @@ export const moveLift = (current, end) => (dispatch) => {
     }, 1000);
   }
   if (current > end) {
-    // current -= 1;
     setTimeout(() => {
       console.log(current, end);
       dispatch(setCurFloor(-1));

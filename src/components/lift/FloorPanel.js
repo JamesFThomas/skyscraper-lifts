@@ -1,18 +1,36 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { trackTrip, moveLift, showUp, showDown } from "../redux/displaySlice";
-import Button from "react-bootstrap/Button";
 
-import "../../styles/floorPanel.css";
+import { Box, Button } from "@mui/material";
 
-const FloorPanel = () => {
-  const currentFloor = useSelector((state) => state.display.currentFloor);
+const panelStyles = () => {
+  return {
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    display: "flex",
+    flexWrap: "wrap",
+    maxWidth: "50%",
+    outline: "solid 1px grey",
+    backgroundColor: "white",
+  };
+};
+const buttonStyles = () => {
+  return {
+    flex: "1 1 20%",
+    margin: "0.25em",
+    maxWidth: "2.5em",
+  };
+};
+
+const FloorsPanel = () => {
   const dispatch = useDispatch();
+  const currentFloor = useSelector((state) => state.display.currentFloor);
   const floors = [...Array(100).keys()].filter((floor) => {
     return floor !== currentFloor;
   });
 
-  const setMovingDircection = (end) => {
+  const setMovingDirection = (end) => {
     end < currentFloor ? dispatch(showDown(true)) : dispatch(showUp(true));
   };
 
@@ -23,28 +41,28 @@ const FloorPanel = () => {
     // track the trip
     console.log(newTrip);
     dispatch(trackTrip(newTrip));
-    setMovingDircection(endFloor);
+    setMovingDirection(endFloor);
 
     // move the lift
     dispatch(moveLift(currentFloor, endFloor));
   };
 
   return (
-    <div className="floorGrid">
+    <Box sx={panelStyles}>
       {floors.map((floor, i) => (
         <Button
-          className="gridButton"
-          key={i}
+          key={`${floor}-${i}`}
           value={floor}
-          variant="outline-secondary"
-          size="sm"
+          variant="outlined"
+          size="small"
+          sx={buttonStyles}
           onClick={(e) => handleClick(e)}
         >
           {floor}
         </Button>
       ))}
-    </div>
+    </Box>
   );
 };
 
-export default FloorPanel;
+export default FloorsPanel;

@@ -1,6 +1,35 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import "../../styles/displayPanel.css";
+
+import { Box, Stack, Typography } from "@mui/material";
+import { Forward, ForwardOutlined } from "@mui/icons-material";
+
+const stackStyles = () => {
+  return {
+    border: "2px solid grey",
+  };
+};
+
+const iconBoxStyles = () => {
+  return {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  };
+};
+
+const upIconStyles = () => {
+  return {
+    transform: "rotate(270deg)",
+    fontSize: 30,
+  };
+};
+const downIconStyles = () => {
+  return {
+    transform: "rotate(90deg)",
+    fontSize: 30,
+  };
+};
 
 const DisplayPanel = () => {
   const dUp = useSelector((state) => state.display.dUp);
@@ -8,50 +37,31 @@ const DisplayPanel = () => {
   const currentFloor = useSelector((state) => state.display.currentFloor);
 
   return (
-    <div
-      className="disPanel"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        height: "max-content",
-        width: "fit-content",
-      }}
-    >
-      <div
-        className="disArrow"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
+    <Stack padding={2} spacing={2} sx={stackStyles}>
+      <Box sx={iconBoxStyles}>
+        {dUp ? (
+          <Forward sx={upIconStyles} />
+        ) : (
+          <ForwardOutlined sx={upIconStyles} />
+        )}
+      </Box>
+      <Typography
+        sx={{
+          border: "2px solid grey",
+          fontSize: 32,
+          padding: "16px",
         }}
       >
-        <span
-          className={dUp ? "arrow bi bi-caret-up-fill" : "arrow bi bi-caret-up"}
-        />
-      </div>
-      <div
-        className="floorDisplay "
-        style={{
-          margin: "10px",
-        }}
-      >
-        <div className="displayText">{currentFloor}</div>
-      </div>
-      <div
-        className="disArrow"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "center",
-        }}
-      >
-        <span
-          className={
-            dDown ? "arrow bi bi-caret-down-fill" : "arrow bi bi-caret-down"
-          }
-        />
-      </div>
-    </div>
+        {currentFloor}
+      </Typography>
+      <Box sx={iconBoxStyles}>
+        {dDown ? (
+          <Forward sx={downIconStyles} />
+        ) : (
+          <ForwardOutlined sx={downIconStyles} />
+        )}
+      </Box>
+    </Stack>
   );
 };
 

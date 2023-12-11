@@ -1,32 +1,30 @@
 import Container from "react-bootstrap/Container";
-import FloorPanel from "../lift/FloorPanel";
+import FloorsPanel from "../lift/FloorPanel";
 import DisplayPanel from "../lift/DisplayPanel";
 import { useSelector, useDispatch } from "react-redux";
 
 const Home = () => {
   const dispatch = useDispatch();
   return (
-    <div className="page">
-      <Container
+    <Container
+      style={{
+        marginTop: "20px",
+      }}
+    >
+      <div>{"Home"}</div>
+      <div
         style={{
-          marginTop: "20px",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+          marginTop: "10px",
         }}
       >
-        <div>{"Home"}</div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-evenly",
-            alignItems: "center",
-            marginTop: "10px",
-          }}
-        >
-          <FloorPanel />
-          <DisplayPanel />
-        </div>
-      </Container>
-    </div>
+        <FloorsPanel />
+        <DisplayPanel />
+      </div>
+    </Container>
   );
 };
 
