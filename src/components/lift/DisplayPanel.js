@@ -7,6 +7,18 @@ import { Forward, ForwardOutlined } from "@mui/icons-material";
 const stackStyles = () => {
   return {
     border: "2px solid grey",
+    width: "fit-content",
+  };
+};
+
+const textStyles = () => {
+  return {
+    border: "2px solid grey",
+    fontSize: 32,
+    padding: "16px",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
   };
 };
 
@@ -45,15 +57,7 @@ const DisplayPanel = () => {
           <ForwardOutlined sx={upIconStyles} />
         )}
       </Box>
-      <Typography
-        sx={{
-          border: "2px solid grey",
-          fontSize: 32,
-          padding: "16px",
-        }}
-      >
-        {currentFloor}
-      </Typography>
+      <Typography sx={textStyles}>{currentFloor}</Typography>
       <Box sx={iconBoxStyles}>
         {dDown ? (
           <Forward sx={downIconStyles} />

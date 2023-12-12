@@ -1,8 +1,5 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 import CallPanel from "../lift/CallPanel";
 import FloorPanel from "../lift/FloorPanel";
@@ -10,6 +7,25 @@ import DisplayPanel from "../lift/DisplayPanel";
 import LiftDoors from "../lift/LiftDoors";
 import ControlButtons from "../layout/ControlButtons";
 import TripLog from "../layout/TripLog";
+
+import { Grid, Box, Typography } from "@mui/material";
+
+const centeredItemStyles = () => {
+  return {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  };
+};
+
+const spacedItemStyles = () => {
+  return {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+  };
+};
 
 const Single = () => {
   //import useSelector and track state for rendering
@@ -20,51 +36,22 @@ const Single = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="page">
-      <Container>
-        <Row>
-          <ControlButtons />
-        </Row>
-        <Row>
-          <Col
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <TripLog />
-          </Col>
-          <Col>
-            <Row
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <Col md={{ span: 8, offset: 1 }}>
-                <DisplayPanel />
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <LiftDoors />
-              </Col>
-              <Col
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <CallPanel />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <Box sx={{ padding: "16px" }}>
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <TripLog />
+        </Grid>
+        <Grid item xs={8}>
+          <Box sx={centeredItemStyles}>
+            <DisplayPanel />
+          </Box>
+          <Box sx={spacedItemStyles}>
+            <LiftDoors />
+            <CallPanel />
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
