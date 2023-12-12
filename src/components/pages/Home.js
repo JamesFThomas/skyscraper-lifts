@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import FloorsPanel from "../lift/FloorPanel";
 import DisplayPanel from "../lift/DisplayPanel";
+import CallPanel from "../lift/CallPanel";
 
 import { Box, Stack, Typography } from "@mui/material";
 
@@ -19,6 +20,7 @@ const Home = () => {
       >
         <FloorsPanel />
         <DisplayPanel />
+        <CallPanel />
       </Box>
     </Stack>
   );

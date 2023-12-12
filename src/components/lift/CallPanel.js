@@ -1,32 +1,50 @@
 import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import "../../styles/callPanel.css";
+import { Box, Stack, Typography, Button } from "@mui/material";
+import { Circle, CircleOutlined } from "@mui/icons-material";
+
+const circleStyles = () => {
+  return {
+    fontSize: "40px",
+    color: "grey",
+  };
+};
+
+const circleOutlineStyles = () => {
+  return {
+    fontSize: "40px",
+    color: "grey",
+  };
+};
+
+const boxStyles = () => {
+  return {
+    border: "2px solid grey",
+    padding: "40px 20px",
+  };
+};
 
 const CallPanel = () => {
-  const [upClick, setUpClick] = useState("");
-  const [downClick, setDownClick] = useState("");
+  const [wasClicked, setWasClicked] = useState(false);
 
-  const handelUp = (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
-    upClick === "" ? setUpClick("-fill") : setUpClick("");
-    
-  };
-  const handelDown = (e) => {
-    e.preventDefault();
-    downClick === "" ? setDownClick("-fill") : setDownClick("");
+    setWasClicked(!wasClicked);
   };
 
   return (
-    <div className="panelContainer">
-      <span
-        className={`arrow bi bi-caret-up${upClick}`}
-        onClick={(e) => handelUp(e)}
-      />
-      <span
-        className={`arrow bi bi-caret-down${downClick}`}
-        onClick={(e) => handelDown(e)}
-      />
-    </div>
+    <Box sx={boxStyles}>
+      {!wasClicked ? (
+        <Button onClick={(e) => handleClick(e)}>
+          <CircleOutlined sx={circleOutlineStyles} />
+        </Button>
+      ) : (
+        <Button disabled onClick={(e) => handleClick(e)}>
+          <Circle sx={circleStyles} />
+        </Button>
+      )}
+    </Box>
   );
 };
 
