@@ -33,9 +33,21 @@ const FloorsPanel = () => {
     return end < current ? dispatch(showDown(true)) : dispatch(showUp(true));
   };
 
+  const calcTripTime = (current, end) => {
+    const movingTime = end < current ? current - end : end - current;
+    const doorTime = current === 0 ? 5 : 3;
+    const totalTime = movingTime + doorTime;
+    return totalTime > 60
+      ? `${Math.floor(totalTime / 60)}:${
+          totalTime - Math.floor(totalTime / 60) * 60
+        } min`
+      : `${totalTime} secs`;
+  };
+
   const handleClick = (e) => {
     const endFloor = e.target.value;
-    const newTrip = { currentFloor, endFloor };
+    const tripTime = calcTripTime(currentFloor, endFloor);
+    const newTrip = { currentFloor, endFloor, tripTime };
 
     // track the trip
     dispatch(trackTrip(newTrip));

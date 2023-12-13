@@ -18,9 +18,9 @@ const TripLog = () => {
     <Stack sx={stackStyles} padding={3} spacing={1} alignItems={"center"}>
       <Typography variant="h4">Trip Log</Typography>
       {tripArr.map((trip, index) => (
-        <Typography key={index}>{`Trip #${(index += 1)} Start-${
+        <Typography key={index}>{`Trip #${(index += 1)}, Start:${
           trip.currentFloor
-        }, End-${trip.endFloor} Time-`}</Typography>
+        }, End:${trip.endFloor} Time:${trip.tripTime}`}</Typography>
       ))}
     </Stack>
   );
