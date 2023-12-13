@@ -33,14 +33,9 @@ const FloorsPanel = () => {
     return end < current ? dispatch(showDown(true)) : dispatch(showUp(true));
   };
 
-  const setMovingState = () => {
-    dispatch();
-    dispatch();
-  };
-
   const handleClick = (e) => {
     const endFloor = e.target.value;
-    const newTrip = [currentFloor, endFloor];
+    const newTrip = { currentFloor, endFloor };
 
     // track the trip
     dispatch(trackTrip(newTrip));
