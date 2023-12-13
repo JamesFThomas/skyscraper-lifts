@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { Box, Stack, Typography, Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import { Circle, CircleOutlined } from "@mui/icons-material";
+import { useSelector, useDispatch } from "react-redux";
+import { openDoors } from "../redux/displaySlice";
 
 const circleStyles = () => {
   return {
@@ -35,10 +37,13 @@ const boxStyles = () => {
 
 const CallPanel = () => {
   const [wasClicked, setWasClicked] = useState(false);
+  const dispatch = useDispatch();
+  const currentFloor = useSelector((state) => state.display.currentFloor);
 
   const handleClick = (e) => {
     e.preventDefault();
     setWasClicked(!wasClicked);
+    dispatch(openDoors(currentFloor));
   };
 
   return (

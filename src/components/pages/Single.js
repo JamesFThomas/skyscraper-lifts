@@ -5,7 +5,6 @@ import CallPanel from "../lift/CallPanel";
 import FloorPanel from "../lift/FloorPanel";
 import DisplayPanel from "../lift/DisplayPanel";
 import LiftDoors from "../lift/LiftDoors";
-import ControlButtons from "../layout/ControlButtons";
 import TripLog from "../layout/TripLog";
 
 import { Grid, Box, Typography } from "@mui/material";
@@ -42,13 +41,22 @@ const Single = () => {
           <TripLog />
         </Grid>
         <Grid item xs={8}>
-          <Box sx={centeredItemStyles}>
-            <DisplayPanel />
-          </Box>
-          <Box sx={spacedItemStyles}>
-            <LiftDoors />
-            <CallPanel />
-          </Box>
+          {MOVING && (
+            <Box sx={centeredItemStyles}>
+              <DisplayPanel />
+            </Box>
+          )}
+          {IDLE && (
+            <Box sx={spacedItemStyles}>
+              <LiftDoors />
+              <CallPanel />
+            </Box>
+          )}
+          {SELECT && (
+            <Box sx={centeredItemStyles}>
+              <FloorPanel />
+            </Box>
+          )}
         </Grid>
       </Grid>
     </Box>

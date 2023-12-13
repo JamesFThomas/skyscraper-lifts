@@ -22,13 +22,13 @@ export const displaySlice = createSlice({
       state.currentFloor += action.payload;
     },
     setIdle: (state, action) => {
-      state.endFloor += action.payload;
+      state.IDLE = action.payload;
     },
     setSelect: (state, action) => {
-      state.startFloor += action.payload;
+      state.SELECT = action.payload;
     },
     setMoving: (state, action) => {
-      state.startFloor += action.payload;
+      state.MOVING = action.payload;
     },
     trackTrip: (state, action) => {
       state.trips.push(action.payload);
@@ -49,25 +49,47 @@ export const {
 
 // make thunk function to move moveLift
 export const moveLift = (current, end) => (dispatch) => {
+  dispatch(setSelect(false));
+  dispatch(setMoving(true));
   if (current < end) {
     setTimeout(() => {
-      console.log(current, end);
+      // console.log(current, end);
       dispatch(setCurFloor(1));
       dispatch(moveLift((current += 1), end));
     }, 1000);
   } else if (current > end) {
     setTimeout(() => {
-      console.log(current, end);
+      // console.log(current, end);
       dispatch(setCurFloor(-1));
       dispatch(moveLift((current -= 1), end));
     }, 1000);
   } else {
     setTimeout(() => {
-      console.log("done", current, end);
+      // console.log("done", current, end);
       dispatch(showDown(false));
       dispatch(showUp(false));
+      dispatch(setIdle(true));
+      dispatch(setMoving(false));
       return;
     }, 1000);
+  }
+};
+
+export const openDoors = (current) => (dispatch) => {
+  //if floor is lobby
+  if (current === 0) {
+    setTimeout(() => {
+      dispatch(setIdle(false));
+      dispatch(setSelect(true));
+    }, 5000);
+  }
+  // if any other floor in building
+  else {
+    setTimeout(() => {
+      dispatch(setIdle(false));
+      dispatch(setSelect(true));
+      return;
+    }, 3000);
   }
 };
 
