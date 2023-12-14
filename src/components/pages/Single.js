@@ -31,6 +31,7 @@ const Single = () => {
   const IDLE = useSelector((state) => state.display.IDLE);
   const SELECT = useSelector((state) => state.display.SELECT);
   const MOVING = useSelector((state) => state.display.MOVING);
+  const LOADING = useSelector((state) => state.display.LOADING);
 
   const dispatch = useDispatch();
 
