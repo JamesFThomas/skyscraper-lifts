@@ -100,10 +100,14 @@ export const exitLift = (current) => (dispatch) => {
   if (current === 0) {
     setTimeout(() => {
       dispatch(setLoading(false));
+      dispatch(showUp(false));
+      dispatch(showDown(false));
     }, 5000);
   } else {
     setTimeout(() => {
       dispatch(setLoading(false));
+      dispatch(showUp(false));
+      dispatch(showDown(false));
     }, 3000);
   }
 };
