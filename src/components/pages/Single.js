@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import CallPanel from "../lift/CallPanel";
 import FloorPanel from "../lift/FloorPanel";
@@ -7,7 +7,7 @@ import DisplayPanel from "../lift/DisplayPanel";
 import LiftDoors from "../lift/LiftDoors";
 import TripLog from "../layout/TripLog";
 
-import { Grid, Box, Typography } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 
 const centeredItemStyles = () => {
   return {
@@ -27,13 +27,9 @@ const spacedItemStyles = () => {
 };
 
 const Single = () => {
-  //import useSelector and track state for rendering
   const IDLE = useSelector((state) => state.display.IDLE);
   const SELECT = useSelector((state) => state.display.SELECT);
   const MOVING = useSelector((state) => state.display.MOVING);
-  const LOADING = useSelector((state) => state.display.LOADING);
-
-  const dispatch = useDispatch();
 
   return (
     <Box sx={{ padding: "16px" }}>

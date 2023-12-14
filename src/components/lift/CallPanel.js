@@ -32,6 +32,7 @@ const CallPanel = () => {
   const currentFloor = useSelector((state) => state.display.currentFloor);
   const LOADING = useSelector((state) => state.display.LOADING);
 
+  //declared inside component to access LOADING state
   const boxStyles = () => {
     return {
       border: "2px solid grey",

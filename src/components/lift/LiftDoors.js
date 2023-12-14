@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Grid, Box, Stack, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { Box, Stack } from "@mui/material";
 
 const frameStyle = () => {
   return {
