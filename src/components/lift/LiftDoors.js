@@ -23,37 +23,13 @@ const doorStyle = () => {
 const movingDoorStyles = () => {
   return {
     "@keyframes expandContract": {
-      "0%": {
+      from: {
         width: "0%",
       },
-      "10%": {
-        width: "20%",
-      },
-      "15%": {
-        width: "40%",
-      },
-      "25%": {
-        width: "60%",
-      },
-      "35%": {
-        width: "80%",
-      },
-      "45%": {
+      "50%": {
         width: "100%",
       },
-      "55%": {
-        width: "80%",
-      },
-      "65%": {
-        width: "60%",
-      },
-      "75%": {
-        width: "40%",
-      },
-      "85%": {
-        width: "20%",
-      },
-      "100%": {
+      to: {
         width: "0%",
       },
     },
