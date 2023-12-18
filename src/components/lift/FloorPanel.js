@@ -25,7 +25,10 @@ const buttonStyles = () => {
 const FloorsPanel = () => {
   const dispatch = useDispatch();
   const currentFloor = useSelector((state) => state.display.currentFloor);
-  const floors = [...Array(100).keys()].filter((floor) => {
+  const aFloors = ["L", ...Array(100).keys()];
+  const index = aFloors.indexOf(0);
+  aFloors.splice(index, 1);
+  const floorChoices = aFloors.filter((floor) => {
     return floor !== currentFloor;
   });
 
@@ -34,8 +37,10 @@ const FloorsPanel = () => {
   };
 
   const calcTripTime = (current, end) => {
-    const movingTime = end < current ? current - end : end - current;
-    const doorTime = current === 0 ? 5 : 3;
+    let endFloor = end === "L" ? 0 : end;
+    const movingTime =
+      endFloor < current ? current - endFloor : endFloor - current;
+    const doorTime = current === "L" ? 5 : 3;
     const totalTime = movingTime + doorTime;
     return totalTime > 60
       ? `${Math.floor(totalTime / 60)}:${
@@ -56,10 +61,10 @@ const FloorsPanel = () => {
 
   return (
     <Box sx={panelStyles}>
-      {floors.map((floor, i) => (
+      {floorChoices.map((floor, i) => (
         <Button
           key={`${floor}-${i}`}
-          value={floor}
+          value={floor === "L" ? 0 : floor}
           variant="outlined"
           size="small"
           sx={buttonStyles}

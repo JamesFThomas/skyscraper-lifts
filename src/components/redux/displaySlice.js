@@ -10,6 +10,7 @@ export const displaySlice = createSlice({
     SELECT: false,
     MOVING: false,
     LOADING: false,
+    EXITING: false,
     trips: [],
   },
   reducers: {
@@ -27,6 +28,9 @@ export const displaySlice = createSlice({
     },
     setLoading: (state, action) => {
       state.LOADING = action.payload;
+    },
+    setExiting: (state, action) => {
+      state.EXITING = action.payload;
     },
     setSelect: (state, action) => {
       state.SELECT = action.payload;
@@ -49,6 +53,7 @@ export const {
   setSelect,
   setMoving,
   setLoading,
+  setExiting,
   trackTrip,
 } = displaySlice.actions;
 
@@ -94,18 +99,18 @@ export const enterLift = (current) => (dispatch) => {
 };
 
 export const exitLift = (current) => (dispatch) => {
-  dispatch(setLoading(true));
+  dispatch(setExiting(true));
   dispatch(setIdle(true));
   dispatch(setMoving(false));
   if (current === 0) {
     setTimeout(() => {
-      dispatch(setLoading(false));
+      dispatch(setExiting(false));
       dispatch(showUp(false));
       dispatch(showDown(false));
     }, 5000);
   } else {
     setTimeout(() => {
-      dispatch(setLoading(false));
+      dispatch(setExiting(false));
       dispatch(showUp(false));
       dispatch(showDown(false));
     }, 3000);

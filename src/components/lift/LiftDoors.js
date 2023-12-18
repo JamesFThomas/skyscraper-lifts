@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Box, Stack } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 
 const frameStyle = () => {
   return {
     margin: "1em",
     display: "flex",
+    flexDirection: "row",
     height: "20em",
     width: "20em",
     justifyContent: "center",
@@ -20,8 +21,17 @@ const closedDoorStyles = () => {
   };
 };
 
+const centeredTextStyles = () => {
+  return {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  };
+};
+
 const LiftDoors = () => {
   const LOADING = useSelector((state) => state.display.LOADING);
+  const EXITING = useSelector((state) => state.display.EXITING);
   const currentFloor = useSelector((state) => state.display.currentFloor);
 
   const movingDoorStyles = () => {
@@ -45,11 +55,29 @@ const LiftDoors = () => {
   };
 
   return (
-    <>
-      <Stack direction={"row"} sx={frameStyle}>
-        <Box sx={LOADING ? movingDoorStyles : closedDoorStyles}></Box>
-      </Stack>
-    </>
+    <Stack>
+      {!EXITING && !LOADING && (
+        <Box sx={centeredTextStyles}>
+          <Typography
+            sx={{
+              border: "solid 1px grey",
+              width: "fit-content",
+              padding: "10px",
+              ...centeredTextStyles(),
+            }}
+          >
+            {currentFloor > 0 ? currentFloor : "L"}
+          </Typography>
+        </Box>
+      )}
+      <Box Box direction={"row"} sx={frameStyle}>
+        <Box
+          sx={LOADING || EXITING ? movingDoorStyles : closedDoorStyles}
+        ></Box>
+      </Box>
+      {LOADING && <Typography sx={centeredTextStyles}> Welcome! </Typography>}
+      {EXITING && <Typography sx={centeredTextStyles}> Goodbye! </Typography>}
+    </Stack>
   );
 };
 
