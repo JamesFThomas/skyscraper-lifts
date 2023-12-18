@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import { Circle, CircleOutlined } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
-import { openDoors } from "../redux/displaySlice";
+import { enterLift } from "../redux/displaySlice";
 
 const circleStyles = () => {
   return {
@@ -26,24 +26,27 @@ const circleOutlineStyles = () => {
   };
 };
 
-const boxStyles = () => {
-  return {
-    border: "2px solid grey",
-    padding: "40px 20px",
-    width: "fit-content",
-    height: "fit-content",
-  };
-};
-
 const CallPanel = () => {
   const [wasClicked, setWasClicked] = useState(false);
   const dispatch = useDispatch();
   const currentFloor = useSelector((state) => state.display.currentFloor);
+  const LOADING = useSelector((state) => state.display.LOADING);
+
+  //declared inside component to access LOADING state
+  const boxStyles = () => {
+    return {
+      border: "2px solid grey",
+      padding: "40px 20px",
+      width: "fit-content",
+      height: "fit-content",
+      display: `${LOADING ? "none" : ""}`,
+    };
+  };
 
   const handleClick = (e) => {
     e.preventDefault();
     setWasClicked(!wasClicked);
-    dispatch(openDoors(currentFloor));
+    dispatch(enterLift(currentFloor));
   };
 
   return (

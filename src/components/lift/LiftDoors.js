@@ -1,5 +1,6 @@
 import React from "react";
-import { Grid, Box, Stack, Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { Box, Stack } from "@mui/material";
 
 const frameStyle = () => {
   return {
@@ -11,43 +12,42 @@ const frameStyle = () => {
     border: "solid 2px grey",
   };
 };
-const doorStyle = () => {
+const closedDoorStyles = () => {
   return {
-    width: "50%",
-    height: "100%",
-    display: "inline",
-    border: "solid 2px grey",
-  };
-};
-
-const movingDoorStyles = () => {
-  return {
-    "@keyframes expandContract": {
-      from: {
-        width: "0%",
-      },
-      "50%": {
-        width: "100%",
-      },
-      to: {
-        width: "0%",
-      },
-    },
-    zIndex: 25,
-    backgroundColor: "black",
+    width: "0%",
     borderLeft: "solid 1px grey",
     borderRight: "solid 1px grey",
-    animation: "expandContract 5s linear infinite",
   };
 };
 
 const LiftDoors = () => {
+  const LOADING = useSelector((state) => state.display.LOADING);
+  const currentFloor = useSelector((state) => state.display.currentFloor);
+
+  const movingDoorStyles = () => {
+    return {
+      "@keyframes expandContract": {
+        from: {
+          width: "0%",
+        },
+        "50%": {
+          width: "100%",
+        },
+        to: {
+          width: "0%",
+        },
+      },
+      backgroundColor: "black",
+      borderLeft: "solid 1px grey",
+      borderRight: "solid 1px grey",
+      animation: `expandContract ${currentFloor === 0 ? 5 : 3}s linear`,
+    };
+  };
+
   return (
     <>
       <Stack direction={"row"} sx={frameStyle}>
-        {/* <Box sx={doorStyle}></Box> */}
-        <Box sx={movingDoorStyles}></Box>
-        {/* <Box sx={doorStyle}></Box> */}
+        <Box sx={LOADING ? movingDoorStyles : closedDoorStyles}></Box>
       </Stack>
     </>
   );

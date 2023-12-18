@@ -49,13 +49,8 @@ const FloorsPanel = () => {
     const tripTime = calcTripTime(currentFloor, endFloor);
     const newTrip = { currentFloor, endFloor, tripTime };
 
-    // track the trip
-    dispatch(trackTrip(newTrip));
-
-    // show moving direction
     setMovingDirection(endFloor, currentFloor);
-
-    // move the lift
+    dispatch(trackTrip(newTrip));
     dispatch(moveLift(currentFloor, endFloor));
   };
 

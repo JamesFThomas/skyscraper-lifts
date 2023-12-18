@@ -9,6 +9,7 @@ export const displaySlice = createSlice({
     IDLE: true,
     SELECT: false,
     MOVING: false,
+    LOADING: false,
     trips: [],
   },
   reducers: {
@@ -23,6 +24,9 @@ export const displaySlice = createSlice({
     },
     setIdle: (state, action) => {
       state.IDLE = action.payload;
+    },
+    setLoading: (state, action) => {
+      state.LOADING = action.payload;
     },
     setSelect: (state, action) => {
       state.SELECT = action.payload;
@@ -44,6 +48,7 @@ export const {
   setIdle,
   setSelect,
   setMoving,
+  setLoading,
   trackTrip,
 } = displaySlice.actions;
 
@@ -53,42 +58,56 @@ export const moveLift = (current, end) => (dispatch) => {
   dispatch(setMoving(true));
   if (current < end) {
     setTimeout(() => {
-      // console.log(current, end);
       dispatch(setCurFloor(1));
       dispatch(moveLift((current += 1), end));
     }, 1000);
   } else if (current > end) {
     setTimeout(() => {
-      // console.log(current, end);
       dispatch(setCurFloor(-1));
       dispatch(moveLift((current -= 1), end));
     }, 1000);
   } else {
     setTimeout(() => {
-      // console.log("done", current, end);
-      dispatch(showDown(false));
-      dispatch(showUp(false));
-      dispatch(setIdle(true));
-      dispatch(setMoving(false));
-      return;
+      dispatch(exitLift(current));
     }, 1000);
   }
 };
 
-export const openDoors = (current) => (dispatch) => {
+export const enterLift = (current) => (dispatch) => {
+  dispatch(setLoading(true));
   //if floor is lobby
   if (current === 0) {
     setTimeout(() => {
       dispatch(setIdle(false));
+      dispatch(setLoading(false));
       dispatch(setSelect(true));
     }, 5000);
   }
   // if any other floor in building
   else {
     setTimeout(() => {
+      dispatch(setLoading(false));
       dispatch(setIdle(false));
       dispatch(setSelect(true));
-      return;
+    }, 3000);
+  }
+};
+
+export const exitLift = (current) => (dispatch) => {
+  dispatch(setLoading(true));
+  dispatch(setIdle(true));
+  dispatch(setMoving(false));
+  if (current === 0) {
+    setTimeout(() => {
+      dispatch(setLoading(false));
+      dispatch(showUp(false));
+      dispatch(showDown(false));
+    }, 5000);
+  } else {
+    setTimeout(() => {
+      dispatch(setLoading(false));
+      dispatch(showUp(false));
+      dispatch(showDown(false));
     }, 3000);
   }
 };
