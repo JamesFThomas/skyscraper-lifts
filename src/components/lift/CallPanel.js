@@ -4,13 +4,14 @@ import { Circle, CircleOutlined } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import { enterLift } from "../redux/displaySlice";
 
+// This blinking will be used again to show waiting lifting in auto mode
 const circleStyles = () => {
   return {
     "@keyframes blink": {
-      "0%": {
+      from: {
         color: "grey",
       },
-      "75%": {
+      to: {
         color: "black",
       },
     },
@@ -31,6 +32,7 @@ const CallPanel = () => {
   const dispatch = useDispatch();
   const currentFloor = useSelector((state) => state.display.currentFloor);
   const LOADING = useSelector((state) => state.display.LOADING);
+  const EXITING = useSelector((state) => state.display.EXITING);
 
   //declared inside component to access LOADING state
   const boxStyles = () => {
@@ -39,7 +41,7 @@ const CallPanel = () => {
       padding: "40px 20px",
       width: "fit-content",
       height: "fit-content",
-      display: `${LOADING ? "none" : ""}`,
+      display: `${LOADING || EXITING ? "none" : ""}`,
     };
   };
 
