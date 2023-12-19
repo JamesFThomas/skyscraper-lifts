@@ -32,8 +32,14 @@ const Single = () => {
   const MOVING = useSelector((state) => state.display.MOVING);
 
   return (
-    <Box sx={{ padding: "16px" }}>
-      <Grid container spacing={2}>
+    <Box
+      sx={{
+        paddingTop: "30px",
+        alignItems: "center",
+        ...centeredItemStyles(),
+      }}
+    >
+      <Grid container maxWidth={"md"} spacing={2}>
         <Grid item xs={4}>
           <TripLog />
         </Grid>
@@ -45,8 +51,12 @@ const Single = () => {
           )}
           {IDLE && (
             <Box sx={spacedItemStyles}>
-              <LiftDoors />
-              <CallPanel />
+              <Box sx={centeredItemStyles}>
+                <LiftDoors />
+              </Box>
+              <Box sx={centeredItemStyles}>
+                <CallPanel />
+              </Box>
             </Box>
           )}
           {SELECT && (

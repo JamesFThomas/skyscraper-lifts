@@ -14,13 +14,16 @@ const stackStyles = () => {
 
 const TripLog = () => {
   const tripArr = useSelector((state) => state.display.trips);
+  console.log("tripArr", tripArr);
   return (
     <Stack sx={stackStyles} padding={3} spacing={1} alignItems={"center"}>
       <Typography variant="h4">Trip Log</Typography>
-      {tripArr.map((trip, index) => (
-        <Typography key={index}>{`Trip #${(index += 1)}, Start:${
-          trip.currentFloor
-        }, End:${trip.endFloor} Time:${trip.tripTime}`}</Typography>
+      {tripArr.map(({ currentFloor, endFloor, tripTime }, index) => (
+        <Typography key={index}>{`T#${(index += 1)}, S:${
+          currentFloor === 0 ? "L" : currentFloor
+        }, E:${
+          endFloor !== "0" ? endFloor : "L"
+        } Time:${tripTime}`}</Typography>
       ))}
     </Stack>
   );
