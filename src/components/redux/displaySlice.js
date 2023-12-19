@@ -86,7 +86,7 @@ export const enterLift = (current) => (dispatch) => {
       dispatch(setIdle(false));
       dispatch(setLoading(false));
       dispatch(setSelect(true));
-    }, 5000);
+    }, 30000);
   }
   // if any other floor in building
   else {
@@ -94,7 +94,7 @@ export const enterLift = (current) => (dispatch) => {
       dispatch(setLoading(false));
       dispatch(setIdle(false));
       dispatch(setSelect(true));
-    }, 3000);
+    }, 5000);
   }
 };
 
@@ -107,13 +107,13 @@ export const exitLift = (current) => (dispatch) => {
       dispatch(setExiting(false));
       dispatch(showUp(false));
       dispatch(showDown(false));
-    }, 5000);
+    }, 30000);
   } else {
     setTimeout(() => {
       dispatch(setExiting(false));
       dispatch(showUp(false));
       dispatch(showDown(false));
-    }, 3000);
+    }, 5000);
   }
 };
 

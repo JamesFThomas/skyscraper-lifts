@@ -25,6 +25,7 @@ const buttonStyles = () => {
 const FloorsPanel = () => {
   const dispatch = useDispatch();
   const currentFloor = useSelector((state) => state.display.currentFloor);
+  console.log("currentFloor", currentFloor);
   const aFloors = ["L", ...Array(100).keys()];
   const index = aFloors.indexOf(0);
   aFloors.splice(index, 1);
@@ -40,7 +41,7 @@ const FloorsPanel = () => {
     let endFloor = end === "L" ? 0 : end;
     const movingTime =
       endFloor < current ? current - endFloor : endFloor - current;
-    const doorTime = current === "L" ? 5 : 3;
+    const doorTime = current === "L" ? 30 : 5;
     const totalTime = movingTime + doorTime;
     return totalTime > 60
       ? `${Math.floor(totalTime / 60)}:${

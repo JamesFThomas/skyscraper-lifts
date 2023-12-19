@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Grid, Box, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 
 const stackStyles = () => {
   return {
@@ -14,7 +14,6 @@ const stackStyles = () => {
 
 const TripLog = () => {
   const tripArr = useSelector((state) => state.display.trips);
-  console.log("tripArr", tripArr);
   return (
     <Stack sx={stackStyles} padding={3} spacing={1} alignItems={"center"}>
       <Typography variant="h4">Trip Log</Typography>
