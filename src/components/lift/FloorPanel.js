@@ -5,7 +5,7 @@ import {
   moveLift,
   showUp,
   showDown,
-} from "../../redux/displaySlice";
+} from "../../state/displaySlice";
 
 import { Box, Button } from "@mui/material";
 
