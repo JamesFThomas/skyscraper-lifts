@@ -50,7 +50,7 @@ const LiftDoors = () => {
       backgroundColor: "black",
       borderLeft: "solid 1px grey",
       borderRight: "solid 1px grey",
-      animation: `expandContract ${currentFloor === 0 ? 30 : 5}s ease`,
+      animation: `expandContract ${currentFloor === 0 ? 30 : 5}s ease-in-out`,
     };
   };
 

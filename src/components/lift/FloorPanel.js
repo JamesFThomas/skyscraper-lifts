@@ -1,6 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { trackTrip, moveLift, showUp, showDown } from "../redux/displaySlice";
+import {
+  trackTrip,
+  moveLift,
+  showUp,
+  showDown,
+} from "../../redux/displaySlice";
 
 import { Box, Button } from "@mui/material";
 
@@ -30,7 +35,7 @@ const FloorsPanel = () => {
   const index = aFloors.indexOf(0);
   aFloors.splice(index, 1);
   const floorChoices = aFloors.filter((floor) => {
-    return floor !== currentFloor;
+    return floor.toString() !== currentFloor.toString();
   });
 
   const setMovingDirection = (end, current) => {
