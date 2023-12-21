@@ -57,10 +57,71 @@ export const {
   trackTrip,
 } = displaySlice.actions;
 
-// make thunk function to move moveLift
-export const moveLift = (current, end) => (dispatch) => {
+// update lift trip state
+export const idleLift = () => (dispatch) => {
+  dispatch(showUp(false));
+  dispatch(showDown(false));
   dispatch(setSelect(false));
+  dispatch(setMoving(false));
+  dispatch(setExiting(false));
+  dispatch(setLoading(false));
+  dispatch(setIdle(true));
+};
+
+export const movingLift = () => (dispatch) => {
+  dispatch(setSelect(false));
+  dispatch(setIdle(false));
+  dispatch(setExiting(false));
+  dispatch(setLoading(false));
   dispatch(setMoving(true));
+};
+export const selectingLift = () => (dispatch) => {
+  dispatch(setMoving(false));
+  dispatch(setExiting(false));
+  dispatch(setIdle(false));
+  dispatch(setLoading(false));
+  dispatch(setSelect(true));
+};
+export const loadingLift = () => (dispatch) => {
+  dispatch(setSelect(false));
+  dispatch(setMoving(false));
+  dispatch(setExiting(false));
+  dispatch(setIdle(false));
+  dispatch(setLoading(true));
+};
+export const exitingLift = () => (dispatch) => {
+  dispatch(setSelect(false));
+  dispatch(setMoving(false));
+  dispatch(setExiting(false));
+  dispatch(setLoading(false));
+  dispatch(setIdle(true));
+};
+
+export const setMovingDirection = (end, current) => (dispatch) => {
+  return end < current ? dispatch(showDown(true)) : dispatch(showUp(true));
+};
+
+export const calculateTrip = (currentFloor, end) => (dispatch) => {
+  const endFloor = end === "L" ? 0 : end;
+  const doorTime = currentFloor === "L" ? 30 : 5;
+  const movingTime =
+    endFloor < currentFloor ? currentFloor - endFloor : endFloor - currentFloor;
+  const totalTime = movingTime + doorTime;
+  const tripTime =
+    totalTime > 60
+      ? `${Math.floor(totalTime / 60)}:${
+          totalTime - Math.floor(totalTime / 60) * 60
+        } min`
+      : `${totalTime} secs`;
+
+  const newTrip = { currentFloor, endFloor, tripTime };
+  dispatch(trackTrip(newTrip));
+};
+
+// thunks to move moveLift
+export const moveLift = (current, end) => (dispatch) => {
+  dispatch(setMovingDirection(end, current));
+  dispatch(movingLift(true));
   if (current < end) {
     setTimeout(() => {
       dispatch(setCurFloor(1));
@@ -80,20 +141,13 @@ export const moveLift = (current, end) => (dispatch) => {
 
 export const enterLift = (current) => (dispatch) => {
   dispatch(setLoading(true));
-  //if floor is lobby
   if (current === 0) {
     setTimeout(() => {
-      dispatch(setIdle(false));
-      dispatch(setLoading(false));
-      dispatch(setSelect(true));
+      dispatch(selectingLift());
     }, 30000);
-  }
-  // if any other floor in building
-  else {
+  } else {
     setTimeout(() => {
-      dispatch(setLoading(false));
-      dispatch(setIdle(false));
-      dispatch(setSelect(true));
+      dispatch(selectingLift());
     }, 5000);
   }
 };
@@ -104,15 +158,11 @@ export const exitLift = (current) => (dispatch) => {
   dispatch(setMoving(false));
   if (current === 0) {
     setTimeout(() => {
-      dispatch(setExiting(false));
-      dispatch(showUp(false));
-      dispatch(showDown(false));
+      dispatch(idleLift());
     }, 30000);
   } else {
     setTimeout(() => {
-      dispatch(setExiting(false));
-      dispatch(showUp(false));
-      dispatch(showDown(false));
+      dispatch(idleLift());
     }, 5000);
   }
 };
