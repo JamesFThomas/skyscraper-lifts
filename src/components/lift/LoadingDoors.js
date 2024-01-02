@@ -40,7 +40,10 @@ const LoadingDoors = () => {
         from: {
           width: "0%",
         },
-        "50%": {
+        "15%": {
+          width: "100%",
+        },
+        "85%": {
           width: "100%",
         },
         to: {
@@ -50,7 +53,7 @@ const LoadingDoors = () => {
       backgroundColor: "black",
       borderLeft: "solid 1px grey",
       borderRight: "solid 1px grey",
-      animation: `expandContract ${currentFloor === 0 ? 30 : 5}s ease-in-out`,
+      animation: `expandContract ${currentFloor === 0 ? 30 : 5}s linear`,
     };
   };
 
