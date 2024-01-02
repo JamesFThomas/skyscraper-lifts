@@ -4,16 +4,25 @@ import { useSelector } from "react-redux";
 import CallPanel from "../lift/CallPanel";
 import FloorPanel from "../lift/FloorPanel";
 import DisplayPanel from "../lift/DisplayPanel";
-import LiftDoors from "../lift/LiftDoors";
+import LoadingDoors from "../lift/LoadingDoors";
 import TripLog from "../layout/TripLog";
 
-import { Grid, Box } from "@mui/material";
+import { Grid, Box, Stack } from "@mui/material";
+import ClosedDoors from "../lift/ClosedDoors";
 
-const centeredItemStyles = () => {
+const centeredItemRowStyles = () => {
   return {
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
+  };
+};
+const centeredItemColStyles = () => {
+  return {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   };
 };
 
@@ -36,7 +45,7 @@ const Single = () => {
       sx={{
         paddingTop: "30px",
         alignItems: "center",
-        ...centeredItemStyles(),
+        ...centeredItemRowStyles(),
       }}
     >
       <Grid container maxWidth={"md"} spacing={2}>
@@ -45,22 +54,23 @@ const Single = () => {
         </Grid>
         <Grid item xs={8}>
           {MOVING && (
-            <Box sx={centeredItemStyles}>
+            <Stack sx={centeredItemColStyles}>
               <DisplayPanel />
-            </Box>
+              <ClosedDoors />
+            </Stack>
           )}
           {IDLE && (
             <Box sx={spacedItemStyles}>
-              <Box sx={centeredItemStyles}>
-                <LiftDoors />
+              <Box sx={centeredItemRowStyles}>
+                <LoadingDoors />
               </Box>
-              <Box sx={centeredItemStyles}>
+              <Box sx={centeredItemRowStyles}>
                 <CallPanel />
               </Box>
             </Box>
           )}
           {SELECT && (
-            <Box sx={centeredItemStyles}>
+            <Box sx={centeredItemRowStyles}>
               <FloorPanel />
             </Box>
           )}

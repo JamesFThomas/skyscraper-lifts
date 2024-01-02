@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Stack, Typography } from "@mui/material";
 import { Circle, CircleOutlined } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
 import { enterLift } from "../../state/displaySlice";
@@ -38,7 +38,7 @@ const CallPanel = () => {
   const boxStyles = () => {
     return {
       border: "2px solid grey",
-      padding: "40px 20px",
+      padding: "30px 20px",
       width: "fit-content",
       height: "fit-content",
       display: `${LOADING || EXITING ? "none" : ""}`,
@@ -52,7 +52,12 @@ const CallPanel = () => {
   };
 
   return (
-    <Box sx={boxStyles}>
+    <Stack sx={boxStyles}>
+      <Typography
+        sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+      >
+        Press
+      </Typography>
       {!wasClicked ? (
         <Button onClick={(e) => handleClick(e)}>
           <CircleOutlined sx={circleOutlineStyles} />
@@ -62,7 +67,7 @@ const CallPanel = () => {
           <Circle sx={circleStyles} />
         </Button>
       )}
-    </Box>
+    </Stack>
   );
 };
 

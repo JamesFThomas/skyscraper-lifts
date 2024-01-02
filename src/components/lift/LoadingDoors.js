@@ -29,7 +29,7 @@ const centeredTextStyles = () => {
   };
 };
 
-const LiftDoors = () => {
+const LoadingDoors = () => {
   const LOADING = useSelector((state) => state.display.LOADING);
   const EXITING = useSelector((state) => state.display.EXITING);
   const currentFloor = useSelector((state) => state.display.currentFloor);
@@ -81,4 +81,4 @@ const LiftDoors = () => {
   );
 };
 
-export default LiftDoors;
+export default LoadingDoors;
