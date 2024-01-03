@@ -12,6 +12,7 @@ export const displaySlice = createSlice({
     LOADING: false,
     EXITING: false,
     trips: [],
+    durations: [],
   },
   reducers: {
     showUp: (state, action) => {
@@ -41,6 +42,9 @@ export const displaySlice = createSlice({
     trackTrip: (state, action) => {
       state.trips.push(action.payload);
     },
+    trackDuration: (state, action) => {
+      state.durations.push(action.payload);
+    },
   },
 });
 
@@ -55,6 +59,7 @@ export const {
   setLoading,
   setExiting,
   trackTrip,
+  trackDuration,
 } = displaySlice.actions;
 
 // update lift trip state
@@ -107,6 +112,7 @@ export const calculateTrip = (currentFloor, end) => (dispatch) => {
   const movingTime =
     endFloor < currentFloor ? currentFloor - endFloor : endFloor - currentFloor;
   const totalTime = movingTime + doorTime;
+  dispatch(trackDuration(totalTime));
   const tripTime =
     totalTime > 60
       ? `${Math.floor(totalTime / 60)}:${

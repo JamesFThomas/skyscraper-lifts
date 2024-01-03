@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import CallPanel from "../lift/CallPanel";
@@ -7,7 +7,8 @@ import DisplayPanel from "../lift/DisplayPanel";
 import LoadingDoors from "../lift/LoadingDoors";
 import TripLog from "../layout/TripLog";
 
-import { Grid, Box, Stack } from "@mui/material";
+import KennyG from "../../assets/KennyG.mp3";
+import { Grid, Box, Stack, Typography } from "@mui/material";
 import ClosedDoors from "../lift/ClosedDoors";
 
 const centeredItemRowStyles = () => {
@@ -39,20 +40,41 @@ const Single = () => {
   const IDLE = useSelector((state) => state.display.IDLE);
   const SELECT = useSelector((state) => state.display.SELECT);
   const MOVING = useSelector((state) => state.display.MOVING);
+  const durations = useSelector((state) => state.display.durations);
+  const currentTripLength = durations[durations.length - 1];
+  const [song, setSong] = useState(new Audio(KennyG));
+
+  const playSong = () => {
+    song.play();
+  };
+
+  const stopSong = () => {
+    song.pause();
+    song.currentTime = 0;
+  };
+
+  useEffect(() => {
+    if (MOVING && currentTripLength > 30) {
+      playSong();
+    } else {
+      stopSong();
+    }
+  }, [MOVING, currentTripLength, playSong, stopSong]);
 
   return (
     <Box
       sx={{
+        display: "flex",
+        flexDirection: "column",
         paddingTop: "30px",
         alignItems: "center",
-        ...centeredItemRowStyles(),
       }}
     >
       <Grid container maxWidth={"md"} spacing={2}>
         <Grid item xs={4}>
           <TripLog />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} sx={{ height: "100%" }}>
           {MOVING && (
             <Stack sx={centeredItemColStyles}>
               <DisplayPanel />
@@ -76,6 +98,12 @@ const Single = () => {
           )}
         </Grid>
       </Grid>
+      <Box sx={{ mt: "30px" }}>
+        <Typography>
+          Door takes 30 seconds in the Lobby, 5 seconds other floors.
+        </Typography>
+        <Typography>Music plays on rides longer than 30 seconds.</Typography>
+      </Box>
     </Box>
   );
 };
