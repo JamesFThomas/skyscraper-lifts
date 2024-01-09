@@ -12,13 +12,12 @@ const SimulatorDuration = () => {
   const isRunning = useSelector((state) => state.simulator.isRunning);
   const dispatch = useDispatch();
 
-  console.log("isRunning", isRunning);
-
+  // timer control functions
   const handleStart = (e) => {
     e.preventDefault();
     dispatch(runSimulator(true));
   };
-  const handleEnd = (e) => {
+  const handleStop = (e) => {
     e.preventDefault();
     dispatch(runSimulator(false));
   };
@@ -35,29 +34,39 @@ const SimulatorDuration = () => {
       }, 1000);
     }
     return () => clearInterval(timerId);
-  }, [dispatch, isRunning]);
+  }, [dispatch, isRunning, duration]);
+
+  // duration time transmutations - not working ?????
+  const hours = Math.floor(duration / 360000);
+  const minutes = Math.floor((duration % 360000) / 6000);
+  const seconds = Math.floor((duration % 6000) / 100);
+  console.log(hours, minutes, seconds);
 
   return (
-    <Stack>
+    <Stack direction="row" width={"100%"} justifyContent={"space-between"}>
       <Stack direction="row" spacing={2}>
-        <Button
-          variant="outlined"
-          color="primary"
-          onClick={(e) => {
-            handleStart(e);
-          }}
-        >
-          {"Start"}
-        </Button>
-        <Button
-          variant="outlined"
-          color="secondary"
-          onClick={(e) => {
-            handleEnd(e);
-          }}
-        >
-          {"Stop"}
-        </Button>
+        {isRunning ? (
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={(e) => {
+              handleStop(e);
+            }}
+          >
+            {"Stop"}
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={(e) => {
+              handleStart(e);
+            }}
+          >
+            {"Start"}
+          </Button>
+        )}
+
         <Button
           variant="outlined"
           color="secondary"
@@ -68,7 +77,15 @@ const SimulatorDuration = () => {
           {"Reset"}
         </Button>
       </Stack>
-      <Typography>{duration}</Typography>
+      <Typography
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        {duration}
+      </Typography>
     </Stack>
   );
 };
