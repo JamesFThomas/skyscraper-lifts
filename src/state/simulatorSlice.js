@@ -18,6 +18,9 @@ export const simulatorSlice = createSlice({
     incrementDuration: (state, action) => {
       state.duration += action.payload;
     },
+    resetDuration: (state) => {
+      state.duration = 0;
+    },
     runSimulator: (state, action) => {
       state.isRunning = action.payload;
     },
@@ -28,7 +31,7 @@ export const simulatorSlice = createSlice({
 });
 
 // action creators that correspond to each reducer in Slice
-export const { incrementDuration, runSimulator, addRide } =
+export const { incrementDuration, runSimulator, resetDuration, addRide } =
   simulatorSlice.actions;
 
 // increase duration number 1 each second will simulator is running
