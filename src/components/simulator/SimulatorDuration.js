@@ -36,12 +36,6 @@ const SimulatorDuration = () => {
     return () => clearInterval(timerId);
   }, [dispatch, isRunning, duration]);
 
-  // duration time transmutations - not working ?????
-  const hours = Math.floor(duration / 360000);
-  const minutes = Math.floor((duration % 360000) / 6000);
-  const seconds = Math.floor((duration % 6000) / 100);
-  console.log(hours, minutes, seconds);
-
   return (
     <Stack direction="row" width={"100%"} justifyContent={"space-between"}>
       <Stack direction="row" spacing={2}>
@@ -82,6 +76,7 @@ const SimulatorDuration = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          fontSize: 30,
         }}
       >
         {duration}
