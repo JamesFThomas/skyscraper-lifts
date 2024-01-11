@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { calculateTrip, moveLift } from "../../state/displaySlice";
+import { calculateTrip, moveLift } from "../../state/singleModeSlice";
 
 import { Box, Button } from "@mui/material";
 
@@ -24,7 +24,7 @@ const buttonStyles = () => {
 
 const FloorsPanel = () => {
   const dispatch = useDispatch();
-  const currentFloor = useSelector((state) => state.display.currentFloor);
+  const currentFloor = useSelector((state) => state.singleMode.currentFloor);
   const aFloors = ["L", ...Array(100).keys()];
   const index = aFloors.indexOf(0);
   aFloors.splice(index, 1);

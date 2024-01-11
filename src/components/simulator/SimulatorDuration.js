@@ -4,12 +4,14 @@ import {
   incrementDuration,
   runSimulator,
   resetDuration,
+  createRides,
 } from "../../state/simulatorSlice";
 import { Button, Stack, Typography } from "@mui/material";
 
 const SimulatorDuration = () => {
   const duration = useSelector((state) => state.simulator.duration);
   const isRunning = useSelector((state) => state.simulator.isRunning);
+  const ridesArr = useSelector((state) => state.simulator.rides);
   const dispatch = useDispatch();
 
   // timer control functions
@@ -26,6 +28,7 @@ const SimulatorDuration = () => {
     dispatch(resetDuration());
   };
 
+  // start / stop simulator timer
   useEffect(() => {
     let timerId;
     if (isRunning) {
@@ -35,6 +38,15 @@ const SimulatorDuration = () => {
     }
     return () => clearInterval(timerId);
   }, [dispatch, isRunning, duration]);
+
+  // create load rides for simulator
+  useEffect(() => {
+    if (ridesArr.length < 1) {
+      dispatch(createRides());
+    }
+  }, [ridesArr]);
+
+  console.log("ride array", ridesArr);
 
   return (
     <Stack direction="row" width={"100%"} justifyContent={"space-between"}>

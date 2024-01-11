@@ -30,9 +30,9 @@ const centeredTextStyles = () => {
 };
 
 const LoadingDoors = () => {
-  const LOADING = useSelector((state) => state.display.LOADING);
-  const EXITING = useSelector((state) => state.display.EXITING);
-  const currentFloor = useSelector((state) => state.display.currentFloor);
+  const LOADING = useSelector((state) => state.singleMode.LOADING);
+  const EXITING = useSelector((state) => state.singleMode.EXITING);
+  const currentFloor = useSelector((state) => state.singleMode.currentFloor);
 
   const movingDoorStyles = () => {
     return {

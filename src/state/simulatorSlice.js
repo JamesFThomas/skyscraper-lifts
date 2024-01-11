@@ -45,6 +45,19 @@ export const simulatorTimer = (isRunning) => (dispatch) => {
 };
 
 // create new ride information
-export const createRides = (rides) => (dispatch) => {};
+export const createRides = () => (dispatch) => {
+  // random numbers
+  for (let i = 0; i < 50; i++) {
+    let start = Math.floor(Math.random() * (99 - 0 + 1) + 0);
+    let end = Math.floor(Math.random() * (99 - 0 + 1) + 0);
+    let passengers = Math.floor(Math.random() * (5 - 1 + 1) + 1);
+    let newRide = {
+      start: start,
+      end: end,
+      passengers: passengers,
+    };
+    dispatch(addRide(newRide));
+  }
+};
 
 export default simulatorSlice.reducer;

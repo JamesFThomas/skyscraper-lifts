@@ -13,7 +13,7 @@ const stackStyles = () => {
 };
 
 const TripLog = () => {
-  const tripArr = useSelector((state) => state.display.trips);
+  const tripArr = useSelector((state) => state.singleMode.trips);
 
   //TODO create function that plays song when trip is longer than 10 seconds
 

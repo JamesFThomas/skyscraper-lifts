@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Circle, CircleOutlined } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
-import { enterLift } from "../../state/displaySlice";
+import { enterLift } from "../../state/singleModeSlice";
 
 // This blinking will be used again to show waiting lifting in auto mode
 const circleStyles = () => {
@@ -30,9 +30,9 @@ const circleOutlineStyles = () => {
 const CallPanel = () => {
   const [wasClicked, setWasClicked] = useState(false);
   const dispatch = useDispatch();
-  const currentFloor = useSelector((state) => state.display.currentFloor);
-  const LOADING = useSelector((state) => state.display.LOADING);
-  const EXITING = useSelector((state) => state.display.EXITING);
+  const currentFloor = useSelector((state) => state.singleMode.currentFloor);
+  const LOADING = useSelector((state) => state.singleMode.LOADING);
+  const EXITING = useSelector((state) => state.singleMode.EXITING);
 
   //declared inside component to access LOADING state
   const boxStyles = () => {

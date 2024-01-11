@@ -37,10 +37,10 @@ const spacedItemStyles = () => {
 };
 
 const Single = () => {
-  const IDLE = useSelector((state) => state.display.IDLE);
-  const SELECT = useSelector((state) => state.display.SELECT);
-  const MOVING = useSelector((state) => state.display.MOVING);
-  const durations = useSelector((state) => state.display.durations);
+  const IDLE = useSelector((state) => state.singleMode.IDLE);
+  const SELECT = useSelector((state) => state.singleMode.SELECT);
+  const MOVING = useSelector((state) => state.singleMode.MOVING);
+  const durations = useSelector((state) => state.singleMode.durations);
   const currentTripLength = durations[durations.length - 1];
   const [song, setSong] = useState(new Audio(KennyG));
 

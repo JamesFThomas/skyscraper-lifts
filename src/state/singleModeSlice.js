@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const displaySlice = createSlice({
-  name: "displayPanel",
+export const singleModeSlice = createSlice({
+  name: "singleMode",
   initialState: {
     currentFloor: 10,
     dUp: false,
@@ -60,7 +60,7 @@ export const {
   setExiting,
   trackTrip,
   trackDuration,
-} = displaySlice.actions;
+} = singleModeSlice.actions;
 
 // update lift trip state
 export const idleLift = () => (dispatch) => {
@@ -174,4 +174,4 @@ export const exitLift = (current) => (dispatch) => {
 };
 
 // export reducer for this slice to store
-export default displaySlice.reducer;
+export default singleModeSlice.reducer;

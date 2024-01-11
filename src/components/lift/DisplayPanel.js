@@ -43,9 +43,9 @@ const downIconStyles = () => {
 };
 
 const DisplayPanel = () => {
-  const dUp = useSelector((state) => state.display.dUp);
-  const dDown = useSelector((state) => state.display.dDown);
-  const currentFloor = useSelector((state) => state.display.currentFloor);
+  const dUp = useSelector((state) => state.singleMode.dUp);
+  const dDown = useSelector((state) => state.singleMode.dDown);
+  const currentFloor = useSelector((state) => state.singleMode.currentFloor);
 
   return (
     <Stack padding={2} spacing={2} sx={stackStyles}>
