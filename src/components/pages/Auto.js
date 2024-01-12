@@ -1,7 +1,16 @@
 import Container from "react-bootstrap/Container";
 
+import { useSelector, useDispatch } from "react-redux";
+
 import SimulatorDuration from "../simulator/SimulatorDuration";
 
+import {
+  setDirection,
+  setPhase,
+  trackTrip,
+  setCurrentFloor,
+} from "../../state/everyLiftSlice.js";
+import { Button } from "@mui/material";
 /*
 TODO 
 
@@ -59,11 +68,40 @@ Tasks:
 
 */
 const Auto = () => {
+  const dispatch = useDispatch();
+
+  const currentState = useSelector((state) => state.everyLift);
+
+  console.log("currentState", currentState);
+
+  const test = () => {
+    dispatch(setDirection({ lift: "lift3", direction: "second test working" }));
+  };
+  const test1 = () => {
+    dispatch(setPhase({ lift: "lift1", direction: "ENROUTE" }));
+  };
+  const test2 = () => {
+    dispatch(setCurrentFloor({ lift: "lift2", direction: -1 }));
+  };
+  const test3 = () => {
+    dispatch(
+      trackTrip({ lift: "lift3", trip: { start: 23, end: 66, duration: 44 } })
+    );
+  };
+
+  const testAll = () => {
+    test();
+    test1();
+    test2();
+    test3();
+  };
+
   return (
     <div className="page">
       <Container>
         <div>{"Auto"}</div>
         <SimulatorDuration />
+        <Button onClick={testAll}>Click</Button>
       </Container>
     </div>
   );

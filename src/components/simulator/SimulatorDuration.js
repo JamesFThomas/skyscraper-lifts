@@ -46,8 +46,6 @@ const SimulatorDuration = () => {
     }
   }, [ridesArr]);
 
-  console.log("ride array", ridesArr);
-
   return (
     <Stack direction="row" width={"100%"} justifyContent={"space-between"}>
       <Stack direction="row" spacing={2}>
