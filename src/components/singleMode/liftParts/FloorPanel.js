@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { calculateTrip, moveLift } from "../../state/singleModeSlice";
+import { calculateTrip, moveLift } from "../../../state/singleModeSlice";
 
 import { Box, Button } from "@mui/material";
 

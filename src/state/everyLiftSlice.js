@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 export const everyLiftSlice = createSlice({
   name: "lifts",
   initialState: {
-    lift1: { currentFloor: 0, phase: "IDLE", direction: "", tripLog: [] },
-    lift2: { currentFloor: 0, phase: "IDLE", direction: "", tripLog: [] },
-    lift3: { currentFloor: 0, phase: "IDLE", direction: "", tripLog: [] },
+    lift1: { currentFloor: 0, phase: "IDLE", direction: "", trips: [] },
+    lift2: { currentFloor: 0, phase: "IDLE", direction: "", trips: [] },
+    lift3: { currentFloor: 0, phase: "IDLE", direction: "", trips: [] },
   },
   reducers: {
     setDirection: (state, action) => {

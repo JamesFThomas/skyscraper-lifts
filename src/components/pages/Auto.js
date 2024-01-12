@@ -10,7 +10,7 @@ import {
   trackTrip,
   setCurrentFloor,
 } from "../../state/everyLiftSlice.js";
-import { Button } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 /*
 TODO 
 
@@ -70,6 +70,7 @@ Tasks:
 const Auto = () => {
   const dispatch = useDispatch();
 
+  /* ----------------------------Testing lift slice reducers ------------------------- */
   const currentState = useSelector((state) => state.everyLift);
 
   console.log("currentState", currentState);
@@ -95,15 +96,36 @@ const Auto = () => {
     test2();
     test3();
   };
+  /* ---------------------------------------------------------------------------- */
 
   return (
-    <div className="page">
-      <Container>
-        <div>{"Auto"}</div>
-        <SimulatorDuration />
-        <Button onClick={testAll}>Click</Button>
-      </Container>
-    </div>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        padding: "30px",
+        alignItems: "center",
+      }}
+    >
+      <Grid container justifyContent={"center"}>
+        <Grid item xs={12}>
+          <div>{"Auto"}</div>
+          <SimulatorDuration />
+          <Button onClick={testAll}>Click</Button>
+        </Grid>
+        <Grid item xs={12} container direction={"row"} spacing={3}>
+          <Grid item xs={4} textAlign={"center"}>
+            Lift 1
+          </Grid>
+          <Grid item xs={4} textAlign={"center"}>
+            Lift 2
+          </Grid>
+          <Grid item xs={4} textAlign={"center"}>
+            Lift 3
+          </Grid>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };
 
