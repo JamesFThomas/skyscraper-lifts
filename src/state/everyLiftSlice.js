@@ -33,15 +33,74 @@ export const everyLiftSlice = createSlice({
     },
     setPhase: (state, action) => {
       const { lift, phase: newPhase } = action.payload;
-      state[lift].phase = newPhase;
+      switch (lift) {
+        case "lift1": {
+          return {
+            ...state,
+            lift1: { ...state.lift1, phase: newPhase },
+          };
+        }
+        case "lift2": {
+          return {
+            ...state,
+            lift2: { ...state.lift2, phase: newPhase },
+          };
+        }
+        default: {
+          return {
+            ...state,
+            lift3: { ...state.lift3, phase: newPhase },
+          };
+        }
+      }
     },
     setCurrentFloor: (state, action) => {
       const { lift, value } = action.payload;
-      state[lift].currentFloor += value;
+      let { currentFloor } = state[lift];
+      switch (lift) {
+        case "lift1": {
+          return {
+            ...state,
+            lift1: { ...state.lift1, currentFloor: (currentFloor += value) },
+          };
+        }
+        case "lift2": {
+          return {
+            ...state,
+            lift2: { ...state.lift2, currentFloor: (currentFloor += value) },
+          };
+        }
+        default: {
+          return {
+            ...state,
+            lift3: { ...state.lift3, currentFloor: (currentFloor += value) },
+          };
+        }
+      }
     },
     trackTrip: (state, action) => {
       const { lift, trip } = action.payload;
-      state[lift].trips.push(trip);
+      let { trips } = state[lift];
+      switch (lift) {
+        case "lift1": {
+          return {
+            ...state,
+            lift1: { ...state.lift1, trips: [...trips, trip] },
+          };
+        }
+        case "lift2": {
+          return {
+            ...state,
+            lift2: { ...state.lift2, trips: [...trips, trip] },
+          };
+        }
+        default: {
+          return {
+            ...state,
+            lift3: { ...state.lift3, trips: [...trips, trip] },
+          };
+        }
+      }
     },
   },
 });

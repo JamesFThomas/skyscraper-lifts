@@ -92,23 +92,34 @@ const Auto = () => {
       setDirection({ lift: "lift1", direction: "switch case 1 tests working" })
     );
   };
+
   const test1 = () => {
-    dispatch(setPhase({ lift: "lift1", direction: "ENROUTE" }));
+    dispatch(setPhase({ lift: "lift1", phase: "ENROUTE" }));
+    dispatch(setPhase({ lift: "lift2", phase: "TAXING" }));
+    dispatch(setPhase({ lift: "lift3", phase: "UNLOADING" }));
   };
   const test2 = () => {
-    dispatch(setCurrentFloor({ lift: "lift2", direction: -1 }));
+    dispatch(setCurrentFloor({ lift: "lift1", value: 3 }));
+    dispatch(setCurrentFloor({ lift: "lift2", value: -22 }));
+    dispatch(setCurrentFloor({ lift: "lift3", value: 43 }));
   };
   const test3 = () => {
     dispatch(
-      trackTrip({ lift: "lift3", trip: { start: 23, end: 66, duration: 44 } })
+      trackTrip({ lift: "lift1", trip: { start: 13, end: 36, duration: 33 } })
+    );
+    dispatch(
+      trackTrip({ lift: "lift2", trip: { start: 2, end: 22, duration: 28 } })
+    );
+    dispatch(
+      trackTrip({ lift: "lift3", trip: { start: 75, end: 66, duration: 38 } })
     );
   };
 
   const testAll = () => {
-    test();
+    // test();
     // test1();
     // test2();
-    // test3();
+    test3();
   };
   /* ---------------------------------------------------------------------------- */
 
