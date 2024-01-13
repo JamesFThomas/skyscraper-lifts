@@ -10,7 +10,26 @@ export const everyLiftSlice = createSlice({
   reducers: {
     setDirection: (state, action) => {
       const { lift, direction: newDirection } = action.payload;
-      state[lift].direction = newDirection;
+      switch (lift) {
+        case "lift1": {
+          return {
+            ...state,
+            lift1: { ...state.lift1, direction: newDirection },
+          };
+        }
+        case "lift2": {
+          return {
+            ...state,
+            lift2: { ...state.lift2, direction: newDirection },
+          };
+        }
+        default: {
+          return {
+            ...state,
+            lift3: { ...state.lift3, direction: newDirection },
+          };
+        }
+      }
     },
     setPhase: (state, action) => {
       const { lift, phase: newPhase } = action.payload;
@@ -22,7 +41,7 @@ export const everyLiftSlice = createSlice({
     },
     trackTrip: (state, action) => {
       const { lift, trip } = action.payload;
-      state[lift].tripLog.push(trip);
+      state[lift].trips.push(trip);
     },
   },
 });

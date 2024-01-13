@@ -15,8 +15,6 @@ const stackStyles = () => {
 const TripLog = () => {
   const tripArr = useSelector((state) => state.singleMode.trips);
 
-  //TODO create function that plays song when trip is longer than 10 seconds
-
   return (
     <Stack sx={stackStyles} padding={3} spacing={1} alignItems={"center"}>
       <Typography variant="h4">Trip Log</Typography>

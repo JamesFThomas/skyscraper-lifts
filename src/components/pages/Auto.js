@@ -1,8 +1,14 @@
-import Container from "react-bootstrap/Container";
-
 import { useSelector, useDispatch } from "react-redux";
 
+import { Box, Button, Grid } from "@mui/material";
+
 import SimulatorDuration from "../simulator/SimulatorDuration";
+import TripsDisplay from "../simulator/liftParts/TripsDisplay.js";
+
+import LiftOne from "../simulator/lifts/LiftOne.js";
+
+import LiftTwo from "../simulator/lifts/LiftTwo.js";
+import LiftThree from "../simulator/lifts/LiftThree.js";
 
 import {
   setDirection,
@@ -10,7 +16,7 @@ import {
   trackTrip,
   setCurrentFloor,
 } from "../../state/everyLiftSlice.js";
-import { Box, Button, Grid } from "@mui/material";
+
 /*
 TODO 
 
@@ -76,7 +82,15 @@ const Auto = () => {
   console.log("currentState", currentState);
 
   const test = () => {
-    dispatch(setDirection({ lift: "lift3", direction: "second test working" }));
+    dispatch(
+      setDirection({ lift: "lift3", direction: "switch case 3 tests working" })
+    );
+    dispatch(
+      setDirection({ lift: "lift2", direction: "switch case 2 tests working" })
+    );
+    dispatch(
+      setDirection({ lift: "lift1", direction: "switch case 1 tests working" })
+    );
   };
   const test1 = () => {
     dispatch(setPhase({ lift: "lift1", direction: "ENROUTE" }));
@@ -92,9 +106,9 @@ const Auto = () => {
 
   const testAll = () => {
     test();
-    test1();
-    test2();
-    test3();
+    // test1();
+    // test2();
+    // test3();
   };
   /* ---------------------------------------------------------------------------- */
 
@@ -114,15 +128,9 @@ const Auto = () => {
           <Button onClick={testAll}>Click</Button>
         </Grid>
         <Grid item xs={12} container direction={"row"} spacing={3}>
-          <Grid item xs={4} textAlign={"center"}>
-            Lift 1
-          </Grid>
-          <Grid item xs={4} textAlign={"center"}>
-            Lift 2
-          </Grid>
-          <Grid item xs={4} textAlign={"center"}>
-            Lift 3
-          </Grid>
+          <LiftOne />
+          <LiftTwo />
+          <LiftThree />
         </Grid>
       </Grid>
     </Box>

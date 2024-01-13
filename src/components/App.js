@@ -22,7 +22,6 @@ const App = () => {
           height: "100vh",
           backgroundColor: "lightblue",
         }}
-        fluid
       >
         <NavBar />
         <Routes>
