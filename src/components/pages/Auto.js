@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { Box, Button, Grid } from "@mui/material";
 
 import SimulatorDuration from "../simulator/SimulatorDuration";
-import TripsDisplay from "../simulator/liftParts/TripsDisplay.js";
 
 import LiftOne from "../simulator/lifts/LiftOne.js";
 
@@ -20,6 +19,8 @@ import {
 /*
 TODO 
 
+all state information can be fetched at page level and passed down to lifts 1 2 and 3 
+
 create Auto mode structures
 Implement a simulator that generates the time series of elevator calls to feed the function in part A.`
 system specs 
@@ -29,24 +30,11 @@ system specs
 'The random functions should be seeded so that the results of any run can be reproduced if the same seed is used.',
 
 
-After the simulator runs, it should produce summary statistics.`,
-    'Create statistical summary of the system session that includes:',
-    'The average time spent waiting for an elevator.',
-    'The average time spent inside an elevator.',
-    'The average total time spent per trip.',
-
 
 Tasks:
-- create the Simulator page layout 
-    -- 3 elevator cars like in single mode 
 
-- create new redux slice just for the Simulator 
-    -- lift states: IDLE, MOVING, LOADING, EXITING,  
+- create new redux slice just for the Simulator   
     -- waiting pool 
-
-- create a Simulator duration display or countdown component 
-
-- create Simulator summary component 
 
 - control functions
         
@@ -85,31 +73,14 @@ const Auto = () => {
     dispatch(
       setDirection({ lift: "lift3", direction: "switch case 3 tests working" })
     );
-    dispatch(
-      setDirection({ lift: "lift2", direction: "switch case 2 tests working" })
-    );
-    dispatch(
-      setDirection({ lift: "lift1", direction: "switch case 1 tests working" })
-    );
   };
-
   const test1 = () => {
     dispatch(setPhase({ lift: "lift1", phase: "ENROUTE" }));
-    dispatch(setPhase({ lift: "lift2", phase: "TAXING" }));
-    dispatch(setPhase({ lift: "lift3", phase: "UNLOADING" }));
   };
   const test2 = () => {
     dispatch(setCurrentFloor({ lift: "lift1", value: 3 }));
-    dispatch(setCurrentFloor({ lift: "lift2", value: -22 }));
-    dispatch(setCurrentFloor({ lift: "lift3", value: 43 }));
   };
   const test3 = () => {
-    dispatch(
-      trackTrip({ lift: "lift1", trip: { start: 13, end: 36, duration: 33 } })
-    );
-    dispatch(
-      trackTrip({ lift: "lift2", trip: { start: 2, end: 22, duration: 28 } })
-    );
     dispatch(
       trackTrip({ lift: "lift3", trip: { start: 75, end: 66, duration: 38 } })
     );

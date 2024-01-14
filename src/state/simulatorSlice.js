@@ -18,16 +18,33 @@ export const simulatorSlice = createSlice({
   },
   reducers: {
     incrementDuration: (state, action) => {
-      state.duration += action.payload;
+      let { duration } = state;
+      let { payload } = action;
+      return {
+        ...state,
+        duration: (duration += payload),
+      };
     },
     resetDuration: (state) => {
-      state.duration = 0;
+      return {
+        ...state,
+        duration: 0,
+      };
     },
     runSimulator: (state, action) => {
-      state.isRunning = action.payload;
+      let { payload } = action;
+      return {
+        ...state,
+        isRunning: payload,
+      };
     },
     addRide: (state, action) => {
-      state.rides.push(action.payload);
+      let { payload } = action;
+      let { rides } = state;
+      return {
+        ...state,
+        rides: [...rides, payload],
+      };
     },
   },
 });

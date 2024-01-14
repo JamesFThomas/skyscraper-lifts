@@ -14,6 +14,8 @@ const SimulatorDuration = () => {
   const ridesArr = useSelector((state) => state.simulator.rides);
   const dispatch = useDispatch();
 
+  // console.log("ridesArr", ridesArr);
+
   // timer control functions
   const handleStart = (e) => {
     e.preventDefault();
@@ -41,7 +43,7 @@ const SimulatorDuration = () => {
 
   // create load rides for simulator
   useEffect(() => {
-    if (ridesArr.length < 1) {
+    if (!ridesArr.length) {
       dispatch(createRides());
     }
   }, [ridesArr]);
