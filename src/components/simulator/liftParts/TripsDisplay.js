@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { Stack, Typography } from "@mui/material";
 
 const stackStyles = () => {
@@ -11,23 +10,51 @@ const stackStyles = () => {
     width: "fit-content",
   };
 };
+const titleStyles = () => {
+  return {
+    textDecoration: "underline",
+  };
+};
 
-const TripsDisplay = () => {
-  const tripArray = useSelector((state) => state.everyLift);
-  //   const CheckState = useSelector((state) => state[mode]);
-  //   console.log("component state", CheckState);
+/*
+  
+props => 
+  trips = array 
+    example trip { start: 75, end: 66, duration: 38 }
+  title = string 
+*/
+
+const TripsDisplay = (props) => {
+  const { trips, title } = props;
+
+  //TODO fix this function to alter duration display
+  const convertDuration = (time) => {
+    const minutes = Math.floor((time % 360000) / 6000);
+    const seconds = Math.floor((time % 6000) / 100);
+    return `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")} ${seconds <= 59 ? "secs" : "min"}`;
+  };
   return (
     <Stack sx={stackStyles} padding={3} spacing={1} alignItems={"center"}>
-      <Typography variant="h4">Trip Log</Typography>
-      {/* {tripArray.map(({ currentFloor, endFloor, tripTime }, index) => (
-        <Typography key={index}>{`T#${(index += 1)}, S:${
-          currentFloor === 0 ? "L" : currentFloor
-        }, E:${
-          endFloor !== "0" ? endFloor : "L"
-        } Time:${tripTime}`}</Typography>
-      ))} */}
+      <Typography variant="h4" sx={titleStyles}>
+        {title}
+      </Typography>
+      {trips.map(({ start, end, duration }, index) => (
+        <Stack key={index} direction={"row"}>
+          <Typography>{`T#${(index += 1)}, S:${
+            start === 0 ? "L" : start
+          },`}</Typography>
+          <Typography>{` E:${end !== "0" ? end : "L"},`}</Typography>
+          <Typography>{` Length:${duration}`}</Typography>
+        </Stack>
+      ))}
     </Stack>
   );
 };
 
 export default TripsDisplay;
+
+/*
+
+*/

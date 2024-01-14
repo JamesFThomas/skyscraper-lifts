@@ -5,7 +5,7 @@ const LiftThree = () => {
   return (
     <Grid item xs={4} textAlign={"center"}>
       Lift 3
-      <TripsDisplay />
+      <TripsDisplay title={"Lift 3 Trips"} trips={[]} />
     </Grid>
   );
 };

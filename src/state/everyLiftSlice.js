@@ -3,7 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 export const everyLiftSlice = createSlice({
   name: "lifts",
   initialState: {
-    lift1: { currentFloor: 0, phase: "IDLE", direction: "", trips: [] },
+    lift1: {
+      currentFloor: 0,
+      phase: "IDLE",
+      direction: "",
+      trips: [
+        { start: 19, end: 49, duration: 99 },
+        { start: 46, end: 56, duration: 66 },
+        { start: 68, end: 78, duration: 88 },
+      ],
+    },
     lift2: { currentFloor: 0, phase: "IDLE", direction: "", trips: [] },
     lift3: { currentFloor: 0, phase: "IDLE", direction: "", trips: [] },
   },

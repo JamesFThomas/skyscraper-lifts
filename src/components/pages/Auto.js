@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import { Box, Button, Grid } from "@mui/material";
@@ -8,6 +10,8 @@ import LiftOne from "../simulator/lifts/LiftOne.js";
 
 import LiftTwo from "../simulator/lifts/LiftTwo.js";
 import LiftThree from "../simulator/lifts/LiftThree.js";
+
+import { createRides } from "../../state/simulatorSlice";
 
 import {
   setDirection,
@@ -37,21 +41,11 @@ Tasks:
     -- waiting pool 
 
 - control functions
-        
-    -- StartSimulator: starts the auto mode simulator 
-
-    -- StopSimulator: after set duration stops the auto mode simulator 
-
-    -- newRideStats: creates random ride numbers
-        ---> start floor, end floor ,number of riders
-    
     -- ClosestLift: determines which lift to call for newly generated ride
 
     -- CallLift: sets lift with newly generated ride stats
         ---> triggered when lift is idle  
     
-    -- SimulatorDuration: tracks how long auto mode has been working 
-
     -- SimulatorSummary: calculates simulator stats from recently ended run 
         ---> 'The average time spent waiting for an elevator.',
         ---> 'The average time spent inside an elevator.',
@@ -62,12 +56,21 @@ Tasks:
 
 */
 const Auto = () => {
+  const ridesArr = useSelector((state) => state.simulator.rides);
   const dispatch = useDispatch();
 
-  /* ----------------------------Testing lift slice reducers ------------------------- */
-  const currentState = useSelector((state) => state.everyLift);
+  // create load rides for simulator
+  useEffect(() => {
+    if (!ridesArr.length) {
+      dispatch(createRides());
+    }
+  }, [ridesArr]);
 
-  console.log("currentState", currentState);
+  /* ----------------------------Testing lift slice reducers ------------------------- */
+  // const currentState = useSelector((state) => state.everyLift);
+
+  // console.log("currentState", currentState);
+  // console.log("currentState", ridesArr);
 
   const test = () => {
     dispatch(
