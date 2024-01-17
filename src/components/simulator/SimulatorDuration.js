@@ -13,8 +13,6 @@ const SimulatorDuration = () => {
 
   const dispatch = useDispatch();
 
-  // console.log("ridesArr", ridesArr);
-
   // timer control functions
   const handleStart = (e) => {
     e.preventDefault();

@@ -6,7 +6,7 @@ export const everyLiftSlice = createSlice({
     lift1: {
       currentFloor: 0,
       phase: "IDLE",
-      direction: "",
+      direction: "UP",
       trips: [
         { start: 19, end: 49, duration: 99 },
         { start: 46, end: 56, duration: 66 },
@@ -140,4 +140,20 @@ export default everyLiftSlice.reducer;
       - 'lift1'|| 'lift2'|| 'lift3'
     action. payload =>
       - currentFloor: number || phase: string || direction: string || tripLog: array 
-*/
+
+
+Working examples of reducer calls:
+
+dispatch(
+setDirection({ lift: "lift3", direction: "switch case 3 tests working" })
+);
+
+dispatch(setPhase({ lift: "lift1", phase: "ENROUTE" }));
+
+dispatch(setCurrentFloor({ lift: "lift1", value: 3 }));
+
+dispatch(
+trackTrip({ lift: "lift3", trip: { start: 75, end: 66, duration: 38 } })
+);
+
+      */

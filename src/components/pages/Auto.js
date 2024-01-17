@@ -13,13 +13,6 @@ import LiftThree from "../simulator/lifts/LiftThree.js";
 
 import { createRides } from "../../state/simulatorSlice";
 
-import {
-  setDirection,
-  setPhase,
-  trackTrip,
-  setCurrentFloor,
-} from "../../state/everyLiftSlice.js";
-
 /*
 TODO 
 
@@ -66,37 +59,6 @@ const Auto = () => {
     }
   }, [ridesArr]);
 
-  /* ----------------------------Testing lift slice reducers ------------------------- */
-  // const currentState = useSelector((state) => state.everyLift);
-
-  // console.log("currentState", currentState);
-  // console.log("currentState", ridesArr);
-
-  const test = () => {
-    dispatch(
-      setDirection({ lift: "lift3", direction: "switch case 3 tests working" })
-    );
-  };
-  const test1 = () => {
-    dispatch(setPhase({ lift: "lift1", phase: "ENROUTE" }));
-  };
-  const test2 = () => {
-    dispatch(setCurrentFloor({ lift: "lift1", value: 3 }));
-  };
-  const test3 = () => {
-    dispatch(
-      trackTrip({ lift: "lift3", trip: { start: 75, end: 66, duration: 38 } })
-    );
-  };
-
-  const testAll = () => {
-    // test();
-    // test1();
-    // test2();
-    test3();
-  };
-  /* ---------------------------------------------------------------------------- */
-
   return (
     <Box
       sx={{
@@ -110,7 +72,6 @@ const Auto = () => {
         <Grid item xs={12}>
           <div>{"Auto"}</div>
           <SimulatorDuration />
-          <Button onClick={testAll}>Click</Button>
         </Grid>
         <Grid item xs={12} container direction={"row"} spacing={3}>
           <LiftOne />
