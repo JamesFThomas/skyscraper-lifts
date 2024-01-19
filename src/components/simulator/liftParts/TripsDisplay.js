@@ -16,14 +16,6 @@ const titleStyles = () => {
   };
 };
 
-/*
-  
-props => 
-  trips = array 
-    example trip { start: 75, end: 66, duration: 38 }
-  title = string 
-*/
-
 const TripsDisplay = (props) => {
   const { trips, title } = props;
 
@@ -54,7 +46,3 @@ const TripsDisplay = (props) => {
 };
 
 export default TripsDisplay;
-
-/*
-
-*/

@@ -68,9 +68,8 @@ const Auto = () => {
         alignItems: "center",
       }}
     >
-      <Grid container justifyContent={"center"}>
+      <Grid container justifyContent={"center"} gap={5}>
         <Grid item xs={12}>
-          <div>{"Auto"}</div>
           <SimulatorDuration />
         </Grid>
         <Grid item xs={12} container direction={"row"} spacing={3}>

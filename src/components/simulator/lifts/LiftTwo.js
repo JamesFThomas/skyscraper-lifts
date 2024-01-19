@@ -1,7 +1,8 @@
-import { Box, Button, Grid } from "@mui/material";
+import { Box, Button, Grid, Stack } from "@mui/material";
 
 import TripsDisplay from "../liftParts/TripsDisplay";
 import ElevatorDoors from "../liftParts/ElevatorDoors";
+import DirectionPanel from "../liftParts/DirectionPanel";
 
 const LiftTwo = () => {
   return (
@@ -10,14 +11,17 @@ const LiftTwo = () => {
       xs={4}
       sx={{
         display: "flex",
-        flexDirection: "column",
+        flexDirection: "row",
         justifyContent: "center",
         textAlign: "center",
+        gap: 1,
       }}
     >
-      Lift 2
       <TripsDisplay title={"Lift 2 Trips"} trips={[]} />
-      <ElevatorDoors phase={"IDLE"} currentFloor={0} />
+      <Stack direction={"column"} alignItems={"center"}>
+        <DirectionPanel direction={"UP"} currentFloor={4} />
+        <ElevatorDoors phase={"IDLE"} currentFloor={0} />
+      </Stack>
     </Grid>
   );
 };
