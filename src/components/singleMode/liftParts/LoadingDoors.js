@@ -73,7 +73,7 @@ const LoadingDoors = () => {
           </Typography>
         </Box>
       )}
-      <Box Box direction={"row"} sx={frameStyle}>
+      <Box direction={"row"} sx={frameStyle}>
         <Box
           sx={LOADING || EXITING ? movingDoorStyles : closedDoorStyles}
         ></Box>

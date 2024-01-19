@@ -8,7 +8,10 @@ const stackStyles = () => {
     height: "100%",
     display: "flex",
     flexDirection: "column",
-    width: "fit-content",
+    width: "100%",
+    padding: 3,
+    spacing: 1,
+    alignItems: "center",
   };
 };
 
@@ -16,7 +19,7 @@ const TripLog = () => {
   const tripArr = useSelector((state) => state.singleMode.trips);
 
   return (
-    <Stack sx={stackStyles} padding={3} spacing={1} alignItems={"center"}>
+    <Stack sx={stackStyles}>
       <Typography variant="h4">Trip Log</Typography>
       {tripArr.map(({ currentFloor, endFloor, tripTime }, index) => (
         <Typography key={index}>{`T#${(index += 1)}, S:${

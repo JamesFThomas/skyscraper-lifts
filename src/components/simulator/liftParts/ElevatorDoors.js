@@ -1,11 +1,36 @@
 import { Stack, Box, Typography } from "@mui/material";
 
-/*
-  TODO get doors to show different displays based on phase value
-*/
+const centeredTextStyles = () => {
+  return {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+  };
+};
+
+const frameStyle = () => {
+  return {
+    margin: "1em",
+    display: "flex",
+    flexDirection: "row",
+    height: "20em",
+    width: "20em",
+    justifyContent: "center",
+    border: "solid 2px grey",
+  };
+};
+
+const closedDoorStyles = () => {
+  return {
+    width: "0%",
+    borderLeft: "solid 1px grey",
+    borderRight: "solid 1px grey",
+  };
+};
 
 const ElevatorDoors = (props) => {
-  const { phase } = props;
+  const { phase, currentFloor } = props;
+
   const phases = {
     IDLE: "IDLE",
     LOADING: "LOADING",
@@ -14,21 +39,68 @@ const ElevatorDoors = (props) => {
     TAXING: "TAXING",
   };
 
-  const movingDoors = () => {
-    // set up moving door animation
-    return <Box>moving doors</Box>;
+  const movingDoorStyles = () => {
+    return {
+      "@keyframes expandContract": {
+        from: {
+          width: "0%",
+        },
+        "15%": {
+          width: "100%",
+        },
+        "85%": {
+          width: "100%",
+        },
+        to: {
+          width: "0%",
+        },
+      },
+      backgroundColor: "black",
+      borderLeft: "solid 1px grey",
+      borderRight: "solid 1px grey",
+      animation: `expandContract ${currentFloor === 0 ? 30 : 5}s linear`,
+    };
   };
+
+  const showStaticDoors =
+    phase === phases.IDLE ||
+    phase === phases.ENROUTE ||
+    phase === phases.TAXING;
+
+  const showMovingDoors =
+    phase === phases.LOADING || phase === phases.UNLOADING;
+
+  const greeting = () => {
+    return (
+      <Typography sx={centeredTextStyles}>
+        {phase === phases.LOADING ? "Welcome" : "Goodbye"}
+      </Typography>
+    );
+  };
+
+  const movingDoors = () => {
+    return (
+      <Stack justifyContent={"center"} direction={"column"}>
+        <Box direction={"row"} sx={frameStyle}>
+          <Box sx={movingDoorStyles} />
+        </Box>
+        {greeting()}
+      </Stack>
+    );
+  };
+
   const staticDoors = () => {
-    //set up static door display
-    <Box>closed doors</Box>;
+    return (
+      <Box direction={"row"} sx={frameStyle}>
+        <Box sx={closedDoorStyles} />
+      </Box>
+    );
   };
 
   return (
     <Box>
-      {(phase === phases.IDLE) |
-        (phase === phases.ENROUTE) |
-        (phase === phases.TAXING) && <>static</>}
-      {(phase === phases.LOADING) | (phase === phases.UNLOADING) && <>moving</>}
+      {showStaticDoors && staticDoors()}
+      {showMovingDoors && movingDoors()}
     </Box>
   );
 };

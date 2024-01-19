@@ -11,15 +11,24 @@ const LiftOne = () => {
   const L1Direction = useSelector((state) => state.everyLift.lift1.direction);
   const L1TripsArray = useSelector((state) => state.everyLift.lift1.trips);
 
-  console.log("L1CurrentFloor", L1CurrentFloor);
-  console.log("L1Phase", L1Phase);
-  console.log("L1Direction", L1Direction);
-  console.log("L1TripsArray", L1TripsArray);
+  // console.log("L1CurrentFloor", L1CurrentFloor);
+  // console.log("L1Phase", L1Phase);
+  // console.log("L1Direction", L1Direction);
+  // console.log("L1TripsArray", L1TripsArray);
   return (
-    <Grid item xs={4} textAlign={"center"}>
+    <Grid
+      item
+      xs={4}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        textAlign: "center",
+      }}
+    >
       <Typography>Lift 1</Typography>
       <TripsDisplay title={"Lift 1 Trips"} trips={L1TripsArray} />
-      <ElevatorDoors phase={L1Phase} />
+      <ElevatorDoors phase={L1Phase} currentFloor={L1CurrentFloor} />
     </Grid>
   );
 };
