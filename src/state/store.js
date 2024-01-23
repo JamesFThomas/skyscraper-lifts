@@ -22,9 +22,9 @@ import everyLiftSlice from "./everyLiftSlice";
 
 //********************************************* Middleware  ********************************* */
 
-const testListener = createListenerMiddleware();
+const simulatorListener = createListenerMiddleware();
 
-testListener.startListening({
+simulatorListener.startListening({
   actionCreator: runSimulator,
   effect: async (action, listenerAPI) => {
     // control logic goes here
@@ -54,5 +54,5 @@ export default configureStore({
   },
   // add middleware below
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().prepend(testListener.middleware),
+    getDefaultMiddleware().prepend(simulatorListener.middleware),
 });
