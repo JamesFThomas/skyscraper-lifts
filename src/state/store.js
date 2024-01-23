@@ -1,11 +1,24 @@
 import { configureStore, createListenerMiddleware } from "@reduxjs/toolkit";
 
 // import different Slices into the store
-import simulatorReducer, { runSimulator } from "./simulatorSlice";
+// import different actions from slices for listeners to run off of.
+import simulatorReducer, { runSimulator, createRides } from "./simulatorSlice";
 import singleModeSlice from "./singleModeSlice";
 import everyLiftSlice from "./everyLiftSlice";
 
-// import different actions from slices fro listeners to run off of.
+/* 
+  TODO complete control middleware functions 
+- control functions
+-- ClosestLift: determines which lift to call for newly generated ride
+
+-- CallLift: sets lift with newly generated ride stats
+---> triggered when lift is idle  
+
+-- SimulatorSummary: calculates simulator stats from recently ended run 
+---> 'The average time spent waiting for an elevator.',
+---> 'The average time spent inside an elevator.',
+---> 'The average total time spent per trip.',
+*/
 
 //********************************************* Middleware  ********************************* */
 
@@ -14,8 +27,19 @@ const testListener = createListenerMiddleware();
 testListener.startListening({
   actionCreator: runSimulator,
   effect: async (action, listenerAPI) => {
-    // write out logic here
-    console.log("simulator started what's in the payload", action.payload);
+    // control logic goes here
+
+    // show simulator start/end message
+    action.payload
+      ? console.log("simulator started ")
+      : console.log("simulator stopped ");
+
+    let { isRunning } = listenerAPI.getState().simulator;
+
+    if (isRunning) {
+      // loads Rides array in simulator slice
+      listenerAPI.dispatch(createRides());
+    }
   },
 });
 
