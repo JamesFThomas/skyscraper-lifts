@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Box, Button, Grid, Typography, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 import TripsDisplay from "../liftParts/TripsDisplay";
 import ElevatorDoors from "../liftParts/ElevatorDoors";
 import DirectionPanel from "../liftParts/DirectionPanel";

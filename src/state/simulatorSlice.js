@@ -79,4 +79,18 @@ export const createRides = () => (dispatch) => {
   }
 };
 
+/* 
+  TODO complete control middleware functions 
+- control functions
+-- ClosestLift: determines which lift to call for newly generated ride
+
+-- CallLift: sets lift with newly generated ride stats
+---> triggered when lift is idle  
+
+-- SimulatorSummary: calculates simulator stats from recently ended run 
+---> 'The average time spent waiting for an elevator.',
+---> 'The average time spent inside an elevator.',
+---> 'The average total time spent per trip.',
+*/
+
 export default simulatorSlice.reducer;
