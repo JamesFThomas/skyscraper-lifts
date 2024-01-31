@@ -46,12 +46,21 @@ export const simulatorSlice = createSlice({
         rides: [...rides, payload],
       };
     },
+    callMade: (action) => {
+      let { payload } = action;
+      return console.log("Call made", payload);
+    },
   },
 });
 
 // action creators that correspond to each reducer in Slice
-export const { incrementDuration, runSimulator, resetDuration, addRide } =
-  simulatorSlice.actions;
+export const {
+  incrementDuration,
+  runSimulator,
+  resetDuration,
+  addRide,
+  callMade,
+} = simulatorSlice.actions;
 
 // increase duration number 1 each second will simulator is running
 export const simulatorTimer = (isRunning) => (dispatch) => {
@@ -79,13 +88,27 @@ export const createRides = () => (dispatch) => {
   }
 };
 
+// creates random ride calls
+export const randomCall = (run) => (dispatch) => {
+  // const min = 6;
+  // const max = 129;
+  // let random = Math.floor(Math.random() * (max - min + 1)) + min;
+  if (run > 0) {
+    setInterval(() => {
+      console.log("inside randomCall thunk", run);
+      dispatch(callMade(run));
+      dispatch(randomCall((run += 1)));
+    }, 1000);
+  }
+};
+
 /* 
   TODO complete control middleware functions 
 - control functions
 -- ClosestLift: determines which lift to call for newly generated ride
 
 -- CallLift: sets lift with newly generated ride stats
----> triggered when lift is idle  
+---> triggered at random interval  
 
 -- SimulatorSummary: calculates simulator stats from recently ended run 
 ---> 'The average time spent waiting for an elevator.',

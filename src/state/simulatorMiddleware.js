@@ -1,10 +1,10 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 
-import { runSimulator, createRides } from "./simulatorSlice";
+import { runSimulator, createRides, randomCall } from "./simulatorSlice";
 
 export const simulatorListener = createListenerMiddleware();
 
-// #1 listener
+// #1 listener - uses actionCreator
 simulatorListener.startListening({
   actionCreator: runSimulator,
   effect: async (action, listenerAPI) => {
@@ -12,8 +12,8 @@ simulatorListener.startListening({
 
     // show simulator start/end message
     action.payload
-      ? console.log("simulator started #2")
-      : console.log("simulator stopped #2");
+      ? console.log("simulator started")
+      : console.log("simulator stopped");
 
     let { isRunning } = listenerAPI.getState().simulator;
 
@@ -24,4 +24,20 @@ simulatorListener.startListening({
   },
 });
 
-// #2 listener -
+// #2 listener - uses predicate
+simulatorListener.startListening({
+  // triggering action must be listed in arguments of predicate to work correctly
+  predicate: (runSimulator, currentState, previousState) => {
+    return (
+      currentState.simulator.isRunning !== previousState.simulator.isRunning
+    );
+  },
+  effect: async (action, listenerAPI) => {
+    const min = 6;
+    const max = 129;
+    let random = Math.floor(Math.random() * (max - min + 1)) + min;
+
+    listenerAPI.dispatch(randomCall(1)); // working now
+    console.log("inside the predicate ", action.payload);
+  },
+});
