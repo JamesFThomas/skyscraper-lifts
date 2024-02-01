@@ -46,9 +46,10 @@ export const simulatorSlice = createSlice({
         rides: [...rides, payload],
       };
     },
-    callMade: (action) => {
+    callMade: (state, action) => {
+      // to view the action it must be second parameter to reducer
       let { payload } = action;
-      return console.log("Call made", payload);
+      return console.log(" Random Call made", action.payload);
     },
   },
 });
@@ -89,16 +90,17 @@ export const createRides = () => (dispatch) => {
 };
 
 // creates random ride calls
-export const randomCall = (run) => (dispatch) => {
-  // const min = 6;
-  // const max = 129;
-  // let random = Math.floor(Math.random() * (max - min + 1)) + min;
+export const randomCall = (run, randomInt) => (dispatch) => {
+  const min = 6;
+  const max = 129;
+  let newRandom = Math.floor(Math.random() * (max - min + 1)) + min;
+  let runIncremented = (run += 1);
   if (run > 0) {
     setInterval(() => {
       console.log("inside randomCall thunk", run);
       dispatch(callMade(run));
-      dispatch(randomCall((run += 1)));
-    }, 1000);
+      dispatch(randomCall(runIncremented, newRandom));
+    }, randomInt * 1000);
   }
 };
 

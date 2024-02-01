@@ -117,6 +117,11 @@ export const everyLiftSlice = createSlice({
 export const { setDirection, setPhase, trackTrip, setCurrentFloor } =
   everyLiftSlice.actions;
 
+// Thunks
+export const moveLiftAuto = () => (dispatch) => {
+  // create sequence to move lift with slice actions
+};
+
 export default everyLiftSlice.reducer;
 
 /*
