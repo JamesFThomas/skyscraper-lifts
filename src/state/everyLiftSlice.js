@@ -6,12 +6,8 @@ export const everyLiftSlice = createSlice({
     lift1: {
       currentFloor: 62,
       phase: "IDLE",
-      direction: "DOWN",
-      trips: [
-        { start: 19, end: 49, duration: 99, passengers: 5 },
-        { start: 46, end: 56, duration: 66, passengers: 3 },
-        { start: 68, end: 78, duration: 88, passengers: 1 },
-      ],
+      direction: "",
+      trips: [{ start: 19, end: 49, duration: 99, passengers: 5 }],
     },
     lift2: {
       currentFloor: 0,
@@ -178,6 +174,8 @@ export const moveLiftAuto = (lift, current, end) => (dispatch) => {
     }, 1000);
   }
 };
+
+//TODO create control function for ENROUTE functionality or rides without passengers
 
 export default everyLiftSlice.reducer;
 
