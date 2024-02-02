@@ -37,7 +37,7 @@ simulatorListener.startListening({
     const max = 129;
     let random = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    listenerAPI.dispatch(randomCall(0, random)); // working now
+    listenerAPI.dispatch(randomCall(1, random)); // working now
     console.log("predicate hit", action.payload);
   },
 });

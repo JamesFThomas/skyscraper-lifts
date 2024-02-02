@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { startRide } from "./everyLiftSlice";
 
 /**
   A Slice requires a string name to identify the slice, an initial state
@@ -49,7 +50,7 @@ export const simulatorSlice = createSlice({
     callMade: (state, action) => {
       // to view the action it must be second parameter to reducer
       let { payload } = action;
-      return console.log(" Random Call made", action.payload);
+      return console.log(" Random Call made", payload);
     },
   },
 });
@@ -73,7 +74,7 @@ export const simulatorTimer = (isRunning) => (dispatch) => {
   }, 1000);
 };
 
-// create new ride information
+// create randomized ride information
 export const createRides = () => (dispatch) => {
   // random numbers
   for (let i = 0; i < 50; i++) {
@@ -89,19 +90,22 @@ export const createRides = () => (dispatch) => {
   }
 };
 
-// creates random ride calls
+// mimic a randomized call for an elevator ride
 export const randomCall = (run, randomInt) => (dispatch) => {
-  const min = 6;
-  const max = 129;
-  let newRandom = Math.floor(Math.random() * (max - min + 1)) + min;
-  let runIncremented = (run += 1);
-  if (run > 0) {
-    setInterval(() => {
-      console.log("inside randomCall thunk", run);
-      dispatch(callMade(run));
-      dispatch(randomCall(runIncremented, newRandom));
-    }, randomInt * 1000);
-  }
+  // const min = 6;
+  // const max = 129;
+  // let newRandom = Math.floor(Math.random() * (max - min + 1)) + min;
+  // let runIncremented = (run += 1);
+  // if (run > 0) {
+  // }
+  setTimeout(() => {
+    console.log("inside randomCall thunk", run);
+    dispatch(callMade(run));
+    // dispatch(randomCall(runIncremented, newRandom));
+    dispatch(startRide("lift1", 62, 55));
+    dispatch(startRide("lift2", 0, 25));
+    dispatch(startRide("lift3", 99, 87));
+  }, 5000);
 };
 
 /* 

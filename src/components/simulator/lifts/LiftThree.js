@@ -1,9 +1,16 @@
-import { Box, Button, Grid, Stack } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
+import { useSelector } from "react-redux";
 import TripsDisplay from "../liftParts/TripsDisplay";
 import ElevatorDoors from "../liftParts/ElevatorDoors";
 import DirectionPanel from "../liftParts/DirectionPanel";
-<DirectionPanel direction={""} currentFloor={99} />;
+
 const LiftThree = () => {
+  const L3CurrentFloor = useSelector(
+    (state) => state.everyLift.lift3.currentFloor
+  );
+  const L3Phase = useSelector((state) => state.everyLift.lift3.phase);
+  const L3Direction = useSelector((state) => state.everyLift.lift3.direction);
+  const L3TripsArray = useSelector((state) => state.everyLift.lift3.trips);
   return (
     <Grid
       item
@@ -15,10 +22,10 @@ const LiftThree = () => {
         textAlign: "center",
       }}
     >
-      <TripsDisplay title={"Lift 3 Trips"} trips={[]} />
+      <TripsDisplay title={"Lift 3 Trips"} trips={L3TripsArray} />
       <Stack direction={"column"} alignItems={"center"}>
-        <DirectionPanel direction={""} currentFloor={99} />
-        <ElevatorDoors phase={"IDLE"} currentFloor={0} />
+        <DirectionPanel direction={L3Direction} currentFloor={L3CurrentFloor} />
+        <ElevatorDoors phase={L3Phase} currentFloor={L3CurrentFloor} />
       </Stack>
     </Grid>
   );
