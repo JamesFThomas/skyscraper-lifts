@@ -90,15 +90,18 @@ const ElevatorDoors = (props) => {
       </Stack>
     );
   };
-  // const taxingStats = () => {
-  //   return (
-  //     <Stack>
-  //       <Typography>{`${liftTitle} is enroute to floor ${currentTrip.end}`}</Typography>
-  //       <Typography>{`Trip duration = ${currentTrip.duration} seconds `}</Typography>
-  //       <Typography>{`Number of passengers = ${currentTrip.passengers}`}</Typography>
-  //     </Stack>
-  //   );
-  // };
+
+  //TODO figure out way to update current trip information between phases
+  const taxingStats = () => {
+    return (
+      <Stack>
+        {/*<Typography>{`${liftTitle} is enroute to floor ${currentTrip.end}`}</Typography>
+        <Typography>{`Trip duration = ${currentTrip.duration} seconds `}</Typography>
+        <Typography>{`Number of passengers = ${currentTrip.passengers}`}</Typography> */}
+        <Typography>{`TAXING`}</Typography>
+      </Stack>
+    );
+  };
 
   const movingDoors = () => {
     return (
@@ -118,7 +121,7 @@ const ElevatorDoors = (props) => {
           <Box sx={closedDoorStyles} />
         </Box>
         {showEnrouteStats && enrouteStats()}
-        {/* {showTaxingStats && taxingStats()} */}
+        {showTaxingStats && taxingStats()}
       </>
     );
   };
