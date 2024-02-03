@@ -70,7 +70,7 @@ const ElevatorDoors = (props) => {
   const showMovingDoors =
     phase === phases.LOADING || phase === phases.UNLOADING;
 
-  const showEnrouteStats = phase.ENROUTE;
+  const showEnrouteStats = phase === phases.ENROUTE;
 
   const greeting = () => {
     return (
@@ -80,13 +80,12 @@ const ElevatorDoors = (props) => {
     );
   };
 
+  //TODO pass enrpute stats from parent as props This lift is headed to
   const enrouteStats = () => {
     return (
       <Stack>
-        <Typography>
-          //TODO pass enrpute stats from parent as props This lift is headed to
-          floor %% the wait wil be ##:## min
-        </Typography>
+        <Typography>{"Lift is enroute to floor N for pick up"}</Typography>
+        <Typography>{"estimated wait time = XX:XX min "}</Typography>
       </Stack>
     );
   };
@@ -104,10 +103,12 @@ const ElevatorDoors = (props) => {
 
   const staticDoors = () => {
     return (
-      <Box direction={"row"} sx={frameStyle}>
-        <Box sx={closedDoorStyles} />
+      <>
+        <Box direction={"row"} sx={frameStyle}>
+          <Box sx={closedDoorStyles} />
+        </Box>
         {showEnrouteStats && enrouteStats()}
-      </Box>
+      </>
     );
   };
 

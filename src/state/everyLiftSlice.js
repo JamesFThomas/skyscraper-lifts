@@ -178,7 +178,7 @@ export const startEnrouteRide =
     dispatch(trackRideData(lift, current, end, passengers, phase));
     //move lift Enroute
     dispatch(
-      moveLiftEnroute(lift, (current += 1), end, {
+      moveLiftEnroute(lift, current, end, {
         nextStart,
         nextEnd,
         nextPass,
