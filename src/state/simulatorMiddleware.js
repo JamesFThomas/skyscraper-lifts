@@ -33,11 +33,8 @@ simulatorListener.startListening({
     );
   },
   effect: async (action, listenerAPI) => {
-    const min = 6;
-    const max = 129;
-    let random = Math.floor(Math.random() * (max - min + 1)) + min;
-
-    listenerAPI.dispatch(randomCall(1, random)); // working now
+    //starts simulated levator calls
+    listenerAPI.dispatch(randomCall());
     console.log("predicate hit", action.payload);
   },
 });

@@ -29,7 +29,7 @@ const closedDoorStyles = () => {
 };
 
 const ElevatorDoors = (props) => {
-  const { phase, currentFloor } = props;
+  const { phase, currentFloor, liftTitle, currentTrip } = props;
 
   const phases = {
     IDLE: "IDLE",
@@ -71,6 +71,7 @@ const ElevatorDoors = (props) => {
     phase === phases.LOADING || phase === phases.UNLOADING;
 
   const showEnrouteStats = phase === phases.ENROUTE;
+  const showTaxingStats = phase === phases.TAXING;
 
   const greeting = () => {
     return (
@@ -80,15 +81,24 @@ const ElevatorDoors = (props) => {
     );
   };
 
-  //TODO pass enrpute stats from parent as props This lift is headed to
+  //TODO create function to calculate time from duration integer
   const enrouteStats = () => {
     return (
       <Stack>
-        <Typography>{"Lift is enroute to floor N for pick up"}</Typography>
-        <Typography>{"estimated wait time = XX:XX min "}</Typography>
+        <Typography>{`${liftTitle} is enroute to floor ${currentTrip.end}`}</Typography>
+        <Typography>{`Wait time = ${currentTrip.duration} seconds `}</Typography>
       </Stack>
     );
   };
+  // const taxingStats = () => {
+  //   return (
+  //     <Stack>
+  //       <Typography>{`${liftTitle} is enroute to floor ${currentTrip.end}`}</Typography>
+  //       <Typography>{`Trip duration = ${currentTrip.duration} seconds `}</Typography>
+  //       <Typography>{`Number of passengers = ${currentTrip.passengers}`}</Typography>
+  //     </Stack>
+  //   );
+  // };
 
   const movingDoors = () => {
     return (
@@ -108,6 +118,7 @@ const ElevatorDoors = (props) => {
           <Box sx={closedDoorStyles} />
         </Box>
         {showEnrouteStats && enrouteStats()}
+        {/* {showTaxingStats && taxingStats()} */}
       </>
     );
   };

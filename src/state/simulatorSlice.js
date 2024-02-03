@@ -81,19 +81,17 @@ export const createRides = () => (dispatch) => {
 };
 
 // mimic a randomized call for an elevator ride
-export const randomCall = (run, randomInt) => (dispatch) => {
+export const randomCall = () => (dispatch, getState) => {
   // const min = 6;
   // const max = 129;
   // let newRandom = Math.floor(Math.random() * (max - min + 1)) + min;
-  // let runIncremented = (run += 1);
-  // if (run > 0) {
-  // }
-  //TODO set up call for startEnrouteRide with next ride data
-  // eventually next call will have to come from rides array
-  setTimeout(() => {
-    console.log("inside randomCall thunk", run);
-    dispatch(callMade(run));
 
+  //TODO set up this function to start an new ride sequence if isRunning === true && if any lift phases === "idle"
+  //TODO grab next ride data from simulator rides array
+  let call = 1;
+  setTimeout(() => {
+    console.log("Simulated Call", call);
+    dispatch(callMade(call));
     dispatch(
       startEnrouteRide("lift1", 10, 1, {
         nextStart: 1,
@@ -101,6 +99,10 @@ export const randomCall = (run, randomInt) => (dispatch) => {
         passengers: 7,
       })
     );
+  }, 5000);
+  setTimeout(() => {
+    console.log("Simulated Call", (call += 1));
+    dispatch(callMade((call += 1)));
     dispatch(
       startEnrouteRide("lift2", 55, 45, {
         nextStart: 45,
@@ -108,6 +110,10 @@ export const randomCall = (run, randomInt) => (dispatch) => {
         passengers: 3,
       })
     );
+  }, 10000);
+  setTimeout(() => {
+    console.log("Simulated Call", (call += 2));
+    dispatch(callMade((call += 2)));
     dispatch(
       startEnrouteRide("lift3", 99, 89, {
         nextStart: 89,
@@ -115,10 +121,7 @@ export const randomCall = (run, randomInt) => (dispatch) => {
         passengers: 2,
       })
     );
-    // dispatch(randomCall(runIncremented, newRandom));
-    // dispatch(startTaxiRide("lift2", 1, 10, 2));
-    // dispatch(startTaxiRide("lift3", 99, 89, 1));
-  }, 5000);
+  }, 15000);
 };
 
 /* 
@@ -129,6 +132,11 @@ export const randomCall = (run, randomInt) => (dispatch) => {
 -- CallLift: sets lift with newly generated ride stats
 ---> triggered at random interval  
 
+Remaining Tasks:
+-> waiting pool 
+  --> waiting pool is for when ride stats can have more riders than 10 at a floor for now riders will be <= 5
+    ** once functions for waiting behavior implemented, add waiting pool stats to simulator summary **
+    ** for wait time => trips should track if they were TAXING or ENROUTE , and number of passengers **
 */
 
 export default simulatorSlice.reducer;

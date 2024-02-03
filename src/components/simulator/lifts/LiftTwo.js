@@ -11,6 +11,8 @@ const LiftTwo = () => {
   const L2Phase = useSelector((state) => state.everyLift.lift2.phase);
   const L2Direction = useSelector((state) => state.everyLift.lift2.direction);
   const L2TripsArray = useSelector((state) => state.everyLift.lift2.trips);
+  const liftTitle = "Lift 2";
+  const currentTrip = L2TripsArray[L2TripsArray.length - 1];
   return (
     <Grid
       item
@@ -26,7 +28,12 @@ const LiftTwo = () => {
       <TripsDisplay title={"Lift 2 Trips"} trips={L2TripsArray} />
       <Stack direction={"column"} alignItems={"center"}>
         <DirectionPanel direction={L2Direction} currentFloor={L2CurrentFloor} />
-        <ElevatorDoors phase={L2Phase} currentFloor={L2CurrentFloor} />
+        <ElevatorDoors
+          phase={L2Phase}
+          currentFloor={L2CurrentFloor}
+          liftTitle={liftTitle}
+          currentTrip={currentTrip}
+        />
       </Stack>
     </Grid>
   );

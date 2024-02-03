@@ -146,7 +146,6 @@ export const startTaxiRide =
   (lift, current, end, passengers, phase = "LOADING") =>
   (dispatch) => {
     dispatch(setPhase({ lift, phase }));
-    //phase preset to TAXING because function calling is startTaxiRide
     dispatch(trackRideData(lift, current, end, passengers, (phase = "TAXING")));
     if (current === 0) {
       setTimeout(() => {
@@ -161,7 +160,6 @@ export const startTaxiRide =
     }
   };
 
-//TODO add next trip object to be passed to startTaxiRide
 export const startEnrouteRide =
   (
     lift,
@@ -172,11 +170,8 @@ export const startEnrouteRide =
     phase = "ENROUTE"
   ) =>
   (dispatch) => {
-    //set phase
     dispatch(setPhase({ lift, phase }));
-    //track trip
     dispatch(trackRideData(lift, current, end, passengers, phase));
-    //move lift Enroute
     dispatch(
       moveLiftEnroute(lift, current, end, {
         nextStart,
@@ -215,6 +210,7 @@ export const moveLiftTaxi = (lift, current, end) => (dispatch) => {
     }, 1000);
   } else {
     setTimeout(() => {
+      dispatch(setDirection({ lift, direction: "" }));
       dispatch(unloadingDoors(lift, current));
     }, 1000);
   }
@@ -248,6 +244,7 @@ export const moveLiftEnroute =
       }, 1000);
     } else {
       setTimeout(() => {
+        dispatch(setDirection({ lift, direction: "" }));
         dispatch(startTaxiRide(lift, nextStart, nextEnd, nextPass));
       }, 1000);
     }
