@@ -4,13 +4,13 @@ export const everyLiftSlice = createSlice({
   name: "lifts",
   initialState: {
     lift1: {
-      currentFloor: 62,
+      currentFloor: 10,
       phase: "IDLE",
       direction: "",
       trips: [{ start: 19, end: 49, duration: 99, passengers: 5 }],
     },
     lift2: {
-      currentFloor: 0,
+      currentFloor: 1,
       phase: "IDLE",
       direction: "",
       trips: [{ start: 33, end: 43, duration: 28, passengers: 3 }],
@@ -124,21 +124,53 @@ export const { setDirection, setPhase, trackTrip, setCurrentFloor } =
   everyLiftSlice.actions;
 
 // Thunks
-export const startRide = (lift, current, end) => (dispatch) => {
-  dispatch(setPhase({ lift, phase: "LOADING" }));
-  //TODO add functions to track trip at this step
-  if (current === 0) {
-    setTimeout(() => {
-      dispatch(setPhase({ lift, phase: "TAXING" }));
-      dispatch(moveLiftAuto(lift, current, end));
-    }, 30000);
-  } else {
-    setTimeout(() => {
-      dispatch(setPhase({ lift, phase: "TAXING" }));
-      dispatch(moveLiftAuto(lift, current, end));
-    }, 5000);
-  }
+const calculateRideDuration = (start, end, phase) => {
+  const floors = start > end ? start - end : end - start;
+  const doorTime = start === 0 ? 30 : 5;
+  return phase === "ENROUTE" ? floors : floors + doorTime;
 };
+
+export const trackRideData =
+  (lift, start, end, passengers, phase) => (dispatch) => {
+    //TODO create function to calculate duration based on ride phase
+    const duration = calculateRideDuration(start, end, phase);
+    dispatch(
+      trackTrip({
+        lift,
+        trip: { start, end, duration, passengers },
+      })
+    );
+  };
+
+export const startTaxiRide =
+  (lift, current, end, passengers, phase = "LOADING") =>
+  (dispatch) => {
+    dispatch(setPhase({ lift, phase }));
+    //phase preset to TAXING because function calling is startTaxiRide
+    dispatch(trackRideData(lift, current, end, passengers, (phase = "TAXING")));
+    if (current === 0) {
+      setTimeout(() => {
+        dispatch(setPhase({ lift, phase: "TAXING" }));
+        dispatch(moveLiftTaxi(lift, current, end));
+      }, 30000);
+    } else {
+      setTimeout(() => {
+        dispatch(setPhase({ lift, phase: "TAXING" }));
+        dispatch(moveLiftTaxi(lift, current, end));
+      }, 5000);
+    }
+  };
+
+//TODO add next trip object to be passed to startTaxiRide
+export const startEnrouteRide =
+  (lift, current, end, passengers = 0, phase = "ENROUTE") =>
+  (dispatch) => {
+    //set phase
+    dispatch(setPhase({ lift, phase }));
+    //track trip
+    dispatch(trackRideData(lift, current, end, passengers, phase));
+    //move lift Enroute
+  };
 
 export const unloadingDoors = (lift, current) => (dispatch) => {
   dispatch(setPhase({ lift, phase: "UNLOADING" }));
@@ -155,18 +187,17 @@ export const unloadingDoors = (lift, current) => (dispatch) => {
   }
 };
 
-export const moveLiftAuto = (lift, current, end) => (dispatch) => {
+export const moveLiftTaxi = (lift, current, end) => (dispatch) => {
   dispatch(setDirection({ lift, direction: end > current ? "UP" : "DOWN" }));
-  dispatch(setPhase({ lift, phase: "TAXING" }));
   if (current < end) {
     setTimeout(() => {
       dispatch(setCurrentFloor({ lift, value: 1 }));
-      dispatch(moveLiftAuto(lift, (current += 1), end));
+      dispatch(moveLiftTaxi(lift, (current += 1), end));
     }, 1000);
   } else if (current > end) {
     setTimeout(() => {
       dispatch(setCurrentFloor({ lift, value: -1 }));
-      dispatch(moveLiftAuto(lift, (current -= 1), end));
+      dispatch(moveLiftTaxi(lift, (current -= 1), end));
     }, 1000);
   } else {
     setTimeout(() => {
@@ -175,7 +206,25 @@ export const moveLiftAuto = (lift, current, end) => (dispatch) => {
   }
 };
 
-//TODO create control function for ENROUTE functionality or rides without passengers
+export const moveLiftEnroute = (lift, current, end) => (dispatch) => {
+  dispatch(setDirection({ lift, direction: end > current ? "UP" : "DOWN" }));
+  if (current < end) {
+    setTimeout(() => {
+      dispatch(setCurrentFloor({ lift, value: 1 }));
+      dispatch(moveLiftEnroute(lift, (current += 1), end));
+    }, 1000);
+  } else if (current > end) {
+    setTimeout(() => {
+      dispatch(setCurrentFloor({ lift, value: -1 }));
+      dispatch(moveLiftEnroute(lift, (current -= 1), end));
+    }, 1000);
+  } else {
+    setTimeout(() => {
+      // final step will be startTaxiRide = lift current end, passengers
+      // dispatch(startTaxiRide(lift, nextStart, nextEnd, nextPass));
+    }, 1000);
+  }
+};
 
 export default everyLiftSlice.reducer;
 
@@ -213,7 +262,7 @@ dispatch(setPhase({ lift: "lift1", phase: "ENROUTE" }));
 dispatch(setCurrentFloor({ lift: "lift1", value: 3 }));
 
 dispatch(
-trackTrip({ lift: "lift3", trip: { start: 75, end: 66, duration: 38 } })
+trackTrip({ lift: "lift3", trip: { start: 75, end: 66, duration: 38, passengers: 5 } })
 );
 
       */

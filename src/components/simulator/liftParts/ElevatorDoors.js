@@ -78,6 +78,17 @@ const ElevatorDoors = (props) => {
     );
   };
 
+  const enrouteStats = () => {
+    return (
+      <Stack>
+        <Typography>
+          //TODO pass enrpute stats from parent as props This lift is headed to
+          floor %% the wait wil be ##:## min
+        </Typography>
+      </Stack>
+    );
+  };
+
   const movingDoors = () => {
     return (
       <Stack justifyContent={"center"} direction={"column"}>
@@ -90,6 +101,7 @@ const ElevatorDoors = (props) => {
   };
 
   const staticDoors = () => {
+    //TODO add enroute stats display
     return (
       <Box direction={"row"} sx={frameStyle}>
         <Box sx={closedDoorStyles} />

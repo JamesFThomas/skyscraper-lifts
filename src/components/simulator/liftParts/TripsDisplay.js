@@ -19,14 +19,6 @@ const titleStyles = () => {
 const TripsDisplay = (props) => {
   const { trips, title } = props;
 
-  //TODO fix this function to alter duration display
-  const convertDuration = (time) => {
-    const minutes = Math.floor((time % 360000) / 6000);
-    const seconds = Math.floor((time % 6000) / 100);
-    return `${minutes.toString().padStart(2, "0")}:${seconds
-      .toString()
-      .padStart(2, "0")} ${seconds <= 59 ? "secs" : "min"}`;
-  };
   return (
     <Stack sx={stackStyles} padding={3} spacing={1} alignItems={"center"}>
       <Typography variant="h4" sx={titleStyles}>
