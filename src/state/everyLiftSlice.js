@@ -10,7 +10,7 @@ export const everyLiftSlice = createSlice({
       trips: [{ start: 19, end: 49, duration: 99, passengers: 5 }],
     },
     lift2: {
-      currentFloor: 1,
+      currentFloor: 55,
       phase: "IDLE",
       direction: "",
       trips: [{ start: 33, end: 43, duration: 28, passengers: 3 }],
@@ -163,13 +163,27 @@ export const startTaxiRide =
 
 //TODO add next trip object to be passed to startTaxiRide
 export const startEnrouteRide =
-  (lift, current, end, passengers = 0, phase = "ENROUTE") =>
+  (
+    lift,
+    current,
+    end,
+    { nextStart, nextEnd, nextPass },
+    passengers = 0,
+    phase = "ENROUTE"
+  ) =>
   (dispatch) => {
     //set phase
     dispatch(setPhase({ lift, phase }));
     //track trip
     dispatch(trackRideData(lift, current, end, passengers, phase));
     //move lift Enroute
+    dispatch(
+      moveLiftEnroute(lift, (current += 1), end, {
+        nextStart,
+        nextEnd,
+        nextPass,
+      })
+    );
   };
 
 export const unloadingDoors = (lift, current) => (dispatch) => {
@@ -206,25 +220,38 @@ export const moveLiftTaxi = (lift, current, end) => (dispatch) => {
   }
 };
 
-export const moveLiftEnroute = (lift, current, end) => (dispatch) => {
-  dispatch(setDirection({ lift, direction: end > current ? "UP" : "DOWN" }));
-  if (current < end) {
-    setTimeout(() => {
-      dispatch(setCurrentFloor({ lift, value: 1 }));
-      dispatch(moveLiftEnroute(lift, (current += 1), end));
-    }, 1000);
-  } else if (current > end) {
-    setTimeout(() => {
-      dispatch(setCurrentFloor({ lift, value: -1 }));
-      dispatch(moveLiftEnroute(lift, (current -= 1), end));
-    }, 1000);
-  } else {
-    setTimeout(() => {
-      // final step will be startTaxiRide = lift current end, passengers
-      // dispatch(startTaxiRide(lift, nextStart, nextEnd, nextPass));
-    }, 1000);
-  }
-};
+export const moveLiftEnroute =
+  (lift, current, end, { nextStart, nextEnd, nextPass }) =>
+  (dispatch) => {
+    dispatch(setDirection({ lift, direction: end > current ? "UP" : "DOWN" }));
+    if (current < end) {
+      setTimeout(() => {
+        dispatch(setCurrentFloor({ lift, value: 1 }));
+        dispatch(
+          moveLiftEnroute(lift, (current += 1), end, {
+            nextStart,
+            nextEnd,
+            nextPass,
+          })
+        );
+      }, 1000);
+    } else if (current > end) {
+      setTimeout(() => {
+        dispatch(setCurrentFloor({ lift, value: -1 }));
+        dispatch(
+          moveLiftEnroute(lift, (current -= 1), end, {
+            nextStart,
+            nextEnd,
+            nextPass,
+          })
+        );
+      }, 1000);
+    } else {
+      setTimeout(() => {
+        dispatch(startTaxiRide(lift, nextStart, nextEnd, nextPass));
+      }, 1000);
+    }
+  };
 
 export default everyLiftSlice.reducer;
 

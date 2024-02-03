@@ -70,6 +70,8 @@ const ElevatorDoors = (props) => {
   const showMovingDoors =
     phase === phases.LOADING || phase === phases.UNLOADING;
 
+  const showEnrouteStats = phase.ENROUTE;
+
   const greeting = () => {
     return (
       <Typography sx={centeredTextStyles}>
@@ -101,10 +103,10 @@ const ElevatorDoors = (props) => {
   };
 
   const staticDoors = () => {
-    //TODO add enroute stats display
     return (
       <Box direction={"row"} sx={frameStyle}>
         <Box sx={closedDoorStyles} />
+        {showEnrouteStats && enrouteStats()}
       </Box>
     );
   };

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { startTaxiRide } from "./everyLiftSlice";
+import { startTaxiRide, startEnrouteRide } from "./everyLiftSlice";
 
 export const simulatorSlice = createSlice({
   name: "simulator",
@@ -93,10 +93,31 @@ export const randomCall = (run, randomInt) => (dispatch) => {
   setTimeout(() => {
     console.log("inside randomCall thunk", run);
     dispatch(callMade(run));
+
+    dispatch(
+      startEnrouteRide("lift1", 10, 1, {
+        nextStart: 1,
+        nextEnd: 10,
+        passengers: 7,
+      })
+    );
+    dispatch(
+      startEnrouteRide("lift2", 55, 45, {
+        nextStart: 45,
+        nextEnd: 55,
+        passengers: 3,
+      })
+    );
+    dispatch(
+      startEnrouteRide("lift3", 99, 89, {
+        nextStart: 89,
+        nextEnd: 99,
+        passengers: 2,
+      })
+    );
     // dispatch(randomCall(runIncremented, newRandom));
-    dispatch(startTaxiRide("lift1", 10, 1, 3));
-    dispatch(startTaxiRide("lift2", 1, 10, 2));
-    dispatch(startTaxiRide("lift3", 99, 89, 1));
+    // dispatch(startTaxiRide("lift2", 1, 10, 2));
+    // dispatch(startTaxiRide("lift3", 99, 89, 1));
   }, 5000);
 };
 
