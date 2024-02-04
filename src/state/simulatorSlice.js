@@ -39,10 +39,13 @@ export const simulatorSlice = createSlice({
       };
     },
     //TODO recycle action to pop and return one ride from rides array
-    callMade: (state, action) => {
+    removeRide: (state, action) => {
       // to view the action it must be second parameter to reducer
-      let { payload } = action;
-      return console.log(" Random Call made", payload);
+      // let { payload } = action;
+      let { rides } = state;
+      // let remove = rides.pop();
+      // rides.shift();
+      return { ...state, rides: rides.slice(1) };
     },
   },
 });
@@ -53,7 +56,7 @@ export const {
   runSimulator,
   resetDuration,
   addRide,
-  callMade,
+  removeRide,
 } = simulatorSlice.actions;
 
 // increase duration by 1 each second
@@ -81,31 +84,80 @@ export const createRides = () => (dispatch) => {
   }
 };
 
+export const pickRandomLift = (lift1, lift2, lift3) => {
+  const phases = {
+    lift1: lift1.phase,
+    lift2: lift2.phase,
+    lift3: lift3.phase,
+  };
+  const lifts = {
+    lift1: lift1,
+    lift2: lift2,
+    lift3: lift3,
+  };
+
+  let idleLifts = [];
+
+  for (let key in phases) {
+    if (phases[key] === "IDLE") idleLifts.push(key);
+  }
+
+  let randomLift = idleLifts[Math.floor(Math.random() * idleLifts.length)];
+
+  //TODO get current floor of randomLift chosen
+  let cf = lifts[randomLift].currentFloor;
+
+  console.log("currentFloor of random lift", cf);
+
+  return { title: randomLift, currentFloor: cf };
+};
+
+export const pickNextRide = (rides) => {
+  const nextRide = rides[0];
+  return nextRide;
+};
+
 // mimic a randomized call for an elevator ride
 export const randomCall =
   (call = 1) =>
   (dispatch, getState) => {
     // calculate random interval for simulated call
-    const min = 6;
-    const max = 129;
+    const min = 1; //reset to 6
+    const max = 10; // reset to 129
     let randomInterval = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    //TODO set up this function to start an new ride sequence if isRunning === true && if any lift phases === "idle"
-    //TODO grab next ride data from simulator rides array
     // access state for conditional logic
-    const { isRunning } = getState().simulator;
-    const { phase: phase1 } = getState().everyLift.lift1;
-    const { phase: phase2 } = getState().everyLift.lift2;
-    const { phase: phase3 } = getState().everyLift.lift3;
-    const anyIdle = phase1 === "IDLE" || phase2 === "IDLE" || phase3 === "IDLE";
+    const { isRunning, rides } = getState().simulator;
+    const { lift1, lift2, lift3 } = getState().everyLift;
+    const anyIdle =
+      lift1.phase === "IDLE" ||
+      lift2.phase === "IDLE" ||
+      lift3.phase === "IDLE";
+
     if (anyIdle && isRunning) {
-      //TODO determine which lifts of the group are idle for ride assignment
-      // TODO choose at random elevator from idle list to assign next app
+      let randomLift = pickRandomLift(lift1, lift2, lift3);
+      let nextRide = pickNextRide(rides);
+      console.log("rides", rides);
+      console.log("lift + next ride data", randomLift, nextRide);
+      dispatch(removeRide());
       setTimeout(() => {
         console.log("Simulated Call", call);
+        dispatch(
+          startEnrouteRide(
+            randomLift.title,
+            randomLift.currentFloor,
+            nextRide.start,
+            {
+              nextStart: nextRide.start,
+              nextEnd: nextRide.end,
+              passengers: nextRide.passengers,
+            }
+          )
+        );
         dispatch(randomCall((call += 1)));
-      }, 10 * 1000); // reset to (randomInterval * 1000 ms) when function works correctly
+      }, randomInterval * 1000);
     }
+
     if (!anyIdle && isRunning) {
       console.log(
         "nothing was idle, but app still running so trying again",
@@ -113,19 +165,19 @@ export const randomCall =
       );
       setTimeout(() => {
         dispatch(randomCall((call += 1)));
-      }, 10 * 1000);
+      }, 10 * 1000); // wait 10 second a nd call again
     } else {
       console.log("app stopped so I stopped");
-      return;
+      return; // stop the cycle
     }
   };
 
 /* 
-  TODO complete control middleware functions 
+ Test calls fro enroute to taxing ride tests
 
-  Test calls fro enroute to taxing ride tests
-  let call = 1;
-setTimeout(() => {
+ let call = 1;
+
+  setTimeout(() => {
     console.log("Simulated Call", call);
     dispatch(callMade(call));
     dispatch(
@@ -166,8 +218,6 @@ setTimeout(() => {
 - control functions
 -- ClosestLift: determines which lift to call for newly generated ride
 
--- CallLift: sets lift with newly generated ride stats
----> triggered at random interval  
 
 Remaining Tasks:
 -> waiting pool 
