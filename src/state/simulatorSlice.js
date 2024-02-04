@@ -43,8 +43,6 @@ export const simulatorSlice = createSlice({
       // to view the action it must be second parameter to reducer
       // let { payload } = action;
       let { rides } = state;
-      // let remove = rides.pop();
-      // rides.shift();
       return { ...state, rides: rides.slice(1) };
     },
   },
@@ -107,7 +105,7 @@ export const pickRandomLift = (lift1, lift2, lift3) => {
   //TODO get current floor of randomLift chosen
   let cf = lifts[randomLift].currentFloor;
 
-  console.log("currentFloor of random lift", cf);
+  // console.log("currentFloor of random lift", cf);
 
   return { title: randomLift, currentFloor: cf };
 };
@@ -137,8 +135,8 @@ export const randomCall =
     if (anyIdle && isRunning) {
       let randomLift = pickRandomLift(lift1, lift2, lift3);
       let nextRide = pickNextRide(rides);
-      console.log("rides", rides);
-      console.log("lift + next ride data", randomLift, nextRide);
+      // console.log("rides", rides);
+      // console.log("lift + next ride data", randomLift, nextRide);
       dispatch(removeRide());
       setTimeout(() => {
         console.log("Simulated Call", call);

@@ -7,19 +7,19 @@ export const everyLiftSlice = createSlice({
       currentFloor: 10,
       phase: "IDLE",
       direction: "",
-      trips: [{ start: 19, end: 49, duration: 99, passengers: 5 }],
+      trips: [],
     },
     lift2: {
       currentFloor: 55,
       phase: "IDLE",
       direction: "",
-      trips: [{ start: 33, end: 43, duration: 28, passengers: 3 }],
+      trips: [],
     },
     lift3: {
       currentFloor: 99,
       phase: "IDLE",
       direction: "",
-      trips: [{ start: 99, end: 49, duration: 77, passengers: 2 }],
+      trips: [],
     },
   },
   reducers: {
@@ -267,13 +267,6 @@ export default everyLiftSlice.reducer;
 
   Trip Object:
   { startFloor, endFloor, tripDuration }
-
-  Reducer Actions:
-    action.payload.lift - switch case => 
-      - 'lift1'|| 'lift2'|| 'lift3'
-    action.payload =>
-      - currentFloor: number || phase: string || direction: string || tripLog: array 
-
 
 Working examples of reducer calls:
 
