@@ -5,19 +5,19 @@ export const everyLiftSlice = createSlice({
   initialState: {
     lift1: {
       currentFloor: 10,
-      phase: "IDLE",
+      phase: "ENROUTE",
       direction: "",
       trips: [{ start: 19, end: 49, duration: 99, passengers: 5 }],
     },
     lift2: {
       currentFloor: 55,
-      phase: "IDLE",
+      phase: "ENROUTE",
       direction: "",
       trips: [{ start: 33, end: 43, duration: 28, passengers: 3 }],
     },
     lift3: {
       currentFloor: 99,
-      phase: "IDLE",
+      phase: "ENROUTE",
       direction: "",
       trips: [{ start: 99, end: 49, duration: 77, passengers: 2 }],
     },

@@ -38,6 +38,7 @@ export const simulatorSlice = createSlice({
         rides: [...rides, payload],
       };
     },
+    //TODO recycle action to pop and return one ride from rides array
     callMade: (state, action) => {
       // to view the action it must be second parameter to reducer
       let { payload } = action;
@@ -81,15 +82,50 @@ export const createRides = () => (dispatch) => {
 };
 
 // mimic a randomized call for an elevator ride
-export const randomCall = () => (dispatch, getState) => {
-  // const min = 6;
-  // const max = 129;
-  // let newRandom = Math.floor(Math.random() * (max - min + 1)) + min;
+export const randomCall =
+  (call = 1) =>
+  (dispatch, getState) => {
+    // calculate random interval for simulated call
+    const min = 6;
+    const max = 129;
+    let randomInterval = Math.floor(Math.random() * (max - min + 1)) + min;
 
-  //TODO set up this function to start an new ride sequence if isRunning === true && if any lift phases === "idle"
-  //TODO grab next ride data from simulator rides array
+    //TODO set up this function to start an new ride sequence if isRunning === true && if any lift phases === "idle"
+    //TODO grab next ride data from simulator rides array
+    // access state for conditional logic
+    const { isRunning } = getState().simulator;
+    const { phase: phase1 } = getState().everyLift.lift1;
+    const { phase: phase2 } = getState().everyLift.lift2;
+    const { phase: phase3 } = getState().everyLift.lift3;
+    const anyIdle = phase1 === "IDLE" || phase2 === "IDLE" || phase3 === "IDLE";
+    if (anyIdle && isRunning) {
+      //TODO determine which lifts of the group are idle for ride assignment
+      // TODO choose at random elevator from idle list to assign next app
+      setTimeout(() => {
+        console.log("Simulated Call", call);
+        dispatch(randomCall((call += 1)));
+      }, 10 * 1000); // reset to (randomInterval * 1000 ms) when function works correctly
+    }
+    if (!anyIdle && isRunning) {
+      console.log(
+        "nothing was idle, but app still running so trying again",
+        call
+      );
+      setTimeout(() => {
+        dispatch(randomCall((call += 1)));
+      }, 10 * 1000);
+    } else {
+      console.log("app stopped so I stopped");
+      return;
+    }
+  };
+
+/* 
+  TODO complete control middleware functions 
+
+  Test calls fro enroute to taxing ride tests
   let call = 1;
-  setTimeout(() => {
+setTimeout(() => {
     console.log("Simulated Call", call);
     dispatch(callMade(call));
     dispatch(
@@ -122,10 +158,11 @@ export const randomCall = () => (dispatch, getState) => {
       })
     );
   }, 15000);
-};
 
-/* 
-  TODO complete control middleware functions 
+
+
+
+
 - control functions
 -- ClosestLift: determines which lift to call for newly generated ride
 
