@@ -10,11 +10,6 @@ const SimulatorSummary = () => {
   const L3ridesArr = useSelector((state) => state.everyLift.lift3.trips);
 
   //TODO turn into state variables
-  const TotalAvgWait = totalTimes.enroute / eRides;
-  const TotalAvgInLift = totalTimes.taxing / tRides;
-  const TotalAvgDuration = totalTimes.total / allRides.length;
-  const dispatch = useDispatch();
-  const allRides = [...L1ridesArr, ...L2ridesArr, ...L3ridesArr];
   const totalTimes = {
     enroute: 0,
     taxing: 0,
@@ -22,6 +17,11 @@ const SimulatorSummary = () => {
   };
   let eRides = 0;
   let tRides = 0;
+  const allRides = [...L1ridesArr, ...L2ridesArr, ...L3ridesArr];
+  const TotalAvgWait = totalTimes.enroute / eRides;
+  const TotalAvgInLift = totalTimes.taxing / tRides;
+  const TotalAvgDuration = totalTimes.total / allRides.length;
+  const dispatch = useDispatch();
 
   // TODO place in useEffect
   allRides.forEach((ride) => {
