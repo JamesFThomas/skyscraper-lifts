@@ -117,11 +117,24 @@ export const everyLiftSlice = createSlice({
         }
       }
     },
+    resetTrips: (state, action) => {
+      return {
+        ...state,
+        lift1: { ...state.lift1, direction: "", phase: "IDLE", trips: [] },
+        lift2: { ...state.lift2, direction: "", phase: "IDLE", trips: [] },
+        lift3: { ...state.lift3, direction: "", phase: "IDLE", trips: [] },
+      };
+    },
   },
 });
 
-export const { setDirection, setPhase, trackTrip, setCurrentFloor } =
-  everyLiftSlice.actions;
+export const {
+  setDirection,
+  setPhase,
+  trackTrip,
+  setCurrentFloor,
+  resetTrips,
+} = everyLiftSlice.actions;
 
 // Thunks
 const calculateRideDuration = (start, end, phase) => {
@@ -132,12 +145,11 @@ const calculateRideDuration = (start, end, phase) => {
 
 export const trackRideData =
   (lift, start, end, passengers, phase) => (dispatch) => {
-    //TODO create function to calculate duration based on ride phase
     const duration = calculateRideDuration(start, end, phase);
     dispatch(
       trackTrip({
         lift,
-        trip: { start, end, duration, passengers },
+        trip: { start, end, duration, passengers: passengers },
       })
     );
   };
@@ -196,8 +208,12 @@ export const unloadingDoors = (lift, current) => (dispatch) => {
   }
 };
 
-export const moveLiftTaxi = (lift, current, end) => (dispatch) => {
+export const moveLiftTaxi = (lift, current, end) => (dispatch, getState) => {
+  const { isRunning } = getState().simulator;
+
+  if (!isRunning) return;
   dispatch(setDirection({ lift, direction: end > current ? "UP" : "DOWN" }));
+
   if (current < end) {
     setTimeout(() => {
       dispatch(setCurrentFloor({ lift, value: 1 }));
@@ -218,7 +234,9 @@ export const moveLiftTaxi = (lift, current, end) => (dispatch) => {
 
 export const moveLiftEnroute =
   (lift, current, end, { nextStart, nextEnd, nextPass }) =>
-  (dispatch) => {
+  (dispatch, getState) => {
+    const { isRunning } = getState().simulator;
+    if (!isRunning) return;
     dispatch(setDirection({ lift, direction: end > current ? "UP" : "DOWN" }));
     if (current < end) {
       setTimeout(() => {

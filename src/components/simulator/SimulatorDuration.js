@@ -4,6 +4,7 @@ import {
   incrementDuration,
   runSimulator,
   resetDuration,
+  showSummary,
 } from "../../state/simulatorSlice";
 import { Button, Stack, Typography } from "@mui/material";
 
@@ -21,11 +22,15 @@ const SimulatorDuration = () => {
   const handleStop = (e) => {
     e.preventDefault();
     dispatch(runSimulator(false));
-  };
-  const handleRest = (e) => {
-    e.preventDefault();
+    dispatch(showSummary(true));
     dispatch(resetDuration());
   };
+
+  // TODO move into stop function once summary page completed
+  // const handleRest = (e) => {
+  //   e.preventDefault();
+  //   dispatch(resetDuration());
+  // };
 
   // start / stop simulator timer
   useEffect(() => {
@@ -63,7 +68,7 @@ const SimulatorDuration = () => {
           </Button>
         )}
 
-        <Button
+        {/* <Button
           variant="outlined"
           color="secondary"
           onClick={(e) => {
@@ -71,7 +76,7 @@ const SimulatorDuration = () => {
           }}
         >
           {"Reset"}
-        </Button>
+        </Button> */}
       </Stack>
       <Typography
         sx={{

@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { startTaxiRide, startEnrouteRide } from "./everyLiftSlice";
+import { startEnrouteRide } from "./everyLiftSlice";
 
 export const simulatorSlice = createSlice({
   name: "simulator",
   initialState: {
     duration: 0,
     isRunning: false,
+    showSummary: false,
     rides: [],
   },
   reducers: {
@@ -30,6 +31,13 @@ export const simulatorSlice = createSlice({
         isRunning: payload,
       };
     },
+    showSummary: (state, action) => {
+      let { payload } = action;
+      return {
+        ...state,
+        showSummary: payload,
+      };
+    },
     addRide: (state, action) => {
       let { payload } = action;
       let { rides } = state;
@@ -38,7 +46,6 @@ export const simulatorSlice = createSlice({
         rides: [...rides, payload],
       };
     },
-    //TODO recycle action to pop and return one ride from rides array
     removeRide: (state, action) => {
       // to view the action it must be second parameter to reducer
       // let { payload } = action;
@@ -55,6 +62,7 @@ export const {
   resetDuration,
   addRide,
   removeRide,
+  showSummary,
 } = simulatorSlice.actions;
 
 // increase duration by 1 each second
@@ -102,10 +110,7 @@ export const pickRandomLift = (lift1, lift2, lift3) => {
 
   let randomLift = idleLifts[Math.floor(Math.random() * idleLifts.length)];
 
-  //TODO get current floor of randomLift chosen
   let cf = lifts[randomLift].currentFloor;
-
-  // console.log("currentFloor of random lift", cf);
 
   return { title: randomLift, currentFloor: cf };
 };
@@ -148,7 +153,7 @@ export const randomCall =
             {
               nextStart: nextRide.start,
               nextEnd: nextRide.end,
-              passengers: nextRide.passengers,
+              nextPass: nextRide.passengers,
             }
           )
         );
@@ -164,64 +169,19 @@ export const randomCall =
       setTimeout(() => {
         dispatch(randomCall((call += 1)));
       }, 10 * 1000); // wait 10 second a nd call again
-    } else {
+    }
+    if (!isRunning) {
       console.log("app stopped so I stopped");
       return; // stop the cycle
     }
   };
 
+export default simulatorSlice.reducer;
+
 /* 
- Test calls fro enroute to taxing ride tests
-
- let call = 1;
-
-  setTimeout(() => {
-    console.log("Simulated Call", call);
-    dispatch(callMade(call));
-    dispatch(
-      startEnrouteRide("lift1", 10, 1, {
-        nextStart: 1,
-        nextEnd: 10,
-        passengers: 7,
-      })
-    );
-  }, 5000);
-  setTimeout(() => {
-    console.log("Simulated Call", (call += 1));
-    dispatch(callMade((call += 1)));
-    dispatch(
-      startEnrouteRide("lift2", 55, 45, {
-        nextStart: 45,
-        nextEnd: 55,
-        passengers: 3,
-      })
-    );
-  }, 10000);
-  setTimeout(() => {
-    console.log("Simulated Call", (call += 2));
-    dispatch(callMade((call += 2)));
-    dispatch(
-      startEnrouteRide("lift3", 99, 89, {
-        nextStart: 89,
-        nextEnd: 99,
-        passengers: 2,
-      })
-    );
-  }, 15000);
-
-
-
-
-
-- control functions
--- ClosestLift: determines which lift to call for newly generated ride
-
-
-Remaining Tasks:
+ TODO Tasks If You want to be next level:
 -> waiting pool 
   --> waiting pool is for when ride stats can have more riders than 10 at a floor for now riders will be <= 5
     ** once functions for waiting behavior implemented, add waiting pool stats to simulator summary **
     ** for wait time => trips should track if they were TAXING or ENROUTE , and number of passengers **
 */
-
-export default simulatorSlice.reducer;

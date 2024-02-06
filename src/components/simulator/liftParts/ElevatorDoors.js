@@ -83,23 +83,27 @@ const ElevatorDoors = (props) => {
 
   //TODO create function to calculate time from duration integer
   const enrouteStats = () => {
-    return (
+    return currentTrip ? (
       <Stack>
-        <Typography>{`${liftTitle} is enroute to floor ${currentTrip.end}`}</Typography>
-        <Typography>{`Wait time = ${currentTrip.duration} seconds `}</Typography>
+        <Typography>{`ENROUTE`}</Typography>
+        <Typography>{`To floor: ${currentTrip.end}`}</Typography>
+        <Typography>{`Wait time: ${currentTrip.duration} seconds `}</Typography>
       </Stack>
+    ) : (
+      <></>
     );
   };
 
   //TODO figure out way to update current trip information between phases
   const taxingStats = () => {
-    return (
+    return currentTrip ? (
       <Stack>
-        {/*<Typography>{`${liftTitle} is enroute to floor ${currentTrip.end}`}</Typography>
-        <Typography>{`Trip duration = ${currentTrip.duration} seconds `}</Typography>
-        <Typography>{`Number of passengers = ${currentTrip.passengers}`}</Typography> */}
         <Typography>{`TAXING`}</Typography>
+        <Typography>{`To floor: ${currentTrip.end}`}</Typography>
+        <Typography>{`Number of passengers: ${currentTrip.passengers}`}</Typography>
       </Stack>
+    ) : (
+      <></>
     );
   };
 

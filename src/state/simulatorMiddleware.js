@@ -35,6 +35,6 @@ simulatorListener.startListening({
   effect: async (action, listenerAPI) => {
     //starts simulated levator calls
     listenerAPI.dispatch(randomCall());
-    console.log("predicate hit", action.payload);
+    // console.log("predicate hit", action.payload);
   },
 });

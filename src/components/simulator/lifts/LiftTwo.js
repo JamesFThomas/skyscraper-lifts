@@ -16,7 +16,7 @@ const LiftTwo = () => {
   return (
     <Grid
       item
-      xs={4}
+      xs={3}
       sx={{
         display: "flex",
         flexDirection: "row",
