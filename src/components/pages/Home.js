@@ -1,53 +1,24 @@
-import { useSelector, useDispatch } from "react-redux";
-import FloorsPanel from "../singleMode/liftParts/FloorPanel";
-import DisplayPanel from "../singleMode/liftParts/DisplayPanel";
-import CallPanel from "../singleMode/liftParts/CallPanel";
-
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
+import threeDoors_front from "../../assets/threeDoors_front.mp4";
 
 const Home = () => {
   return (
-    <Stack
-      direction={"column"}
-      padding={4}
-      spacing={2}
-      justifyContent={"center"}
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: "10px",
+        gap: "20px",
+        width: "100%",
+      }}
     >
-      <Typography
-        sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
-        variant="h1"
-      >
-        {"Home"}
-      </Typography>
-      {/* <Box
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-          marginTop: "10px",
-        }}
-      >
-        <FloorsPanel />
-        <DisplayPanel />
-        <CallPanel />
-      </Box> */}
-      <Box
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "10px",
-          gap: "20px",
-        }}
-      >
-        <Typography variant="h2">Welcome To My building</Typography>
-        <Typography variant="h3">About - working</Typography>
-        <Typography variant="h3">Single - working</Typography>
-        <Typography variant="h3">Auto - coming soon</Typography>
-      </Box>
-    </Stack>
+      <Typography variant="h4">Welcome To My Building</Typography>
+      <video autoPlay muted loop id="homePage-video">
+        <source src={threeDoors_front} type="video/mp4" />
+      </video>
+    </Box>
   );
 };
 
