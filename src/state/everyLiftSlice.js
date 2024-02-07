@@ -157,19 +157,16 @@ export const trackRideData =
 export const startTaxiRide =
   (lift, current, end, passengers, phase = "LOADING") =>
   (dispatch) => {
+    let delay = current === 0 ? 30000 : 5000;
+
     dispatch(setPhase({ lift, phase }));
+
     dispatch(trackRideData(lift, current, end, passengers, (phase = "TAXING")));
-    if (current === 0) {
-      setTimeout(() => {
-        dispatch(setPhase({ lift, phase: "TAXING" }));
-        dispatch(moveLiftTaxi(lift, current, end));
-      }, 30000);
-    } else {
-      setTimeout(() => {
-        dispatch(setPhase({ lift, phase: "TAXING" }));
-        dispatch(moveLiftTaxi(lift, current, end));
-      }, 5000);
-    }
+
+    setTimeout(() => {
+      dispatch(setPhase({ lift, phase: "TAXING" }));
+      dispatch(moveLiftTaxi(lift, current, end));
+    }, delay);
   };
 
 export const startEnrouteRide =
@@ -194,18 +191,14 @@ export const startEnrouteRide =
   };
 
 export const unloadingDoors = (lift, current) => (dispatch) => {
+  let delay = current === 0 ? 30000 : 5000;
+
   dispatch(setPhase({ lift, phase: "UNLOADING" }));
-  if (current === 0) {
-    setTimeout(() => {
-      dispatch(setPhase({ lift, phase: "IDLE" }));
-      dispatch(setDirection({ lift, direction: "" }));
-    }, 30000);
-  } else {
-    setTimeout(() => {
-      dispatch(setPhase({ lift, phase: "IDLE" }));
-      dispatch(setDirection({ lift, direction: "" }));
-    }, 5000);
-  }
+
+  setTimeout(() => {
+    dispatch(setPhase({ lift, phase: "IDLE" }));
+    dispatch(setDirection({ lift, direction: "" }));
+  }, delay);
 };
 
 export const moveLiftTaxi = (lift, current, end) => (dispatch, getState) => {
