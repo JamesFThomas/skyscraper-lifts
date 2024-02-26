@@ -1,6 +1,13 @@
 import { createListenerMiddleware } from "@reduxjs/toolkit";
 
-import { runSimulator, createRides, randomCall } from "./simulatorSlice";
+import {
+  runSimulator,
+  createRides,
+  randomCall,
+  showSummary,
+  resetDuration,
+  removeRide,
+} from "./simulatorSlice";
 
 export const simulatorListener = createListenerMiddleware();
 
@@ -38,3 +45,25 @@ simulatorListener.startListening({
     // console.log("predicate hit", action.payload);
   },
 });
+
+//#3 listener to stop simulator when rides array.length === 0
+// simulatorListener.startListening({
+//   // triggering action must be listed in arguments of predicate to work correctly
+//   actionCreator: removeRide,
+//   effect: async (action, listenerAPI) => {
+//     //showSummary because simulator has used all random calls
+//     const { rides } = listenerAPI.getState().simulator;
+//     // const { lift1, lift2, lift3 } = listenerAPI.getState().lifts;
+//     // const { phase: phase1 } = lift1;
+//     // const { phase: phase2 } = lift2;
+//     // const { phase: phase3 } = lift3;
+
+//     if (!rides.length) {
+//       // loads Rides array in simulator slice
+//       listenerAPI.dispatch(resetDuration());
+//       listenerAPI.dispatch(runSimulator(false));
+//       listenerAPI.dispatch(showSummary(true));
+//     }
+//     // console.log("3rd listener working");
+//   },
+// });

@@ -1,30 +1,31 @@
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
-import ModalComponent from '../layout/ModalComponent';
+import ModalComponent from "../layout/ModalComponent";
+
+//TODO Update file to use MUI components
 
 const About = ({ aboutData }) => {
   //destructure data objects for modals
   const { auto, single, con1, con2, con3 } = aboutData;
 
   return (
-    <div className='page'>
+    <div className="page">
       <Container>
-        <Row style={{ margin: '10px' }}>
+        <Row style={{ margin: "10px" }}>
           <Col>
-            <h1>{'About This Application'}</h1>
+            <h1>{"About This Application"}</h1>
           </Col>
         </Row>
-        <Row style={{ marginBottom: '20px' }}>
+        <Row style={{ marginBottom: "20px" }}>
           <Col>
-            <h4>{'Application Objective'}</h4>
+            <h4>{"Application Objective"}</h4>
           </Col>
           <Col
             style={{
-              display: 'flex',
-              justifyContent: 'center',
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             <p>
@@ -35,25 +36,25 @@ const About = ({ aboutData }) => {
             </p>
           </Col>
         </Row>
-        <Row style={{ marginBottom: '20px' }}>
+        <Row style={{ marginBottom: "20px" }}>
           <Col>
-            <h4>{'Application Modes'}</h4>
+            <h4>{"Application Modes"}</h4>
           </Col>
           <Col>
             <Row
               style={{
-                marginBottom: '10px',
-                display: 'flex',
-                justifyContent: 'center',
+                marginBottom: "10px",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
               <ModalComponent data={auto} />
             </Row>
             <Row
               style={{
-                marginBottom: '10px',
-                display: 'flex',
-                justifyContent: 'center',
+                marginBottom: "10px",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
               <ModalComponent data={single} />
@@ -62,32 +63,32 @@ const About = ({ aboutData }) => {
         </Row>
         <Row>
           <Col>
-            <h4>{'Application Constraints'}</h4>
+            <h4>{"Application Constraints"}</h4>
           </Col>
           <Col>
             <Row
               style={{
-                marginBottom: '10px',
-                display: 'flex',
-                justifyContent: 'center',
+                marginBottom: "10px",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
               <ModalComponent data={con1} />
             </Row>
             <Row
               style={{
-                marginBottom: '10px',
-                display: 'flex',
-                justifyContent: 'center',
+                marginBottom: "10px",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
               <ModalComponent data={con2} />
             </Row>
             <Row
               style={{
-                marginBottom: '10px',
-                display: 'flex',
-                justifyContent: 'center',
+                marginBottom: "10px",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
               <ModalComponent data={con3} />

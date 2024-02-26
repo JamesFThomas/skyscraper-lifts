@@ -30,7 +30,7 @@ const TripsDisplay = (props) => {
             start === 0 ? "L" : start
           },`}</Typography>
           <Typography>{` E:${end !== "0" ? end : "L"},`}</Typography>
-          <Typography>{` Length:${duration}`}</Typography>
+          <Typography>{` L:${duration}`}</Typography>
         </Stack>
       ))}
     </Stack>

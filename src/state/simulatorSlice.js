@@ -77,7 +77,8 @@ export const simulatorTimer = (isRunning) => (dispatch) => {
 
 // create randomized ride information
 export const createRides = () => (dispatch) => {
-  for (let i = 0; i < 50; i++) {
+  //TODO reset limit when done testing auto reset function
+  for (let i = 0; i <= 50; i++) {
     let start = Math.floor(Math.random() * (99 - 0 + 1) + 0);
     let end = Math.floor(Math.random() * (99 - 0 + 1) + 0);
     let passengers = Math.floor(Math.random() * (5 - 1 + 1) + 1);
