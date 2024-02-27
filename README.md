@@ -5,6 +5,10 @@
 - live deployed version => https://skyscraper-lifts.netlify.app/
 - github => https://github.com/JamesFThomas/skyscraper-lift
 
+## Back Story
+
+- This project was the first take home skills assessment a potential employer gave me. For my first attempt at this challenge I created a series of javascript functions in a single file, that logged specific messages to indicate what stage of the ride currently being completed.
+
 ## Application Objective
 
 - Design an elevator system for a skyscraper with 100 floors minimizing the amount of time spent between calling an elevator and arriving at the destination floor.
@@ -35,3 +39,17 @@
     - The average time spent waiting for an elevator.
     - The average time spent inside an elevator.
     - The average total time spent per trip.
+
+## Screen Shots
+
+- Home Page
+  ![alt text](image.png)
+
+- About Page
+  ![alt text](image-1.png)
+
+- Single Page
+  ![alt text](image-2.png)
+
+- Auto Page
+  ![alt text](image-3.png)
