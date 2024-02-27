@@ -1,5 +1,5 @@
 import renderer from "react-test-renderer";
-import About from "./About";
+import About from "../../components/pages/About";
 
 describe("About page testing suite", () => {
   it("Component successfully renders", () => {
