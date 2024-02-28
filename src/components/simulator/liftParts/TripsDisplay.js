@@ -24,15 +24,16 @@ const TripsDisplay = (props) => {
       <Typography variant="h4" sx={titleStyles}>
         {title}
       </Typography>
-      {trips.map(({ start, end, duration }, index) => (
-        <Stack key={index} direction={"row"}>
-          <Typography>{`T#${(index += 1)}, S:${
-            start === 0 ? "L" : start
-          },`}</Typography>
-          <Typography>{` E:${end !== "0" ? end : "L"},`}</Typography>
-          <Typography>{` L:${duration}`}</Typography>
-        </Stack>
-      ))}
+      {trips &&
+        trips.map(({ start, end, duration }, index) => (
+          <Stack key={index} direction={"row"}>
+            <Typography>{`T#${(index += 1)}, S:${
+              start === 0 ? "L" : start
+            },`}</Typography>
+            <Typography>{` E:${end !== "0" ? end : "L"},`}</Typography>
+            <Typography>{` L:${duration}`}</Typography>
+          </Stack>
+        ))}
     </Stack>
   );
 };
