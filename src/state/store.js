@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 // imported Slices
 import simulatorSlice from "./simulatorSlice";
@@ -17,3 +17,16 @@ export default configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().prepend(simulatorListener.middleware),
 });
+
+const testReducer = combineReducers({
+  simulator: simulatorSlice,
+  singleMode: singleModeSlice,
+  everyLift: everyLiftSlice,
+});
+
+export const setupTestStore = (preloadedState) => {
+  return configureStore({
+    reducer: testReducer,
+    preloadedState,
+  });
+};
