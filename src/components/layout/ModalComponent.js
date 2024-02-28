@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
+import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
-import '../../styles/modalComponent.css';
+import "../../styles/modalComponent.css";
 
 const ModalComponent = ({ data }) => {
   //destructure props
@@ -12,14 +12,14 @@ const ModalComponent = ({ data }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  /** To Do List
-   * ModalComp = dynamically render ordered list for description
-   * Transfer App Mode descriptions from wireframe
+  /** 
+   //TODO update component to use MUI styles components
+   
    */
 
   return (
-    <div className='modalC' style={{ maxWidth: 'fit-content' }}>
-      <Button variant='primary' onClick={handleShow}>
+    <div className="modalC" style={{ maxWidth: "fit-content" }}>
+      <Button variant="primary" onClick={handleShow}>
         {Title}
       </Button>
       <Modal show={show} onHide={handleClose}>
@@ -35,7 +35,7 @@ const ModalComponent = ({ data }) => {
           </ul>
         )}
         <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>
