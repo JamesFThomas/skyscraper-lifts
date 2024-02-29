@@ -15,6 +15,7 @@ const LiftThree = () => {
   const currentTrip = L3TripsArray[L3TripsArray.length - 1];
   return (
     <Grid
+      data-testid="liftThreeContainer"
       item
       xs={3}
       sx={{

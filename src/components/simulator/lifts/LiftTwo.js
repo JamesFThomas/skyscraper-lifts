@@ -15,6 +15,7 @@ const LiftTwo = () => {
   const currentTrip = L2TripsArray[L2TripsArray.length - 1];
   return (
     <Grid
+      data-testid="liftTwoContainer"
       item
       xs={3}
       sx={{

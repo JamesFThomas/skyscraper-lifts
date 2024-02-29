@@ -48,7 +48,12 @@ const DisplayPanel = () => {
   const currentFloor = useSelector((state) => state.singleMode.currentFloor);
 
   return (
-    <Stack padding={2} spacing={2} sx={stackStyles}>
+    <Stack
+      data-testid="displayPanelContainer"
+      padding={2}
+      spacing={2}
+      sx={stackStyles}
+    >
       <Box sx={iconBoxStyles}>
         {dUp ? (
           <Forward sx={upIconStyles} />

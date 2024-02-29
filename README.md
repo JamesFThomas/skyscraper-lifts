@@ -1,9 +1,16 @@
 # Skyscraper Lifts
 
+## Application Startup
+
+- clone this repo to your local machine
+- cd into project root directory
+- npm install
+- npm start
+
 ## Links:
 
-- live deployed version => https://skyscraper-lifts.netlify.app/
-- github => https://github.com/JamesFThomas/skyscraper-lift
+- Deployed app => https://skyscraper-lifts.netlify.app/
+- Github repo => https://github.com/JamesFThomas/skyscraper-lift
 
 ## Back Story
 

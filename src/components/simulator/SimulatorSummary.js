@@ -71,7 +71,7 @@ const SimulatorSummary = () => {
   };
 
   return (
-    <Stack spacing={3}>
+    <Stack data-testid="summaryDisplayContainer" spacing={3}>
       <Typography>{`Average Wait Time: ${totalAvgWait} seconds`}</Typography>
       <Typography>{`Average Time in Lift: ${totalAvgInLift} seconds`}</Typography>
       <Typography>

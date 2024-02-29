@@ -39,7 +39,7 @@ const FloorsPanel = () => {
   };
 
   return (
-    <Box sx={panelStyles}>
+    <Box data-testid="floorsPanelContainer" sx={panelStyles}>
       {floorChoices.map((floor, i) => (
         <Button
           key={`${floor}-${i}`}

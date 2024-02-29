@@ -58,7 +58,7 @@ const LoadingDoors = () => {
   };
 
   return (
-    <Stack>
+    <Stack data-testid="loadingDoorsContainer">
       {!EXITING && !LOADING && (
         <Box sx={centeredTextStyles}>
           <Typography

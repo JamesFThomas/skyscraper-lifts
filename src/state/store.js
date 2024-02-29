@@ -18,6 +18,7 @@ export default configureStore({
     getDefaultMiddleware().prepend(simulatorListener.middleware),
 });
 
+// component testing reducers and store for component wrapper
 const testReducer = combineReducers({
   simulator: simulatorSlice,
   singleMode: singleModeSlice,

@@ -16,6 +16,7 @@ const App = () => {
   return (
     <Router>
       <Container
+        data-testid="applicationContainer"
         maxWidth={false}
         disableGutters
         sx={{

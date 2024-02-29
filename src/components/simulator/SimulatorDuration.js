@@ -26,12 +26,6 @@ const SimulatorDuration = () => {
     dispatch(resetDuration());
   };
 
-  // TODO move into stop function once summary page completed
-  // const handleRest = (e) => {
-  //   e.preventDefault();
-  //   dispatch(resetDuration());
-  // };
-
   // start / stop simulator timer
   useEffect(() => {
     let timerId;
@@ -44,7 +38,12 @@ const SimulatorDuration = () => {
   }, [dispatch, isRunning, duration]);
 
   return (
-    <Stack direction="row" width={"100%"} justifyContent={"space-between"}>
+    <Stack
+      data-testid="durationDisplayContainer"
+      direction="row"
+      width={"100%"}
+      justifyContent={"space-between"}
+    >
       <Stack direction="row" spacing={2}>
         {isRunning ? (
           <Button
@@ -67,16 +66,6 @@ const SimulatorDuration = () => {
             {"Start"}
           </Button>
         )}
-
-        {/* <Button
-          variant="outlined"
-          color="secondary"
-          onClick={(e) => {
-            handleRest(e);
-          }}
-        >
-          {"Reset"}
-        </Button> */}
       </Stack>
       <Typography
         sx={{

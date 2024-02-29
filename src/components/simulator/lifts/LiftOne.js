@@ -16,6 +16,7 @@ const LiftOne = () => {
 
   return (
     <Grid
+      data-testid="liftOneContainer"
       item
       xs={3}
       sx={{

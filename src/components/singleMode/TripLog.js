@@ -19,7 +19,7 @@ const TripLog = () => {
   const tripArr = useSelector((state) => state.singleMode.trips);
 
   return (
-    <Stack sx={stackStyles}>
+    <Stack data-testid="tripLogContainer" sx={stackStyles}>
       <Typography variant="h4">Trip Log</Typography>
       {tripArr.map(({ currentFloor, endFloor, tripTime }, index) => (
         <Typography key={index}>{`T#${(index += 1)}, S:${
