@@ -1,4 +1,8 @@
-# Skyscraper Lifts
+# Project Title
+
+### **_Skyscraper Lifts_**
+
+---
 
 ## Application Startup
 
@@ -7,14 +11,34 @@
 - npm install
 - npm start
 
+---
+
 ## Links:
 
 - Deployed app => https://skyscraper-lifts.netlify.app/
 - Github repo => https://github.com/JamesFThomas/skyscraper-lift
 
+## Screen Shots
+
+- Home Page
+  ![alt text](image.png)
+
+- About Page
+  ![alt text](image-1.png)
+
+- Single Page
+  ![alt text](image-2.png)
+
+- Auto Page
+  ![alt text](image-3.png)
+
+---
+
 ## Back Story
 
 - This project was the first take home skills assessment a potential employer gave me. For my first attempt at this challenge I created a series of javascript functions in a single file, that logged specific messages to indicate what stage of the ride currently being completed.
+
+---
 
 ## Application Objective
 
@@ -47,16 +71,11 @@
     - The average time spent inside an elevator.
     - The average total time spent per trip.
 
-## Screen Shots
+---
 
-- Home Page
-  ![alt text](image.png)
+## Testing
 
-- About Page
-  ![alt text](image-1.png)
-
-- Single Page
-  ![alt text](image-2.png)
-
-- Auto Page
-  ![alt text](image-3.png)
+- articles I used to help me write great better tests
+  - Jest testing like a pro => https://dev.to/dvddpl/jest-testing-like-a-pro-tips-and-tricks-4o6f
+  - How to Write Good Unit Tests => https://leanylabs.com/blog/good-unit-tests/
+  - Why good developers write bad code => https://mtlynch.io/good-developers-bad-tests/
