@@ -36,40 +36,42 @@
 
 ## Back Story
 
-- This project was the first take home skills assessment a potential employer gave me. For my first attempt at this challenge I created a series of javascript functions in a single file, that logged specific messages to indicate what stage of the ride currently being completed.
+This project was the first take home skills assessment a potential employer ever gave me. For my first attempt at this challenge I created a series of javascript functions in a single file, that logged specific messages to the console to indicate what stage of the ride currently being completed for each of the three lifts. It got crowded at times but I felt really good about the fact I got it to work. Unfortunately when I attempted to use the same functions to to power the basic frontend I built to showcase my creation, there was a glitch in functionality what resulted in rendered numbers being off and ultimately me not receiving the job.
+
+My inability to complete this project became a blow to my confidence starting out as developer. I later learned this project is far from basic, nor very frontend intensive, but I used it's completion as a milestone achievement symboling the growth in my skills from a beginner to a mid level developer.
 
 ---
 
-## Application Objective
+## Original Take Home Prompt:
 
-- Design an elevator system for a skyscraper with 100 floors minimizing the amount of time spent between calling an elevator and arriving at the destination floor.
+Design an elevator system for a skyscraper with 100 floors minimizing the amount of time spent between calling an elevator and arriving at the destination floor.
 
-  ### Part A =>
+- Part A => Implement one or more functions that takes as input a time series of elevator calls and destinations and outputs a time series of elevator actions.
 
-  - Implement one or more functions that takes as input a time series of elevator calls and destinations and outputs a time series of elevator actions.
-    #### <ins> Constraints: </ins>
-    - There are 3 elevator shafts.
-    - The destination floor is known at the time of the elevator call.
-    - There is a lobby on the 1st floor.
-    - It takes 1 second for the elevator to move 1 floor.
-    - It takes 30 secs in lobby/5 seconds on any other floor to pick-up/drop-off passenger.
-    - A maximum of 10 people can fit into the elevator car at any one time.
+#### <ins> Constraints: </ins>
 
-  ### Part B =>
+- There are 3 elevator shafts.
+- The destination floor is known at the time of the elevator call.
+- There is a lobby on the 1st floor.
+- It takes 1 second for the elevator to move 1 floor.
+- It takes 30 secs in lobby/5 seconds on any other floor to pick-up/drop-off passenger.
+- A maximum of 10 people can fit into the elevator car at any one time.
 
-  - Implement a simulator that generates the time series of elevator calls to feed the function in part A.
-    #### <ins> Constraints: </ins>
-    - Except for the lobby, all other floors have a uniform distribution of number and frequency of calls.
-    - The number of passengers per call is random according to a lognormal distribution, rounded to the nearest integer in the range (0, 5).
-    - The random functions should be seeded in such a way that the results of any run can be reproduced if the same seed is used.
+- Part B => Implement a simulator that generates the time series of elevator calls to feed the function in part A.
 
-  ### Part C =>
+#### <ins> Constraints: </ins>
 
-  - After the simulator runs, it should produce summary statistics.
-    #### <ins> Statistics: </ins>
-    - The average time spent waiting for an elevator.
-    - The average time spent inside an elevator.
-    - The average total time spent per trip.
+- Except for the lobby, all other floors have a uniform distribution of number and frequency of calls.
+- The number of passengers per call is random according to a lognormal distribution, rounded to the nearest integer in the range (0, 5).
+- The random functions should be seeded in such a way that the results of any run can be reproduced if the same seed is used.
+
+- Part C => After the simulator runs, it should produce summary statistics.
+
+#### <ins> Statistics: </ins>
+
+- The average time spent waiting for an elevator.
+- The average time spent inside an elevator.
+- The average total time spent per trip.
 
 ---
 
