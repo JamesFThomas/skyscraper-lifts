@@ -1,6 +1,4 @@
-# Project Title
-
-### **_Skyscraper Lifts_**
+# **_Skyscraper Lifts_**
 
 ---
 
@@ -21,24 +19,28 @@
 ## Screen Shots
 
 - Home Page
+  -- This is the landing page for the application, that displays a looping video.
   ![alt text](image.png)
 
 - About Page
+  -- This page is visual display of the original prompt and all it's the constraints I followed to build this application.
   ![alt text](image-1.png)
 
 - Single Page
+  -- This page is a manual representation of an single elevator car, in a 100 floor building, with 3 different interaction phases (Call, Select, Riding).
   ![alt text](image-2.png)
 
 - Auto Page
+  -- This page is a simulated representation of a 3 car elevator system, in a 100 floor building. It utilizes Redux state management and thunk middleware to automatically assign calls to to the 1 of the 3 cars. Each lift will display trip data that includes ride phase as well as start and end floors.
   ![alt text](image-3.png)
 
 ---
 
 ## Back Story
 
-This project was the first take home skills assessment a potential employer ever gave me. For my first attempt at this challenge I created a series of javascript functions in a single file, that logged specific messages to the console to indicate what stage of the ride currently being completed for each of the three lifts. It got crowded at times but I felt really good about the fact I got it to work. Unfortunately when I attempted to use the same functions to to power the basic frontend I built to showcase my creation, there was a glitch in functionality what resulted in rendered numbers being off and ultimately me not receiving the job.
+This project was the first take home skills assessment given to me by a potential employer. For my first attempt at this challenge, I created a series of javascript functions in a single file that logged specific messages to the console to indicate what stage of the ride was currently being completed for each of the three lifts. It got crowded at times but I felt really good about the fact that I got it to work. Unfortunately when I attempted to use the same functions to to power the basic frontend I'd built to showcase my creation, there was a glitch in functionality that resulted in rendered numbers being off and ultimately me not receiving the job.
 
-My inability to complete this project became a blow to my confidence starting out as developer. I later learned this project is far from basic, nor very frontend intensive, but I'm using it's completion as a milestone achievement symboling the growth in my skills from a beginner to a mid level developer.
+My inability to complete this project became a blow to my confidence starting out as developer. I later learned this project is far from basic, nor very frontend intensive, and I'm using it's completion as a milestone achievement symbolizing the growth in my skills from a beginner to a mid level developer.
 
 My objectives with this project became to improve my:
 
