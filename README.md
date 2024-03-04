@@ -38,7 +38,14 @@
 
 This project was the first take home skills assessment a potential employer ever gave me. For my first attempt at this challenge I created a series of javascript functions in a single file, that logged specific messages to the console to indicate what stage of the ride currently being completed for each of the three lifts. It got crowded at times but I felt really good about the fact I got it to work. Unfortunately when I attempted to use the same functions to to power the basic frontend I built to showcase my creation, there was a glitch in functionality what resulted in rendered numbers being off and ultimately me not receiving the job.
 
-My inability to complete this project became a blow to my confidence starting out as developer. I later learned this project is far from basic, nor very frontend intensive, but I used it's completion as a milestone achievement symboling the growth in my skills from a beginner to a mid level developer.
+My inability to complete this project became a blow to my confidence starting out as developer. I later learned this project is far from basic, nor very frontend intensive, but I'm using it's completion as a milestone achievement symboling the growth in my skills from a beginner to a mid level developer.
+
+My objectives with this project became to improve my:
+
+- understanding of react framework
+- state management skills utilizing redux
+- unit testing skills utilizing jest / react testing library
+- familiarity with MUI components
 
 ---
 
