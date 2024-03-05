@@ -24,7 +24,7 @@
 
 - About Page
   -- This page is a visual display of the original prompt and all the constraints I followed to build this application.
-  ![alt text](image-1.png)
+  ![alt text](image-4.png)
 
 - Single Page
   -- This page is a manual representation of a single elevator car, in a 100-floor building, with 3 different interaction phases (Call, Select, Riding).
