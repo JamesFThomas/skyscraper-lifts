@@ -19,19 +19,19 @@
 ## Screen Shots
 
 - Home Page
-  -- This is the landing page for the application, that displays a looping video.
+  -- This is the landing page for the application, it displays a looping video with an elevator theme.
   ![alt text](image.png)
 
 - About Page
-  -- This page is visual display of the original prompt and all it's the constraints I followed to build this application.
+  -- This page is a visual display of the original prompt and all it's the constraints I followed to build this application.
   ![alt text](image-1.png)
 
 - Single Page
-  -- This page is a manual representation of an single elevator car, in a 100 floor building, with 3 different interaction phases (Call, Select, Riding).
+  -- This page is a manual representation of a single elevator car, in a 100-floor building, with 3 different interaction phases (Call, Select, Riding).
   ![alt text](image-2.png)
 
 - Auto Page
-  -- This page is a simulated representation of a 3 car elevator system, in a 100 floor building. It utilizes Redux state management and thunk middleware to automatically assign calls to to the 1 of the 3 cars. Each lift will display trip data that includes ride phase as well as start and end floors.
+  -- This page is a simulated representation of a 3-car elevator system, in a 100-floor building. It utilizes Redux state management and thunk middleware to automatically assign calls to 1 of the 3 cars. Each lift will display trip data that includes the ride phase as well as the start and end floors.
   ![alt text](image-3.png)
 
 ---
@@ -92,7 +92,8 @@ Design an elevator system for a skyscraper with 100 floors minimizing the amount
 
 ## Testing
 
-- articles I used to help me write great better tests
-  - Jest testing like a pro => https://dev.to/dvddpl/jest-testing-like-a-pro-tips-and-tricks-4o6f
-  - How to Write Good Unit Tests => https://leanylabs.com/blog/good-unit-tests/
-  - Why good developers write bad code => https://mtlynch.io/good-developers-bad-tests/
+Within the testing suites of this application, I practiced the AAA pattern ( Arrange, Act, Assert ), covering the happy path first ( Does this component render? ) and then increased test complexity. The articles I used to help me write better tests are below.
+
+- Jest testing like a pro => https://dev.to/dvddpl/jest-testing-like-a-pro-tips-and-tricks-4o6f
+- How to Write Good Unit Tests => https://leanylabs.com/blog/good-unit-tests/
+- Why good developers write bad code => https://mtlynch.io/good-developers-bad-tests/
