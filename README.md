@@ -23,7 +23,7 @@
   ![alt text](image.png)
 
 - About Page
-  -- This page is a visual display of the original prompt and all it's the constraints I followed to build this application.
+  -- This page is a visual display of the original prompt and all the constraints I followed to build this application.
   ![alt text](image-1.png)
 
 - Single Page
