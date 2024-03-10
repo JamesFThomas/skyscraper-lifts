@@ -1,7 +1,6 @@
 import ModalComponent from "../layout/ModalComponent";
 import { Grid, Box, Stack, Typography } from "@mui/material";
 
-//TODO Update page to use MUI cards for each individual section
 //TODO create new reusable component to replace Bootstrap ModalComponent
 
 const About = ({ aboutData }) => {

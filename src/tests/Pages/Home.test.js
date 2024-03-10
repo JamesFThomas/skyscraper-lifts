@@ -1,9 +1,12 @@
-import renderer from "react-test-renderer";
+import { render, screen } from "@testing-library/react";
 import Home from "../../components/pages/Home";
 
 describe("Home page testing suite", () => {
-  it("Component successfully renders", () => {
-    const component = renderer.create(<Home />);
-    expect(component).toBeTruthy();
+  it("Component renders with page title", () => {
+    render(<Home />);
+
+    const result = screen.getByRole("heading");
+
+    expect(result).toHaveTextContent(/Welcome To My Building/i);
   });
 });
