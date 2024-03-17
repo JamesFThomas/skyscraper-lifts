@@ -97,3 +97,9 @@ Within the testing suites of this application, I practiced the AAA pattern ( Arr
 - Jest testing like a pro => https://dev.to/dvddpl/jest-testing-like-a-pro-tips-and-tricks-4o6f
 - How to Write Good Unit Tests => https://leanylabs.com/blog/good-unit-tests/
 - Why good developers write bad code => https://mtlynch.io/good-developers-bad-tests/
+
+## Blogs
+
+I'm using this project for examples as I write blogs to document my decisions and progress building out or improving features of this application.
+
+- Testing - https://medium.com/p/79d866f5544d
