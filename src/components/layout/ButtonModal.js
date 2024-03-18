@@ -1,11 +1,15 @@
 import { useState } from "react";
 
-import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Stack,
+  Typography,
+} from "@mui/material";
 
 const ButtonModal = ({ data }) => {
   const { Title, Desc, List } = data;
@@ -28,17 +32,21 @@ const ButtonModal = ({ data }) => {
         <DialogTitle>{Title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {Desc}
+            <Typography sx={{ mb: 1 }}>{Desc}</Typography>
             {List && (
               <ul>
-                {List.map((item, i) => (
-                  <li key={i}>{item}</li>
-                ))}
+                <Stack spacing={1}>
+                  {List.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </Stack>
               </ul>
             )}
           </DialogContentText>
           <DialogActions>
-            <Button onClick={handleClickClose}>Close</Button>
+            <Button variant="contained" onClick={handleClickClose}>
+              Close
+            </Button>
           </DialogActions>
         </DialogContent>
       </Dialog>
