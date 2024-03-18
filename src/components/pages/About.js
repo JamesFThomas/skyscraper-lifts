@@ -1,78 +1,63 @@
-import ModalComponent from "../layout/ModalComponent";
+import ButtonModal from "../layout/ButtonModal";
 import { Grid, Box, Stack, Typography } from "@mui/material";
 
-//TODO create new reusable component to replace Bootstrap ModalComponent
+const pageContainerStyle = () => {
+  return {
+    display: "flex",
+    flexDirection: "column",
+    paddingTop: "30px",
+    alignItems: "center",
+    gap: "50px",
+  };
+};
+
+const gridItemStyle = () => {
+  return {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+  };
+};
+
+const objectiveTextStyle = () => {
+  return {
+    maxWidth: "400px",
+    fontWeight: "bold",
+    justifyContent: "center",
+    alignItems: "center",
+    display: "flex",
+    flexDirection: "row",
+  };
+};
 
 const About = ({ aboutData }) => {
   const { auto, single, con1, con2, con3 } = aboutData;
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        paddingTop: "30px",
-        alignItems: "center",
-        gap: "50px",
-      }}
-    >
+    <Box sx={pageContainerStyle}>
       <Typography variant={"h2"}>{"About This Application"}</Typography>
       <Grid container maxWidth={"lg"} gap={8}>
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
+        <Grid item xs={12} sx={gridItemStyle}>
           <Typography variant={"h5"}>{"Application Objective"}</Typography>
-          <Typography
-            variant={"subtitle1"}
-            sx={{
-              maxWidth: "400px",
-              fontWeight: "bold",
-              justifyContent: "center",
-              alignItems: "center",
-              display: "flex",
-              flexDirection: "row",
-            }}
-          >
+          <Typography variant={"subtitle1"} sx={objectiveTextStyle}>
             {
               "Design an elevator system for a 100 story building minimizing  the time between calling an elevator and arrival at desired floor."
             }
           </Typography>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
+        <Grid item xs={12} sx={gridItemStyle}>
           <Typography variant={"h5"}>{"Application Modes"}</Typography>
           <Stack direction={"row"} spacing={2} sx={{}}>
-            <ModalComponent data={auto} />
-            <ModalComponent data={single} />
+            <ButtonModal data={auto} />
+            <ButtonModal data={single} />
           </Stack>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
+        <Grid item xs={12} sx={gridItemStyle}>
           <Typography variant={"h5"}>{"Application Constraints"}</Typography>
           <Stack direction={"row"} spacing={2} sx={{}}>
-            <ModalComponent data={con1} />
-            <ModalComponent data={con2} />
-            <ModalComponent data={con3} />
+            <ButtonModal data={con1} />
+            <ButtonModal data={con2} />
+            <ButtonModal data={con3} />
           </Stack>
         </Grid>
       </Grid>
