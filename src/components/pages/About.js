@@ -45,14 +45,14 @@ const About = ({ aboutData }) => {
         </Grid>
         <Grid item xs={12} sx={gridItemStyle}>
           <Typography variant={"h5"}>{"Application Modes"}</Typography>
-          <Stack direction={"row"} spacing={2} sx={{}}>
+          <Stack direction={"row"} spacing={2}>
             <ButtonModal data={auto} />
             <ButtonModal data={single} />
           </Stack>
         </Grid>
         <Grid item xs={12} sx={gridItemStyle}>
           <Typography variant={"h5"}>{"Application Constraints"}</Typography>
-          <Stack direction={"row"} spacing={2} sx={{}}>
+          <Stack direction={"row"} spacing={2}>
             <ButtonModal data={con1} />
             <ButtonModal data={con2} />
             <ButtonModal data={con3} />
