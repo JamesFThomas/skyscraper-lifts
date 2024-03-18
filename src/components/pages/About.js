@@ -31,7 +31,7 @@ const objectiveTextStyle = () => {
 };
 
 const About = ({ aboutData }) => {
-  const { auto, single, con1, con2, con3 } = aboutData;
+  const { objective, auto, single, con1, con2, con3 } = aboutData;
 
   return (
     <Box sx={pageContainerStyle}>
@@ -40,9 +40,7 @@ const About = ({ aboutData }) => {
         <Grid item xs={12} sx={gridItemStyle}>
           <Typography variant={"h5"}>{"Application Objective"}</Typography>
           <Typography variant={"subtitle1"} sx={objectiveTextStyle}>
-            {
-              "Design an elevator system for a 100 story building minimizing  the time between calling an elevator and arrival at desired floor."
-            }
+            {objective}
           </Typography>
         </Grid>
         <Grid item xs={12} sx={gridItemStyle}>
