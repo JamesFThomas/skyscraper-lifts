@@ -1,4 +1,4 @@
-import ButtonModal from "../layout/ButtonModal";
+import ButtonDialog from "../layout/ButtonDialog";
 import { Grid, Box, Stack, Typography } from "@mui/material";
 
 const pageContainerStyle = () => {
@@ -46,16 +46,16 @@ const About = ({ aboutData }) => {
         <Grid item xs={12} sx={gridItemStyle}>
           <Typography variant={"h5"}>{"Application Modes"}</Typography>
           <Stack direction={"row"} spacing={2}>
-            <ButtonModal data={auto} />
-            <ButtonModal data={single} />
+            <ButtonDialog data={auto} />
+            <ButtonDialog data={single} />
           </Stack>
         </Grid>
         <Grid item xs={12} sx={gridItemStyle}>
           <Typography variant={"h5"}>{"Application Constraints"}</Typography>
           <Stack direction={"row"} spacing={2}>
-            <ButtonModal data={con1} />
-            <ButtonModal data={con2} />
-            <ButtonModal data={con3} />
+            <ButtonDialog data={con1} />
+            <ButtonDialog data={con2} />
+            <ButtonDialog data={con3} />
           </Stack>
         </Grid>
       </Grid>

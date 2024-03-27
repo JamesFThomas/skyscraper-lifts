@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 
-const ButtonModal = ({ data }) => {
+const ButtonDialog = ({ data }) => {
   const { Title, Desc, List } = data;
   const [openDialog, setOpenDialog] = useState(false);
 
@@ -25,7 +25,11 @@ const ButtonModal = ({ data }) => {
 
   return (
     <>
-      <Button variant="contained" onClick={handleClickOpen}>
+      <Button
+        data-testid="titleButton"
+        variant="contained"
+        onClick={handleClickOpen}
+      >
         {Title}
       </Button>
       <Dialog open={openDialog} onClose={handleClickClose}>
@@ -44,7 +48,11 @@ const ButtonModal = ({ data }) => {
             )}
           </DialogContentText>
           <DialogActions>
-            <Button variant="contained" onClick={handleClickClose}>
+            <Button
+              data-testid="closeButton"
+              variant="contained"
+              onClick={handleClickClose}
+            >
               Close
             </Button>
           </DialogActions>
@@ -54,4 +62,4 @@ const ButtonModal = ({ data }) => {
   );
 };
 
-export default ButtonModal;
+export default ButtonDialog;
