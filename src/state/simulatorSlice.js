@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { startEnrouteRide } from "./everyLiftSlice";
+import { startEnrouteRide } from "./everyLiftSlice.js";
 
 export const simulatorSlice = createSlice({
   name: "simulator",
@@ -155,8 +155,8 @@ export const randomCall =
               nextStart: nextRide.start,
               nextEnd: nextRide.end,
               nextPass: nextRide.passengers,
-            }
-          )
+            },
+          ),
         );
         dispatch(randomCall((call += 1)));
       }, randomInterval * 1000);
@@ -165,7 +165,7 @@ export const randomCall =
     if (!anyIdle && isRunning) {
       console.log(
         "nothing was idle, but app still running so trying again",
-        call
+        call,
       );
       setTimeout(() => {
         dispatch(randomCall((call += 1)));

@@ -7,7 +7,7 @@ import {
   showSummary,
   resetDuration,
   removeRide,
-} from "./simulatorSlice";
+} from "./simulatorSlice.js";
 
 export const simulatorListener = createListenerMiddleware();
 

@@ -1,12 +1,12 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 // imported Slices
-import simulatorSlice from "./simulatorSlice";
-import singleModeSlice from "./singleModeSlice";
-import everyLiftSlice from "./everyLiftSlice";
+import simulatorSlice from "./simulatorSlice.js";
+import singleModeSlice from "./singleModeSlice.js";
+import everyLiftSlice from "./everyLiftSlice.js";
 
 // imported Middleware listener
-import { simulatorListener } from "./simulatorMiddleware";
+import { simulatorListener } from "./simulatorMiddleware.js";
 
 export default configureStore({
   reducer: {

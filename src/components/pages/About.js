@@ -1,4 +1,4 @@
-import ButtonDialog from "../layout/ButtonDialog";
+import ButtonDialog from "../layout/ButtonDialog.js";
 import { Grid, Box, Stack, Typography } from "@mui/material";
 
 const pageContainerStyle = () => {

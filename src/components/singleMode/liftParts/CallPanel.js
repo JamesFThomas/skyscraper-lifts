@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { Circle, CircleOutlined } from "@mui/icons-material";
 import { useSelector, useDispatch } from "react-redux";
-import { enterLift } from "../../../state/singleModeSlice";
+import { enterLift } from "../../../state/singleModeSlice.js";
 
 // This blinking will be used again to show waiting lifting in auto mode
 const circleStyles = () => {

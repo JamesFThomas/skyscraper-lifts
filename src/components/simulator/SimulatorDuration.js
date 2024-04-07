@@ -5,7 +5,7 @@ import {
   runSimulator,
   resetDuration,
   showSummary,
-} from "../../state/simulatorSlice";
+} from "../../state/simulatorSlice.js";
 import { Button, Stack, Typography } from "@mui/material";
 
 const SimulatorDuration = () => {

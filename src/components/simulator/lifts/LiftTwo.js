@@ -1,12 +1,12 @@
 import { Grid, Stack } from "@mui/material";
 import { useSelector } from "react-redux";
-import TripsDisplay from "../liftParts/TripsDisplay";
-import ElevatorDoors from "../liftParts/ElevatorDoors";
-import DirectionPanel from "../liftParts/DirectionPanel";
+import TripsDisplay from "../liftParts/TripsDisplay.js";
+import ElevatorDoors from "../liftParts/ElevatorDoors.js";
+import DirectionPanel from "../liftParts/DirectionPanel.js";
 
 const LiftTwo = () => {
   const L2CurrentFloor = useSelector(
-    (state) => state.everyLift.lift2.currentFloor
+    (state) => state.everyLift.lift2.currentFloor,
   );
   const L2Phase = useSelector((state) => state.everyLift.lift2.phase);
   const L2Direction = useSelector((state) => state.everyLift.lift2.direction);

@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
-import CallPanel from "../singleMode/liftParts/CallPanel";
-import FloorPanel from "../singleMode/liftParts/FloorPanel";
-import DisplayPanel from "../singleMode/liftParts/DisplayPanel";
-import LoadingDoors from "../singleMode/liftParts/LoadingDoors";
-import TripLog from "../singleMode/TripLog";
+import CallPanel from "../singleMode/liftParts/CallPanel.js";
+import FloorPanel from "../singleMode/liftParts/FloorPanel.js";
+import DisplayPanel from "../singleMode/liftParts/DisplayPanel.js";
+import LoadingDoors from "../singleMode/liftParts/LoadingDoors.js";
+import TripLog from "../singleMode/TripLog.js";
 
 import KennyG from "../../assets/KennyG.mp3";
 import { Grid, Box, Stack, Typography } from "@mui/material";
-import ClosedDoors from "../singleMode/liftParts/ClosedDoors";
+import ClosedDoors from "../singleMode/liftParts/ClosedDoors.js";
 
 const centeredItemRowStyles = () => {
   return {

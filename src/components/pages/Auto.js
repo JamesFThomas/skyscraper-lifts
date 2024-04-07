@@ -4,7 +4,7 @@ import {
   // useDispatch
 } from "react-redux";
 
-import SimulatorDuration from "../simulator/SimulatorDuration";
+import SimulatorDuration from "../simulator/SimulatorDuration.js";
 import LiftOne from "../simulator/lifts/LiftOne.js";
 import LiftTwo from "../simulator/lifts/LiftTwo.js";
 import LiftThree from "../simulator/lifts/LiftThree.js";
@@ -18,7 +18,7 @@ import SimulatorSummary from "../simulator/SimulatorSummary.js";
 
 const Auto = () => {
   const showSessionSummary = useSelector(
-    (state) => state.simulator.showSummary
+    (state) => state.simulator.showSummary,
   );
 
   //TODO create function to showSummary when simulator finished but left running

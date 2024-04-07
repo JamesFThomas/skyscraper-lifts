@@ -4,13 +4,13 @@ import { Container } from "@mui/material";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 // import components
-import NavBar from "./layout/Navbar";
-import Home from "./pages/Home";
-import Auto from "./pages/Auto";
-import Single from "./pages/Single";
-import About from "./pages/About";
+import NavBar from "./layout/Navbar.js";
+import Home from "./pages/Home.js";
+import Auto from "./pages/Auto.js";
+import Single from "./pages/Single.js";
+import About from "./pages/About.js";
 
-import { aboutData } from "../data/aboutData";
+import { aboutData } from "../data/aboutData.js";
 
 const App = () => {
   return (

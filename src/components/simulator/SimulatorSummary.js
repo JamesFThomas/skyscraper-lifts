@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { Button, Stack, Typography } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
 
-import { showSummary } from "../../state/simulatorSlice";
-import { resetTrips } from "../../state/everyLiftSlice";
+import { showSummary } from "../../state/simulatorSlice.js";
+import { resetTrips } from "../../state/everyLiftSlice.js";
 
 const SimulatorSummary = () => {
   const L1ridesArr = useSelector((state) => state.everyLift.lift1.trips);
@@ -61,7 +61,7 @@ const SimulatorSummary = () => {
     setTotalAvgWait(Math.round((rideTimes.enroute / enrouteRides) * 100) / 100);
     setTotalAvgInLift(Math.round((rideTimes.taxing / taxingRides) * 100) / 100);
     setTotalAvgDuration(
-      Math.round((rideTimes.total / (enrouteRides + taxingRides)) * 100) / 100
+      Math.round((rideTimes.total / (enrouteRides + taxingRides)) * 100) / 100,
     );
   });
 
