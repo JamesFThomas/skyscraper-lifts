@@ -36,16 +36,18 @@ const ButtonDialog = ({ data }) => {
         <DialogTitle>{Title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            <Typography sx={{ mb: 1 }}>{Desc}</Typography>
-            {List && (
-              <ul>
-                <Stack spacing={1}>
+            <Typography data-testid="dialogDescription" sx={{ mb: 1 }}>
+              {Desc}
+            </Typography>
+            <ul>
+              {List && (
+                <Stack spacing={1} data-testid="listContainer">
                   {List.map((item, i) => (
                     <li key={i}>{item}</li>
                   ))}
                 </Stack>
-              </ul>
-            )}
+              )}
+            </ul>
           </DialogContentText>
           <DialogActions>
             <Button
