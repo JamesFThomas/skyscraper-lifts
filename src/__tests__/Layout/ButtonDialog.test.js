@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  userEvent,
+  render,
+  screen,
+  waitFor,
+} from "@testing-library/react";
 import ButtonDialog from "../../components/layout/ButtonDialog";
 
 const List = [
@@ -44,16 +50,13 @@ describe("ButtonDialog testing suite", () => {
 
     const openButton = screen.getByTestId("titleButton");
 
+    let description;
+
     fireEvent.click(openButton);
 
     await waitFor(() => {
-      screen.getByTestId("dialogDescription");
+      description = screen.getByTestId("dialogDescription");
     });
-
-    const description = screen.getByTestId("dialogDescription");
-
-    // eslint-disable-next-line testing-library/no-debugging-utils
-    // screen.debug();
 
     expect(description).toBeTruthy();
     expect(description).toHaveTextContent("This Dialog is open");

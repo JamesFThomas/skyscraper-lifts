@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import {
   AppBar,
@@ -10,7 +10,7 @@ import {
   ListItem,
   ListItemButton,
   ListItemText,
-} from "@mui/material";
+} from '@mui/material';
 
 const iconButtonStyles = () => {
   return {
@@ -21,32 +21,32 @@ const iconButtonStyles = () => {
 const listBoxStyles = () => {
   return {
     flexGrow: 1,
-    justifyContent: "flex-end",
-    display: "flex",
-    flexDirection: "row",
+    justifyContent: 'flex-end',
+    display: 'flex',
+    flexDirection: 'row',
   };
 };
 const listStyles = () => {
   return {
-    display: "flex",
-    flexDirection: "row",
+    display: 'flex',
+    flexDirection: 'row',
   };
 };
 const listButtonStyles = () => {
   return {
-    textAlign: "center",
+    textAlign: 'center',
   };
 };
 
 const NavBar = () => {
   const [navButtons] = useState([
-    { title: "About", href: "/about" },
-    { title: "Single", href: "/single" },
-    { title: "Auto", href: "/auto" },
+    { title: 'About', href: '/about' },
+    { title: 'Single', href: '/single' },
+    { title: 'Auto', href: '/auto' },
   ]);
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box data-testid="navbar-container" sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
           <IconButton
