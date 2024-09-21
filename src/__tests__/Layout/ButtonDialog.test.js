@@ -1,10 +1,4 @@
-import {
-  fireEvent,
-  userEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import ButtonDialog from '../../components/layout/ButtonDialog';
 
 const List = [

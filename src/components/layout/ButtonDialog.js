@@ -35,7 +35,7 @@ const ButtonDialog = ({ data }) => {
       <Dialog open={openDialog} onClose={handleClickClose}>
         <DialogTitle data-testid="dialogTitle">{Title}</DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText component={'div'}>
             <Typography data-testid="dialogDescription" sx={{ mb: 1 }}>
               {Desc}
             </Typography>

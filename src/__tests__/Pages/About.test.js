@@ -18,20 +18,21 @@ const TestWrapper = () => {
 };
 
 describe('About page testing suite', () => {
-  xit('Component successfully renders in container', () => {
+  it('Component successfully renders in container', () => {
     TestWrapper();
     const pageContainer = screen.getByTestId('AboutPage');
     expect(pageContainer).toBeTruthy();
   });
 
-  xit('Component successfully renders with title', () => {
+  it('Component successfully renders with title', () => {
     TestWrapper();
 
     const pageTitle = screen.getByTestId('AboutPage-title');
     expect(pageTitle).toBeTruthy();
     expect(pageTitle).toHaveTextContent('About This Application');
   });
-  xit('Component renders with 3 information sections', () => {
+
+  it('Component renders with 3 information sections', () => {
     TestWrapper();
 
     const sections = screen.getAllByTestId(/sectionTitle/i);
