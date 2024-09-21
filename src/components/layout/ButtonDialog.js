@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
   Stack,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
 
 const ButtonDialog = ({ data }) => {
   const { Title, Desc, List } = data;
@@ -33,7 +33,7 @@ const ButtonDialog = ({ data }) => {
         {Title}
       </Button>
       <Dialog open={openDialog} onClose={handleClickClose}>
-        <DialogTitle>{Title}</DialogTitle>
+        <DialogTitle data-testid="dialogTitle">{Title}</DialogTitle>
         <DialogContent>
           <DialogContentText>
             <Typography data-testid="dialogDescription" sx={{ mb: 1 }}>

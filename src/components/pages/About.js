@@ -1,32 +1,32 @@
-import ButtonDialog from "../layout/ButtonDialog.js";
-import { Grid, Box, Stack, Typography } from "@mui/material";
+import ButtonDialog from '../layout/ButtonDialog.js';
+import { Grid, Box, Stack, Typography } from '@mui/material';
 
 const pageContainerStyle = () => {
   return {
-    display: "flex",
-    flexDirection: "column",
-    paddingTop: "30px",
-    alignItems: "center",
-    gap: "50px",
+    display: 'flex',
+    flexDirection: 'column',
+    paddingTop: '30px',
+    alignItems: 'center',
+    gap: '50px',
   };
 };
 
 const gridItemStyle = () => {
   return {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   };
 };
 
 const objectiveTextStyle = () => {
   return {
-    maxWidth: "400px",
-    fontWeight: "bold",
-    justifyContent: "center",
-    alignItems: "center",
-    display: "flex",
-    flexDirection: "row",
+    maxWidth: '400px',
+    fontWeight: 'bold',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
   };
 };
 
@@ -34,25 +34,33 @@ const About = ({ aboutData }) => {
   const { objective, auto, single, con1, con2, con3 } = aboutData;
 
   return (
-    <Box sx={pageContainerStyle}>
-      <Typography variant={"h2"}>{"About This Application"}</Typography>
-      <Grid container maxWidth={"lg"} gap={8}>
+    <Box data-testid="AboutPage" sx={pageContainerStyle}>
+      <Typography data-testid="AboutPage-title" variant={'h2'}>
+        {'About This Application'}
+      </Typography>
+      <Grid container maxWidth={'lg'} gap={8}>
         <Grid item xs={12} sx={gridItemStyle}>
-          <Typography variant={"h5"}>{"Application Objective"}</Typography>
-          <Typography variant={"subtitle1"} sx={objectiveTextStyle}>
+          <Typography data-testid="sectionTitle1" variant={'h5'}>
+            {'Application Objective'}
+          </Typography>
+          <Typography variant={'subtitle1'} sx={objectiveTextStyle}>
             {objective}
           </Typography>
         </Grid>
         <Grid item xs={12} sx={gridItemStyle}>
-          <Typography variant={"h5"}>{"Application Modes"}</Typography>
-          <Stack direction={"row"} spacing={2}>
+          <Typography data-testid="sectionTitle2" variant={'h5'}>
+            {'Application Modes'}
+          </Typography>
+          <Stack direction={'row'} spacing={2}>
             <ButtonDialog data={auto} />
             <ButtonDialog data={single} />
           </Stack>
         </Grid>
         <Grid item xs={12} sx={gridItemStyle}>
-          <Typography variant={"h5"}>{"Application Constraints"}</Typography>
-          <Stack direction={"row"} spacing={2}>
+          <Typography data-testid="sectionTitle3" variant={'h5'}>
+            {'Application Constraints'}
+          </Typography>
+          <Stack direction={'row'} spacing={2}>
             <ButtonDialog data={con1} />
             <ButtonDialog data={con2} />
             <ButtonDialog data={con3} />
