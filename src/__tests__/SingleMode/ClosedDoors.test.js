@@ -1,11 +1,14 @@
-import renderer from "react-test-renderer";
-import ClosedDoors from "../../components/singleMode/liftParts/ClosedDoors";
+import { screen, render } from '@testing-library/react';
+import ClosedDoors from '../../components/singleMode/liftParts/ClosedDoors';
 
-//TODO add tests for styling
-
-describe("ClosedDoors testing suite", () => {
-  it("Component successfully renders", () => {
-    const component = renderer.create(<ClosedDoors />);
-    expect(component).toBeTruthy();
+describe('ClosedDoors testing suite', () => {
+  it('Component successfully renders with correct styles', () => {
+    render(<ClosedDoors />);
+    const doors = screen.getByTestId('closed-doors');
+    expect(doors).toBeInTheDocument();
+    // test door styling
+    expect(doors).toHaveStyle(
+      'border: 2px solid grey; margin: 1em; display: flex; flex-direction: row; width: 20em; justify-content: center',
+    );
   });
 });
