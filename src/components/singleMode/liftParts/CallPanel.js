@@ -1,29 +1,29 @@
-import React, { useState } from "react";
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { Circle, CircleOutlined } from "@mui/icons-material";
-import { useSelector, useDispatch } from "react-redux";
-import { enterLift } from "../../../state/singleModeSlice.js";
+import React, { useState } from 'react';
+import { Box, Button, Stack, Typography } from '@mui/material';
+import { Circle, CircleOutlined } from '@mui/icons-material';
+import { useSelector, useDispatch } from 'react-redux';
+import { enterLift } from '../../../state/singleModeSlice.js';
 
 // This blinking will be used again to show waiting lifting in auto mode
 const circleStyles = () => {
   return {
-    "@keyframes blink": {
+    '@keyframes blink': {
       from: {
-        color: "grey",
+        color: 'grey',
       },
       to: {
-        color: "black",
+        color: 'black',
       },
     },
-    animation: "blink 1s ease infinite",
-    fontSize: "40px",
+    animation: 'blink 1s ease infinite',
+    fontSize: '40px',
   };
 };
 
 const circleOutlineStyles = () => {
   return {
-    fontSize: "40px",
-    color: "grey",
+    fontSize: '40px',
+    color: 'grey',
   };
 };
 
@@ -37,11 +37,11 @@ const CallPanel = () => {
   //declared inside component to access LOADING state
   const boxStyles = () => {
     return {
-      border: "2px solid grey",
-      padding: "30px 20px",
-      width: "fit-content",
-      height: "fit-content",
-      display: `${LOADING || EXITING ? "none" : ""}`,
+      border: '2px solid grey',
+      padding: '30px 20px',
+      width: 'fit-content',
+      height: 'fit-content',
+      display: `${LOADING || EXITING ? 'none' : ''}`,
     };
   };
 
@@ -52,9 +52,9 @@ const CallPanel = () => {
   };
 
   return (
-    <Stack sx={boxStyles}>
+    <Stack data-testid="call-panel" sx={boxStyles}>
       <Typography
-        sx={{ display: "flex", flexDirection: "row", justifyContent: "center" }}
+        sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
       >
         Press
       </Typography>

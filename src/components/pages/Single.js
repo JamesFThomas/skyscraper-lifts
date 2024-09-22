@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import CallPanel from "../singleMode/liftParts/CallPanel.js";
-import FloorPanel from "../singleMode/liftParts/FloorPanel.js";
-import DisplayPanel from "../singleMode/liftParts/DisplayPanel.js";
-import LoadingDoors from "../singleMode/liftParts/LoadingDoors.js";
-import TripLog from "../singleMode/TripLog.js";
+import CallPanel from '../singleMode/liftParts/CallPanel.js';
+import FloorPanel from '../singleMode/liftParts/FloorPanel.js';
+import DisplayPanel from '../singleMode/liftParts/DisplayPanel.js';
+import LoadingDoors from '../singleMode/liftParts/LoadingDoors.js';
+import TripLog from '../singleMode/TripLog.js';
 
-import KennyG from "../../assets/KennyG.mp3";
-import { Grid, Box, Stack, Typography } from "@mui/material";
-import ClosedDoors from "../singleMode/liftParts/ClosedDoors.js";
+import KennyG from '../../assets/KennyG.mp3';
+import { Grid, Box, Stack, Typography } from '@mui/material';
+import ClosedDoors from '../singleMode/liftParts/ClosedDoors.js';
 
 const centeredItemRowStyles = () => {
   return {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
   };
 };
 const centeredItemColStyles = () => {
   return {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   };
 };
 
 const spacedItemStyles = () => {
   return {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
   };
 };
 
@@ -63,18 +63,19 @@ const Single = () => {
 
   return (
     <Box
+      data-testid="singlePage-container"
       sx={{
-        display: "flex",
-        flexDirection: "column",
-        paddingTop: "30px",
-        alignItems: "center",
+        display: 'flex',
+        flexDirection: 'column',
+        paddingTop: '30px',
+        alignItems: 'center',
       }}
     >
-      <Grid container maxWidth={"md"} spacing={2}>
+      <Grid container maxWidth={'md'} spacing={2}>
         <Grid item xs={4}>
           <TripLog />
         </Grid>
-        <Grid item xs={8} sx={{ height: "100%" }}>
+        <Grid item xs={8} sx={{ height: '100%' }}>
           {MOVING && (
             <Stack sx={centeredItemColStyles}>
               <DisplayPanel />
@@ -98,7 +99,7 @@ const Single = () => {
           )}
         </Grid>
       </Grid>
-      <Box sx={{ mt: "30px" }}>
+      <Box sx={{ mt: '30px' }}>
         <Typography>
           Door takes 30 seconds in the Lobby, 5 seconds other floors.
         </Typography>
