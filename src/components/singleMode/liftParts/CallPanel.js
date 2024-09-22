@@ -54,16 +54,22 @@ const CallPanel = () => {
   return (
     <Stack data-testid="call-panel" sx={boxStyles}>
       <Typography
+        data-testid="callPanel-title"
         sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}
       >
         Press
       </Typography>
       {!wasClicked ? (
-        <Button onClick={(e) => handleClick(e)}>
+        <Button data-testid="call-button" onClick={(e) => handleClick(e)}>
           <CircleOutlined sx={circleOutlineStyles} />
         </Button>
       ) : (
-        <Button disabled onClick={(e) => handleClick(e)}>
+        <Button
+          data-testid="wait-button"
+          hidden
+          disabled
+          onClick={(e) => handleClick(e)}
+        >
           <Circle sx={circleStyles} />
         </Button>
       )}
