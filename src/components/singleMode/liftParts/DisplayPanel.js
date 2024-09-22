@@ -1,43 +1,43 @@
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
-import { Box, Stack, Typography } from "@mui/material";
-import { Forward, ForwardOutlined } from "@mui/icons-material";
+import { Box, Stack, Typography } from '@mui/material';
+import { Forward, ForwardOutlined } from '@mui/icons-material';
 
 const stackStyles = () => {
   return {
-    border: "2px solid grey",
-    width: "fit-content",
+    border: '2px solid grey',
+    width: 'fit-content',
   };
 };
 
 const textStyles = () => {
   return {
-    border: "2px solid grey",
+    border: '2px solid grey',
     fontSize: 32,
-    padding: "16px",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
+    padding: '16px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
   };
 };
 
 const iconBoxStyles = () => {
   return {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
   };
 };
 
 const upIconStyles = () => {
   return {
-    transform: "rotate(270deg)",
+    transform: 'rotate(270deg)',
     fontSize: 30,
   };
 };
 const downIconStyles = () => {
   return {
-    transform: "rotate(90deg)",
+    transform: 'rotate(90deg)',
     fontSize: 30,
   };
 };
@@ -56,15 +56,17 @@ const DisplayPanel = () => {
     >
       <Box sx={iconBoxStyles}>
         {dUp ? (
-          <Forward sx={upIconStyles} />
+          <Forward id="upIcon" sx={upIconStyles} />
         ) : (
           <ForwardOutlined sx={upIconStyles} />
         )}
       </Box>
-      <Typography sx={textStyles}>{currentFloor}</Typography>
+      <Typography data-testid="currentFloor" sx={textStyles}>
+        {currentFloor}
+      </Typography>
       <Box sx={iconBoxStyles}>
         {dDown ? (
-          <Forward sx={downIconStyles} />
+          <Forward id="downIcon" sx={downIconStyles} />
         ) : (
           <ForwardOutlined sx={downIconStyles} />
         )}
