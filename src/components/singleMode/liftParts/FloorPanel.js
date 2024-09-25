@@ -43,6 +43,7 @@ const FloorPanel = () => {
       {floorChoices.map((floor, i) => (
         <Button
           key={`${floor}-${i}`}
+          data-test-id={`floorPanel-Button-${i}`}
           value={floor === 'L' ? 0 : floor}
           variant="outlined"
           size="small"
