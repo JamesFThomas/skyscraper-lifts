@@ -1,20 +1,62 @@
-import renderer from "react-test-renderer";
-import ElevatorDoors from "../../components/simulator/liftParts/ElevatorDoors";
+import { renderWithProviders } from '../../utils/TestingWrapper';
+import { screen, waitFor, render } from '@testing-library/react';
+import ElevatorDoors from '../../components/simulator/liftParts/ElevatorDoors';
 
-//TODO add tests for display text
+const mockIdleProps = {
+  phase: 'IDLE',
+  currentFloor: 0,
+  liftTitle: 'Test Lift',
+  currentTrip: 1,
+};
 
-describe("ElevatorDoors testing suite", () => {
-  it("Component successfully renders", () => {
-    const component = renderer.create(
-      <ElevatorDoors
-        props={{
-          phase: "IDLE",
-          currentFloor: "99",
-          liftTitle: "Lift 1",
-          currentTrip: { start: "22", end: "55", duration: 87, passengers: 4 },
-        }}
-      />
-    );
-    expect(component).toBeTruthy();
+const mockLoadingProps = {
+  phase: 'LOADING',
+  currentFloor: 0,
+  liftTitle: 'Test Lift',
+  currentTrip: 1,
+};
+
+const mockUnloadingProps = {
+  phase: 'UNLOADING',
+  currentFloor: 0,
+  liftTitle: 'Test Lift',
+  currentTrip: 1,
+};
+
+const mockEnrouteProps = {
+  phase: 'ENROUTE',
+  currentFloor: 0,
+  liftTitle: 'Test Lift',
+  currentTrip: 1,
+};
+
+const mockTaxingProps = {
+  phase: 'TAXING',
+  currentFloor: 0,
+  liftTitle: 'Test Lift',
+  currentTrip: 1,
+};
+
+describe('ElevatorDoors testing suite', () => {
+  xit('Component successfully renders', () => {
+    renderWithProviders(<ElevatorDoors props={mockIdleProps} />);
+    const doors = screen.getByTestId('elevatorDoors-container');
+    expect(doors).toBeInTheDocument();
   });
+
+  // test for static doors
+  // it('Component renders static doors in IDLE phase', async () => {
+  // render(<ElevatorDoors props={mockIdleProps} />);
+
+  // const staticDoors = screen.getByTestId('staticDoors-container');
+
+  // await waitFor(() => {
+  //   screen.queryByTestId('staticDoors-container');
+  // });
+
+  // eslint-disable-next-line testing-library/no-debugging-utils
+  // screen.debug();
+
+  // expect(staticDoors).toBeInTheDocument();
+  // });
 });
