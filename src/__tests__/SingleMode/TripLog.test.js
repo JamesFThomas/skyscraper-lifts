@@ -1,6 +1,6 @@
 import { renderWithProviders } from '../../utils/TestingWrapper';
-import TripLog from '../../components/singleMode/TripLog';
 import { screen } from '@testing-library/react';
+import TripLog from '../../components/singleMode/TripLog';
 
 const mockTripsState = {
   singleMode: {
