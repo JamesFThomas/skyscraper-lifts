@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { Button, Stack, Typography } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from 'react';
+import { Button, Stack, Typography } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { showSummary } from "../../state/simulatorSlice.js";
-import { resetTrips } from "../../state/everyLiftSlice.js";
+import { showSummary } from '../../state/simulatorSlice.js';
+import { resetTrips } from '../../state/everyLiftSlice.js';
 
 const SimulatorSummary = () => {
   const L1ridesArr = useSelector((state) => state.everyLift.lift1.trips);
@@ -63,7 +63,7 @@ const SimulatorSummary = () => {
     setTotalAvgDuration(
       Math.round((rideTimes.total / (enrouteRides + taxingRides)) * 100) / 100,
     );
-  });
+  }, []);
 
   const handleClick = () => {
     dispatch(showSummary(false));
@@ -72,13 +72,13 @@ const SimulatorSummary = () => {
 
   return (
     <Stack data-testid="summaryDisplayContainer" spacing={3}>
-      <Typography>{`Average Wait Time: ${totalAvgWait} seconds`}</Typography>
-      <Typography>{`Average Time in Lift: ${totalAvgInLift} seconds`}</Typography>
-      <Typography>
+      <Typography data-testid="summaryDisplay-averageWait">{`Average Wait Time: ${totalAvgWait} seconds`}</Typography>
+      <Typography data-testid="summaryDisplay-averageInLift">{`Average Time in Lift: ${totalAvgInLift} seconds`}</Typography>
+      <Typography data-testid="summaryDisplay-averageAllRides">
         {`Average duration of all rides: ${totalAvgDuration} seconds`}
       </Typography>
       <Button variant="contained" onClick={handleClick}>
-        {" "}
+        {' '}
         Clear Stats
       </Button>
     </Stack>
