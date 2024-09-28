@@ -1,8 +1,8 @@
-import { Grid, Stack } from "@mui/material";
-import { useSelector } from "react-redux";
-import TripsDisplay from "../liftParts/TripsDisplay.js";
-import ElevatorDoors from "../liftParts/ElevatorDoors.js";
-import DirectionPanel from "../liftParts/DirectionPanel.js";
+import { Grid, Stack } from '@mui/material';
+import { useSelector } from 'react-redux';
+import TripsDisplay from '../liftParts/TripsDisplay.js';
+import ElevatorDoors from '../liftParts/ElevatorDoors.js';
+import DirectionPanel from '../liftParts/DirectionPanel.js';
 
 const LiftTwo = () => {
   const L2CurrentFloor = useSelector(
@@ -11,7 +11,7 @@ const LiftTwo = () => {
   const L2Phase = useSelector((state) => state.everyLift.lift2.phase);
   const L2Direction = useSelector((state) => state.everyLift.lift2.direction);
   const L2TripsArray = useSelector((state) => state.everyLift.lift2.trips);
-  const liftTitle = "Lift 2";
+  const liftTitle = 'Lift 2';
   const currentTrip = L2TripsArray[L2TripsArray.length - 1];
   return (
     <Grid
@@ -19,15 +19,15 @@ const LiftTwo = () => {
       item
       xs={3}
       sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        textAlign: "center",
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        textAlign: 'center',
         gap: 1,
       }}
     >
-      <TripsDisplay title={"Lift 2 Trips"} trips={L2TripsArray} />
-      <Stack direction={"column"} alignItems={"center"}>
+      <TripsDisplay title={`${liftTitle} Trips`} trips={L2TripsArray} />
+      <Stack direction={'column'} alignItems={'center'}>
         <DirectionPanel direction={L2Direction} currentFloor={L2CurrentFloor} />
         <ElevatorDoors
           phase={L2Phase}

@@ -1,8 +1,8 @@
-import { Grid, Stack } from "@mui/material";
-import { useSelector } from "react-redux";
-import TripsDisplay from "../liftParts/TripsDisplay.js";
-import ElevatorDoors from "../liftParts/ElevatorDoors.js";
-import DirectionPanel from "../liftParts/DirectionPanel.js";
+import { Grid, Stack } from '@mui/material';
+import { useSelector } from 'react-redux';
+import TripsDisplay from '../liftParts/TripsDisplay.js';
+import ElevatorDoors from '../liftParts/ElevatorDoors.js';
+import DirectionPanel from '../liftParts/DirectionPanel.js';
 
 const LiftThree = () => {
   const L3CurrentFloor = useSelector(
@@ -11,7 +11,7 @@ const LiftThree = () => {
   const L3Phase = useSelector((state) => state.everyLift.lift3.phase);
   const L3Direction = useSelector((state) => state.everyLift.lift3.direction);
   const L3TripsArray = useSelector((state) => state.everyLift.lift3.trips);
-  const liftTitle = "Lift 3";
+  const liftTitle = 'Lift 3';
   const currentTrip = L3TripsArray[L3TripsArray.length - 1];
   return (
     <Grid
@@ -19,14 +19,14 @@ const LiftThree = () => {
       item
       xs={3}
       sx={{
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "center",
-        textAlign: "center",
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        textAlign: 'center',
       }}
     >
-      <TripsDisplay title={"Lift 3 Trips"} trips={L3TripsArray} />
-      <Stack direction={"column"} alignItems={"center"}>
+      <TripsDisplay title={`${liftTitle} Trips`} trips={L3TripsArray} />
+      <Stack direction={'column'} alignItems={'center'}>
         <DirectionPanel direction={L3Direction} currentFloor={L3CurrentFloor} />
         <ElevatorDoors
           phase={L3Phase}
