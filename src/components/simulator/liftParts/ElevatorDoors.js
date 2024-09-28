@@ -28,9 +28,7 @@ const closedDoorStyles = () => {
   };
 };
 
-const ElevatorDoors = (props) => {
-  const { phase, currentFloor, liftTitle, currentTrip } = props;
-
+const ElevatorDoors = ({ phase, currentFloor, liftTitle, currentTrip }) => {
   const phases = {
     IDLE: 'IDLE',
     LOADING: 'LOADING',
@@ -76,7 +74,9 @@ const ElevatorDoors = (props) => {
   const greeting = () => {
     return (
       <Typography data-testid="elevatorDoors-greeting" sx={centeredTextStyles}>
-        {phase === phases.LOADING ? 'Welcome' : 'Goodbye'}
+        {phase === phases.LOADING
+          ? `Welcome to ${liftTitle}`
+          : `Goodbye from ${liftTitle}`}
       </Typography>
     );
   };
