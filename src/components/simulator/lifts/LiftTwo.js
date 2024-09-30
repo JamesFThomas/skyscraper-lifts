@@ -6,7 +6,7 @@ import DirectionPanel from '../liftParts/DirectionPanel.js';
 
 const LiftTwo = () => {
   const {
-    liftTitle: L2LiftTitle,
+    liftTitle: L2Title,
     currentFloor: L2CurrentFloor,
     phase: L2Phase,
     direction: L2Direction,
@@ -27,13 +27,13 @@ const LiftTwo = () => {
         gap: 1,
       }}
     >
-      <TripsDisplay title={`${L2LiftTitle} Trips`} trips={L2TripsArray} />
+      <TripsDisplay title={`${L2Title} Trips`} trips={L2TripsArray} />
       <Stack direction={'column'} alignItems={'center'}>
         <DirectionPanel direction={L2Direction} currentFloor={L2CurrentFloor} />
         <ElevatorDoors
           phase={L2Phase}
           currentFloor={L2CurrentFloor}
-          liftTitle={L2LiftTitle}
+          liftTitle={L2Title}
           currentTrip={currentTrip}
         />
       </Stack>
