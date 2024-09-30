@@ -1,24 +1,27 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const everyLiftSlice = createSlice({
-  name: "lifts",
+  name: 'lifts',
   initialState: {
     lift1: {
+      liftTitle: 'Lift 1',
       currentFloor: 10,
-      phase: "IDLE",
-      direction: "",
+      phase: 'IDLE',
+      direction: '',
       trips: [],
     },
     lift2: {
+      liftTitle: 'Lift 2',
       currentFloor: 55,
-      phase: "IDLE",
-      direction: "",
+      phase: 'IDLE',
+      direction: '',
       trips: [],
     },
     lift3: {
+      liftTitle: 'Lift 3',
       currentFloor: 99,
-      phase: "IDLE",
-      direction: "",
+      phase: 'IDLE',
+      direction: '',
       trips: [],
     },
   },
@@ -26,13 +29,13 @@ export const everyLiftSlice = createSlice({
     setDirection: (state, action) => {
       const { lift, direction: newDirection } = action.payload;
       switch (lift) {
-        case "lift1": {
+        case 'lift1': {
           return {
             ...state,
             lift1: { ...state.lift1, direction: newDirection },
           };
         }
-        case "lift2": {
+        case 'lift2': {
           return {
             ...state,
             lift2: { ...state.lift2, direction: newDirection },
@@ -49,13 +52,13 @@ export const everyLiftSlice = createSlice({
     setPhase: (state, action) => {
       const { lift, phase: newPhase } = action.payload;
       switch (lift) {
-        case "lift1": {
+        case 'lift1': {
           return {
             ...state,
             lift1: { ...state.lift1, phase: newPhase },
           };
         }
-        case "lift2": {
+        case 'lift2': {
           return {
             ...state,
             lift2: { ...state.lift2, phase: newPhase },
@@ -73,13 +76,13 @@ export const everyLiftSlice = createSlice({
       const { lift, value } = action.payload;
       let { currentFloor } = state[lift];
       switch (lift) {
-        case "lift1": {
+        case 'lift1': {
           return {
             ...state,
             lift1: { ...state.lift1, currentFloor: (currentFloor += value) },
           };
         }
-        case "lift2": {
+        case 'lift2': {
           return {
             ...state,
             lift2: { ...state.lift2, currentFloor: (currentFloor += value) },
@@ -97,13 +100,13 @@ export const everyLiftSlice = createSlice({
       const { lift, trip } = action.payload;
       let { trips } = state[lift];
       switch (lift) {
-        case "lift1": {
+        case 'lift1': {
           return {
             ...state,
             lift1: { ...state.lift1, trips: [...trips, trip] },
           };
         }
-        case "lift2": {
+        case 'lift2': {
           return {
             ...state,
             lift2: { ...state.lift2, trips: [...trips, trip] },
@@ -120,9 +123,9 @@ export const everyLiftSlice = createSlice({
     resetTrips: (state, action) => {
       return {
         ...state,
-        lift1: { ...state.lift1, direction: "", phase: "IDLE", trips: [] },
-        lift2: { ...state.lift2, direction: "", phase: "IDLE", trips: [] },
-        lift3: { ...state.lift3, direction: "", phase: "IDLE", trips: [] },
+        lift1: { ...state.lift1, direction: '', phase: 'IDLE', trips: [] },
+        lift2: { ...state.lift2, direction: '', phase: 'IDLE', trips: [] },
+        lift3: { ...state.lift3, direction: '', phase: 'IDLE', trips: [] },
       };
     },
   },
@@ -140,7 +143,7 @@ export const {
 const calculateRideDuration = (start, end, phase) => {
   const floors = start > end ? start - end : end - start;
   const doorTime = start === 0 ? 30 : 5;
-  return phase === "ENROUTE" ? floors : floors + doorTime;
+  return phase === 'ENROUTE' ? floors : floors + doorTime;
 };
 
 export const trackRideData =
@@ -150,21 +153,21 @@ export const trackRideData =
       trackTrip({
         lift,
         trip: { start, end, duration, passengers: passengers },
-      })
+      }),
     );
   };
 
 export const startTaxiRide =
-  (lift, current, end, passengers, phase = "LOADING") =>
+  (lift, current, end, passengers, phase = 'LOADING') =>
   (dispatch) => {
     let delay = current === 0 ? 30000 : 5000;
 
     dispatch(setPhase({ lift, phase }));
 
-    dispatch(trackRideData(lift, current, end, passengers, (phase = "TAXING")));
+    dispatch(trackRideData(lift, current, end, passengers, (phase = 'TAXING')));
 
     setTimeout(() => {
-      dispatch(setPhase({ lift, phase: "TAXING" }));
+      dispatch(setPhase({ lift, phase: 'TAXING' }));
       dispatch(moveLiftTaxi(lift, current, end));
     }, delay);
   };
@@ -176,7 +179,7 @@ export const startEnrouteRide =
     end,
     { nextStart, nextEnd, nextPass },
     passengers = 0,
-    phase = "ENROUTE"
+    phase = 'ENROUTE',
   ) =>
   (dispatch) => {
     dispatch(setPhase({ lift, phase }));
@@ -186,18 +189,18 @@ export const startEnrouteRide =
         nextStart,
         nextEnd,
         nextPass,
-      })
+      }),
     );
   };
 
 export const unloadingDoors = (lift, current) => (dispatch) => {
   let delay = current === 0 ? 30000 : 5000;
 
-  dispatch(setPhase({ lift, phase: "UNLOADING" }));
+  dispatch(setPhase({ lift, phase: 'UNLOADING' }));
 
   setTimeout(() => {
-    dispatch(setPhase({ lift, phase: "IDLE" }));
-    dispatch(setDirection({ lift, direction: "" }));
+    dispatch(setPhase({ lift, phase: 'IDLE' }));
+    dispatch(setDirection({ lift, direction: '' }));
   }, delay);
 };
 
@@ -205,7 +208,7 @@ export const moveLiftTaxi = (lift, current, end) => (dispatch, getState) => {
   const { isRunning } = getState().simulator;
 
   if (!isRunning) return;
-  dispatch(setDirection({ lift, direction: end > current ? "UP" : "DOWN" }));
+  dispatch(setDirection({ lift, direction: end > current ? 'UP' : 'DOWN' }));
 
   if (current < end) {
     setTimeout(() => {
@@ -219,7 +222,7 @@ export const moveLiftTaxi = (lift, current, end) => (dispatch, getState) => {
     }, 1000);
   } else {
     setTimeout(() => {
-      dispatch(setDirection({ lift, direction: "" }));
+      dispatch(setDirection({ lift, direction: '' }));
       dispatch(unloadingDoors(lift, current));
     }, 1000);
   }
@@ -230,7 +233,7 @@ export const moveLiftEnroute =
   (dispatch, getState) => {
     const { isRunning } = getState().simulator;
     if (!isRunning) return;
-    dispatch(setDirection({ lift, direction: end > current ? "UP" : "DOWN" }));
+    dispatch(setDirection({ lift, direction: end > current ? 'UP' : 'DOWN' }));
     if (current < end) {
       setTimeout(() => {
         dispatch(setCurrentFloor({ lift, value: 1 }));
@@ -239,7 +242,7 @@ export const moveLiftEnroute =
             nextStart,
             nextEnd,
             nextPass,
-          })
+          }),
         );
       }, 1000);
     } else if (current > end) {
@@ -250,12 +253,12 @@ export const moveLiftEnroute =
             nextStart,
             nextEnd,
             nextPass,
-          })
+          }),
         );
       }, 1000);
     } else {
       setTimeout(() => {
-        dispatch(setDirection({ lift, direction: "" }));
+        dispatch(setDirection({ lift, direction: '' }));
         dispatch(startTaxiRide(lift, nextStart, nextEnd, nextPass));
       }, 1000);
     }
