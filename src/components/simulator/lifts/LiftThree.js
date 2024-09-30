@@ -5,13 +5,14 @@ import ElevatorDoors from '../liftParts/ElevatorDoors.js';
 import DirectionPanel from '../liftParts/DirectionPanel.js';
 
 const LiftThree = () => {
-  const L3CurrentFloor = useSelector(
-    (state) => state.everyLift.lift3.currentFloor,
-  );
-  const L3Phase = useSelector((state) => state.everyLift.lift3.phase);
-  const L3Direction = useSelector((state) => state.everyLift.lift3.direction);
-  const L3TripsArray = useSelector((state) => state.everyLift.lift3.trips);
-  const liftTitle = 'Lift 3';
+  const {
+    liftTitle: L3LiftTitle,
+    currentFloor: L3CurrentFloor,
+    phase: L3Phase,
+    direction: L3Direction,
+    trips: L3TripsArray,
+  } = useSelector((state) => state.everyLift.lift3);
+
   const currentTrip = L3TripsArray[L3TripsArray.length - 1];
   return (
     <Grid
@@ -25,13 +26,13 @@ const LiftThree = () => {
         textAlign: 'center',
       }}
     >
-      <TripsDisplay title={`${liftTitle} Trips`} trips={L3TripsArray} />
+      <TripsDisplay title={`${L3LiftTitle} Trips`} trips={L3TripsArray} />
       <Stack direction={'column'} alignItems={'center'}>
         <DirectionPanel direction={L3Direction} currentFloor={L3CurrentFloor} />
         <ElevatorDoors
           phase={L3Phase}
           currentFloor={L3CurrentFloor}
-          liftTitle={liftTitle}
+          liftTitle={L3LiftTitle}
           currentTrip={currentTrip}
         />
       </Stack>

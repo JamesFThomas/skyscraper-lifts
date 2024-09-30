@@ -5,13 +5,14 @@ import ElevatorDoors from '../liftParts/ElevatorDoors.js';
 import DirectionPanel from '../liftParts/DirectionPanel.js';
 
 const LiftTwo = () => {
-  const L2CurrentFloor = useSelector(
-    (state) => state.everyLift.lift2.currentFloor,
-  );
-  const L2Phase = useSelector((state) => state.everyLift.lift2.phase);
-  const L2Direction = useSelector((state) => state.everyLift.lift2.direction);
-  const L2TripsArray = useSelector((state) => state.everyLift.lift2.trips);
-  const liftTitle = 'Lift 2';
+  const {
+    liftTitle: L2LiftTitle,
+    currentFloor: L2CurrentFloor,
+    phase: L2Phase,
+    direction: L2Direction,
+    trips: L2TripsArray,
+  } = useSelector((state) => state.everyLift.lift2);
+
   const currentTrip = L2TripsArray[L2TripsArray.length - 1];
   return (
     <Grid
@@ -26,13 +27,13 @@ const LiftTwo = () => {
         gap: 1,
       }}
     >
-      <TripsDisplay title={`${liftTitle} Trips`} trips={L2TripsArray} />
+      <TripsDisplay title={`${L2LiftTitle} Trips`} trips={L2TripsArray} />
       <Stack direction={'column'} alignItems={'center'}>
         <DirectionPanel direction={L2Direction} currentFloor={L2CurrentFloor} />
         <ElevatorDoors
           phase={L2Phase}
           currentFloor={L2CurrentFloor}
-          liftTitle={liftTitle}
+          liftTitle={L2LiftTitle}
           currentTrip={currentTrip}
         />
       </Stack>
