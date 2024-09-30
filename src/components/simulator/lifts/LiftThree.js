@@ -6,7 +6,7 @@ import DirectionPanel from '../liftParts/DirectionPanel.js';
 
 const LiftThree = () => {
   const {
-    liftTitle: L3LiftTitle,
+    liftTitle: L3Title,
     currentFloor: L3CurrentFloor,
     phase: L3Phase,
     direction: L3Direction,
@@ -26,13 +26,13 @@ const LiftThree = () => {
         textAlign: 'center',
       }}
     >
-      <TripsDisplay title={`${L3LiftTitle} Trips`} trips={L3TripsArray} />
+      <TripsDisplay title={`${L3Title} Trips`} trips={L3TripsArray} />
       <Stack direction={'column'} alignItems={'center'}>
         <DirectionPanel direction={L3Direction} currentFloor={L3CurrentFloor} />
         <ElevatorDoors
           phase={L3Phase}
           currentFloor={L3CurrentFloor}
-          liftTitle={L3LiftTitle}
+          liftTitle={L3Title}
           currentTrip={currentTrip}
         />
       </Stack>
