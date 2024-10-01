@@ -63,7 +63,11 @@ const NavBar = () => {
             <List sx={listStyles}>
               {navButtons.map((item) => (
                 <ListItem key={item.title} disablePadding>
-                  <ListItemButton sx={listButtonStyles} href={item.href}>
+                  <ListItemButton
+                    data-testid={`navbarButton-${item.title}`}
+                    sx={listButtonStyles}
+                    href={item.href}
+                  >
                     <ListItemText primary={item.title} />
                   </ListItemButton>
                 </ListItem>
