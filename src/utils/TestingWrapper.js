@@ -1,8 +1,9 @@
-import React from "react";
-import { render } from "@testing-library/react";
-import { Provider } from "react-redux";
+import React from 'react';
+import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
-import { setupTestStore } from "../state/store";
+import { setupTestStore } from '../state/store';
 
 export function renderWithProviders(
   ui,
@@ -10,10 +11,14 @@ export function renderWithProviders(
     preloadedState = {},
     store = setupTestStore(preloadedState),
     ...renderOptions
-  } = {}
+  } = {},
 ) {
   function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>;
+    return (
+      <Provider store={store}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Provider>
+    );
   }
   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
 }
