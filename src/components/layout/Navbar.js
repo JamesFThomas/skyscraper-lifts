@@ -55,6 +55,7 @@ const NavBar = () => {
             color="inherit"
             aria-label="menu"
             sx={iconButtonStyles}
+            data-testid="navbarButton-Home"
             href="/"
           >
             <Typography>Skyscraper Lifts</Typography>
