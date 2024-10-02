@@ -1,7 +1,7 @@
 // import dependencies
 import { Container } from '@mui/material';
 
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 // import components
 import NavBar from './layout/Navbar.js';

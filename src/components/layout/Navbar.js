@@ -56,7 +56,7 @@ const NavBar = () => {
             aria-label="menu"
             sx={iconButtonStyles}
             data-testid="navbarButton-Home"
-            href="/"
+            to="/"
           >
             <Typography>Skyscraper Lifts</Typography>
           </IconButton>
@@ -67,7 +67,7 @@ const NavBar = () => {
                   <ListItemButton
                     data-testid={`navbarButton-${item.title}`}
                     sx={listButtonStyles}
-                    href={item.href}
+                    to={item.href}
                   >
                     <ListItemText primary={item.title} />
                   </ListItemButton>
