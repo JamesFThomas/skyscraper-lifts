@@ -43,9 +43,11 @@ const downIconStyles = () => {
 };
 
 const DisplayPanel = () => {
-  const dUp = useSelector((state) => state.singleMode.dUp);
-  const dDown = useSelector((state) => state.singleMode.dDown);
-  const currentFloor = useSelector((state) => state.singleMode.currentFloor);
+  const {
+    dUp: isGoingUp,
+    dDown: isGoingDown,
+    currentFloor,
+  } = useSelector((state) => state.singleMode);
 
   return (
     <Stack
@@ -55,7 +57,7 @@ const DisplayPanel = () => {
       sx={stackStyles}
     >
       <Box sx={iconBoxStyles}>
-        {dUp ? (
+        {isGoingUp ? (
           <Forward id="upIcon" sx={upIconStyles} />
         ) : (
           <ForwardOutlined sx={upIconStyles} />
@@ -65,7 +67,7 @@ const DisplayPanel = () => {
         {currentFloor}
       </Typography>
       <Box sx={iconBoxStyles}>
-        {dDown ? (
+        {isGoingDown ? (
           <Forward id="downIcon" sx={downIconStyles} />
         ) : (
           <ForwardOutlined sx={downIconStyles} />
