@@ -2,7 +2,6 @@ import { renderWithProviders } from '../../utils/TestingWrapper';
 import DisplayPanel from '../../components/singleMode/liftParts/DisplayPanel';
 import { useSelector } from 'react-redux';
 import { screen, render, getByText, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { singleModeSlice } from '../../state/singleModeSlice';
 import { testReducer } from '../../state/store';
@@ -42,13 +41,14 @@ const mockDownState = {
 
 // Mock useSelector
 jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
   useSelector: jest.fn(),
 }));
 
 describe('Blog example testing suite', () => {
-  xit('component successfully renders', () => {
+  it('component successfully renders', () => {
     //Arrange
-    useSelector.mockImplementation(() => mockIdleState);
+    useSelector.mockImplementation((selector) => selector(mockIdleState));
     render(<DisplayPanel />);
 
     // Act
@@ -59,9 +59,9 @@ describe('Blog example testing suite', () => {
   });
 
   // Current floor direction test
-  xit('component renders currentfloor value', () => {
+  it('component renders currentfloor value', () => {
     //Arrange
-    useSelector.mockImplementation(() => mockCurrentFloor);
+    useSelector.mockImplementation((selector) => selector(mockCurrentFloor));
     render(<DisplayPanel />);
 
     // Act
@@ -70,38 +70,36 @@ describe('Blog example testing suite', () => {
     // Assert
     expect(currentFloor).toBeInTheDocument();
 
-    //TODO add assertion for currentfloor value to be 89
-    // expect(currentFloor).toContain(mockCurrentFloor.singleMode.currentFloor);
+    expect(currentFloor).toHaveTextContent(
+      mockCurrentFloor.singleMode.currentFloor,
+    );
   });
 
-  // Down direction test
-  it('component indicates up direction when true', async () => {
+  // Up direction test
+  it('component indicates up direction when true', () => {
     //Arrange
-    useSelector.mockImplementation(() => mockUpstate);
+    useSelector.mockImplementation((selector) => selector(mockUpstate));
     render(<DisplayPanel />);
 
     // Act
     const upIcon = screen.getByTestId('ForwardIcon');
 
-    await waitFor(() => {
-      // Assert
-      screen.getByTestId('ForwardIcon');
-    });
-
     // Assert
     expect(upIcon).toBeInTheDocument();
+    expect(upIcon).toHaveAttribute('id', 'upIcon');
   });
 
-  // Up direction test
-  xit('component indicates down direction when true', () => {
+  // Down direction test
+  it('component indicates down direction when true', () => {
     //Arrange
-    useSelector.mockImplementation(() => mockCurrentFloor);
+    useSelector.mockImplementation((selector) => selector(mockDownState));
     render(<DisplayPanel />);
 
     // Act
-    const displayPanelContainer = screen.getByTestId('displayPanelContainer');
+    const downIcon = screen.getByTestId('ForwardIcon');
 
     // Assert
-    expect(displayPanelContainer).toBeInTheDocument();
+    expect(downIcon).toBeInTheDocument();
+    expect(downIcon).toHaveAttribute('id', 'downIcon');
   });
 });
