@@ -1,10 +1,6 @@
-import { renderWithProviders } from '../../utils/TestingWrapper';
 import DisplayPanel from '../../components/singleMode/liftParts/DisplayPanel';
 import { useSelector } from 'react-redux';
-import { screen, render, getByText, waitFor } from '@testing-library/react';
-import { configureStore } from '@reduxjs/toolkit';
-import { singleModeSlice } from '../../state/singleModeSlice';
-import { testReducer } from '../../state/store';
+import { screen, render } from '@testing-library/react';
 
 // Mock state
 const mockIdleState = {
